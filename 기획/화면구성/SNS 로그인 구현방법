@@ -1,0 +1,10 @@
+sns 로그인 방법 정리된 글이 있어서 링크 남겨둡니다
+
+네이버 : https://blog.naver.com/wit_dgt/222340263312
+구글 : https://blog.naver.com/wit_dgt/222347989589
+카카오 : https://blog.naver.com/wit_dgt/222344869330
+페이스북 : https://blog.naver.com/wit_dgt/222350550183
+
+쉽게 구현되도록 제공하고 있지만 백엔드로 취업할 생각이라면
+기반이 되는 rest API와 OAuth2.0를 따로 공부해야 합니다
+아예 채용조건에 포함되는 경우도 많더라구요...
