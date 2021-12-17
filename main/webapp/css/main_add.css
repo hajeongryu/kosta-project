@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+/* INPUT 가리기 */
+.mainAdd input[id*="slide"] {
+    display: none;
+}
+
+/* 슬라이드 영역 - max-width 크기를 조절해주면 됩니다*/
+.mainAdd .slidewrap {
+    max-width: 1200px;
+    margin-top: 50px;
+    overflow: hidden;
+    background-color: skyblue;
+    margin-left: 0;
+    padding-left: 0;
+
+}
+.mainAdd .slidelist {
+    white-space: nowrap;
+    margin-left: 0;
+    padding-left: 0;
+}
+.mainAdd .slidelist > li {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    transition: all 0.5s; 
+
+}
+.mainAdd .slidelist > li > a {
+    display: block;
+    position: relative;
+}
+/* 타이틀 오차 여기로 수정 */
+.mainAdd-title1{
+    display: flex;
+    /* 색깔조정 */
+    background-color: #bddbf5;
+}
+.mainAdd-title2{
+    display: flex;
+    margin-left: -5px;
+    background-color: #d7f8ff;
+}
+.mainAdd-title3{
+    display: flex;
+    margin-left: -11px;
+    background-color: #afb0b1;
+}
+/*  */
+.mainAdd .slidelist > li > a img {
+    height: 300px;
+    margin: 0;
+}
+
+.mainAdd div.adinfo {
+    width: 100%;
+    text-align: center;
+}
+.adinfo >h2{
+    margin-top: 30px;
+}
+/* 좌우로 넘기는 LABEL버튼에 대한 스타일 */
+.mainAdd .slidelist label {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 50px;
+    cursor: pointer;
+}
+.mainAdd .slidelist .left {
+    left: -25px;
+    background: url("../images/left.png") center center / 100% no-repeat;
+}
+.mainAdd .slidelist .right {
+    right: -25px;
+    background: url("../images/right.png") center center / 100% no-repeat;
+}
+
+/* INPUT 체크되면 변화값이 li까지 전달되는 스타일 */
+.mainAdd input[id="slide01"]:checked ~ .slidewrap .slidelist > li {
+    transform: translateX(0%);
+}
+.mainAdd input[id="slide02"]:checked ~ .slidewrap .slidelist > li {
+    transform: translateX(-100%);
+}
+.mainAdd input[id="slide03"]:checked ~ .slidewrap .slidelist > li {
+    transform: translateX(-200%);
+}
+
+
+/* ----------------------------- */
+.ad2{
+    background-color: seashell;
+    height: 180px;
+}

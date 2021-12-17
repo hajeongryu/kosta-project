@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+button.endcome-nextB{
+    position: absolute;
+    margin-left: 1050px;
+    margin-bottom: 50px;
+    height: 100%;
+    width: 50px;
+    z-index: 50;
+    background: url("../images/right2.png") center center / 100% no-repeat;
+}
+button.endcome-backB{
+    margin-right: 700px;
+    margin-bottom: 50px;
+    height: 100%;
+    width: 50px;
+    z-index: 50;
+    z-index: 50;
+    background: url("../images/left2.png") center center / 100% no-repeat;
+    position: absolute;
+    z-index: 50;
+    transition: all 1.5s; 
+}
+
+.endcome-project >.item-rapper>.item-inrap1{
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    /* transform: translateX(-20%); */
+    
+}
+
