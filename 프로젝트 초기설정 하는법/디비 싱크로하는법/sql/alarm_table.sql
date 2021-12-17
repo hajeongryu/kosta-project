@@ -1,0 +1,26 @@
+--ALARM Table Create SQL
+CREATE TABLE alarm(
+    alarm_no NUMBER(8) CONSTRAINT alarm_no_pk PRIMARY KEY,
+    user_no NUMBER(8) NOT NULL,
+    alarm_content VARCHAR2(100) NOT NULL,
+    alarm_date DATE DEFAULT SYSDATE NOT NULL,
+    alarm_read CHAR(1) NOT NULL,
+    CONSTRAINT alarm_user_no_fk FOREIGN KEY (user_no) REFERENCES USERS (user_no),
+    CONSTRAINT alarm_no_ck CHECK(alarm_no>0),
+    CONSTRAINT alarm_read_ck CHECK (alarm_read IN (1,0))
+);
+
+--ALARM_SEQ 생성
+CREATE SEQUENCE ALARM_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+--ALARM_SEQ가 alarm_no에 저장 trigger
+CREATE OR REPLACE TRIGGER ALARM_AI_TRG
+BEFORE INSERT ON ALARM
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT ALARM_SEQ.NEXTVAL
+    INTO :NEW.alarm_no
+    FROM DUAL;
+END;

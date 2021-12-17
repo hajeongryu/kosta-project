@@ -1,0 +1,14 @@
+CREATE USER rholling
+IDENTIFIED BY 1234
+DEFAULT TABLESPACE USERS
+TEMPORARY TABLESPACE TEMP;
+
+GRANT CONNECT TO rholling;
+GRANT RESOURCE TO rholling;
+GRANT DBA TO rholling;
+
+------------------------------------------------------------
+
+접속이름 : RhollingDB
+사용자이름 : rholling
+비밀번호 : 1234
