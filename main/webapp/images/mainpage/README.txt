@@ -1,1 +1,1 @@
-images/main folder
+images/mainpage folder
