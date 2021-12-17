@@ -3,9 +3,9 @@
     
 <!DOCTYPE html>
 <head>
-	<link rel="stylesheet" type="text/css" href="./css/main_nav.css">
+	<link  href="<%=request.getContextPath()%>/css/mainpage/main_nav.css" rel="stylesheet" type="text/css" >
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="./js/index.js"></script>
+	<script src="<%=request.getContextPath()%>/js/mainpage/index.js"></script>
 
 	<script>
 		$(function(){
@@ -18,7 +18,7 @@
     <div class="menu1">
         <div class="menu1-logo" >
           <a href="#">
-            <img src="./images/rholling.PNG" >
+            <img src="<%=request.getContextPath()%>/images/mainpage/rholling.PNG" >
           </a>
         </div>
         <div class="menu1-addproject">
@@ -28,12 +28,12 @@
         </div>
         <div class="menu1-like">
           <a href="#">
-            <img src="./images/like.png">
+            <img src="<%=request.getContextPath()%>/images/mainpage/like.png">
           </a>
         </div>
         <div class="menu1-aram">
           <a href="#">
-            <img src="./images/aram.PNG">
+            <img src="<%=request.getContextPath()%>/images/mainpage/aram.PNG">
           </a>
         </div>
 
