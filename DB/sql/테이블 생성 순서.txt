@@ -1,0 +1,27 @@
+--fk참조 없는 테이블이라 제일 먼저 실행
+  1. category_table.sql 실행
+
+--연결이 제일 많이 되어있는 테이블
+  2. users_table.sql 실행
+
+--유저테이블이랑 연결되어있는 테이블
+  3. follow_table.sql 실행
+  4. alarm_table.sql
+
+  6. card_table.sql
+  7. address_table.sql
+
+--회원번호 fk, 카테고리 fk
+  8. project_table.sql 실행
+
+--프로젝트테이블이랑 연결되어있는 테이블
+  9. project_change_table.sql 실행
+  10. reject_table.sql 실행
+  11. reward_table.sql 실행
+
+--프로젝트, 유저테이블이랑 연결되어있는 테이블
+  12. community_table.sql 실행
+  13. comment_table.sql 실행
+  14. interest_table.sql 실행
+
+  15. order_table.sql 실행
