@@ -1,0 +1,9 @@
+https://github.com/hajeongryu/kosta-project.git
+
+
+
+토큰인증문제
+git- >setting ->Developer setting ->Personal access tokens ->토큰만들기 (무기한)
+
+아니면 깃버전문제
+도구->옵션-> 상단 메뉴 [git] ->[git버전] (system), (update) 버튼클릭

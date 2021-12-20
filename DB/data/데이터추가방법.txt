@@ -1,0 +1,3 @@
+https://sas-study.tistory.com/161
+
+category_no는 빼고 임포트

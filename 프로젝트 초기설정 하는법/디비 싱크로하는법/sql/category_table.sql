@@ -1,0 +1,23 @@
+-- CATEGORY 테이블 생성
+CREATE TABLE CATEGORY(
+    category_no      NUMBER(8)       CONSTRAINT cate_no_pk PRIMARY KEY, 
+    category_p       NUMBER(8), 
+    category_name    VARCHAR2(100)   NOT NULL,
+    CONSTRAINT cate_p_fk FOREIGN KEY (category_p) REFERENCES CATEGORY (category_no),
+    CONSTRAINT cate_name_uk UNIQUE(category_name)
+);
+
+--CATEGORY_SEQ 생성
+CREATE SEQUENCE CATEGORY_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+--CATEGORY_SEQ가 category_no에 저장 trigger
+CREATE OR REPLACE TRIGGER CATEGORY_AI_TRG
+BEFORE INSERT ON CATEGORY 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT CATEGORY_SEQ.NEXTVAL
+    INTO :NEW.category_no
+    FROM DUAL;
+END;
