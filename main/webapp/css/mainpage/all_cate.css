@@ -50,7 +50,7 @@
     max-width: 1100px;
 }
 .listLength .orderBy{
-    background: url( "../images/ranking.PNG" ) no-repeat;
+    background: url( "../../images/mainpage/ranking.PNG" ) no-repeat;
     border: none;
     width: 77.34px;
     height: 34px;
@@ -93,7 +93,7 @@
 
 /* Buttons */
 .fundingList .listInfo .status{
-    background: url( "images/stats.PNG" ) no-repeat;
+    background: url( "../../images/mainpage/stats.PNG" ) no-repeat;
     border: none;
     width: 65.5px;
     height: 34px;
@@ -102,7 +102,7 @@
     
 }
 .fundingList .listInfo .achiev{
-    background: url( "images/rate.PNG" ) no-repeat;
+    background: url( "../../images/mainpage/rate.PNG" ) no-repeat;
     border: none;
     width: 78.34px;
     height: 34px;
@@ -110,7 +110,7 @@
     margin-right: 15px;
 }
 .fundingList .listInfo .recommend{
-    background: url( "images/choice.PNG" ) no-repeat;
+    background: url( "../../images/mainpage/choice.PNG" ) no-repeat;
     border: none;
     width: 91px;
     height: 34px;
