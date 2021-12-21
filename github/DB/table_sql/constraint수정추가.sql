@@ -27,5 +27,11 @@ END;
 --배송안하는 경우도 있어서 삭제
 ALTER TABLE reward MODIFY deliver_date NULL;
 
---
+--자료형크기 수정
 ALTER TABLE orders MODIFY payment_result VARCHAR2(20);
+
+--컬럼명 수정
+ALTER TABLE PROJECT_CHANGE RENAME COLUMN GET_PRICE TO SUM_PRICE;
+
+--default 값 추가
+ALTER TABLE users MODIFY user_image DEFAULT "files/user_image/default_image.png";

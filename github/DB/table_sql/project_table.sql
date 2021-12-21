@@ -16,7 +16,7 @@ CREATE TABLE PROJECT(
     CONSTRAINT proj_user_no_fk FOREIGN KEY (user_no) REFERENCES USERS (user_no),
     CONSTRAINT proj_cate_no_fk FOREIGN KEY (category_no) REFERENCES CATEGORY (category_no),
     CONSTRAINT proj_edit_pick_ck CHECK(editor_pick IN (1, 0)),
-    CONSTRAINT proj_tar_price_ck CHECK(target_price>500000),
+    CONSTRAINT proj_tar_price_ck CHECK(target_price>=500000),
     CONSTRAINT proj_end_dt_ck CHECK(end_date>start_date)
 );
 
