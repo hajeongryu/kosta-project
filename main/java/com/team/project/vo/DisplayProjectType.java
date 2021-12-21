@@ -1,6 +1,6 @@
 package com.team.project.vo;
 
-import java.sql.Date;
+import java.util.Date;//유틸로 임포트
 
 /*
  * PROJECT TABLE +
@@ -30,8 +30,35 @@ public class DisplayProjectType {
 	public int target_price;
 	public int sum_price;
 	public Date endDate;
-	public int spoortCnt;
+	public int support;
 	public String projectImage;
 	
-}
+	
+	public DisplayProjectType(int projectNo, String cateogryName, String userName,
+								 String longTitle, int target_price, int sum_price,
+								 Date endDate, int spoortCnt, String projectImage) {
+
+		this.projectNo = projectNo;
+		this.cateogryName = cateogryName;
+		this.userName = userName;
+		this.longTitle = longTitle;
+		this.target_price = target_price;
+		this.sum_price = sum_price;
+		this.endDate = endDate;
+		this.support= spoortCnt;
+		this.projectImage = projectImage;
+	}
+
+
+	
+	
+	@Override
+	public String toString() {
+		return "DisplayProjectType [projectNo=" + projectNo + ", cateogryName=" + cateogryName + ", userName="
+				+ userName + ", longTitle=" + longTitle + ", target_price=" + target_price + ", sum_price=" + sum_price
+				+ ", endDate=" + endDate + ", spoortCnt=" + support+ ", projectImage=" + projectImage + "]";
+	}
+
+
+	}
 
