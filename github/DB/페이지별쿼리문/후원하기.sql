@@ -26,8 +26,9 @@ SELECT user_phone 연락처, user_id 이메일
 FROM users;
 
 --최종후원금액
-SELECT total_price
+SELECT (total_price + extra_price)
 FROM order;
 
---UPDATE 후원자,모인금액
-INSERT INTO project_change(support_cnt, sum_price) VALUES (?,?); 
+--UPDATE 후원자,모인금액 
+UPDATE project_change SET support_cnt='?';
+UPDATE project_change SET sum_price='?';
