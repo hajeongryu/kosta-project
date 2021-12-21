@@ -32,3 +32,8 @@ FROM order;
 --UPDATE 후원자,모인금액 
 UPDATE project_change SET support_cnt='?';
 UPDATE project_change SET sum_price='?';
+
+
+--후원하기(결제)
+INSERT INTO orders 
+VALUES (user_no,extra_price, total_price, address_no, card_no, reward_no, project_no);

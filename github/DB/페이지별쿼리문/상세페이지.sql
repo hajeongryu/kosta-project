@@ -30,6 +30,7 @@ FROM community c JOIN users u ON c.user_no=u.user_no;
 
 INSERT INTO community(post_no, project_no, post_content, post_date, user_no)
 VALUES(post_seq.NEXTVAL,'?','?',SYSDATE,'?');
+DELETE FROM post WHERE project_no=?;
 
 --댓글
 SELECT user_name 작성자이름
@@ -39,3 +40,4 @@ FROM comments c JOIN users u ON c.user_no=u.user_no;
 
 INSERT INTO comments(comment_no, post_no, comment_content, comment_date, user_no)
 VALUES(comment_seq.NEXTVAL,'?','?',SYSDATE,'?');
+DELETE FROM comments WHERE post_no=?;
