@@ -34,4 +34,4 @@ ALTER TABLE orders MODIFY payment_result VARCHAR2(20);
 ALTER TABLE PROJECT_CHANGE RENAME COLUMN GET_PRICE TO SUM_PRICE;
 
 --default °ª Ãß°¡
-ALTER TABLE users MODIFY user_image DEFAULT "files/user_image/default_image.png";
+ALTER TABLE users MODIFY user_image DEFAULT 'files/user_image/default.png';
