@@ -19,8 +19,8 @@ public class MyConnection {
 	public static Connection getConnection() throws SQLException {
 		Connection con = null;
 		String url ="jdbc:oracle:thin:@localhost:1521:xe"; //localhost대신 ip값도 가능
-		String user ="rholling";
-		String password = "1234";
+		String user ="hr";
+		String password = "hr";
 		con = DriverManager.getConnection(url, user, password);
 		System.out.println("DB와 연결 성공");
 		return con;
