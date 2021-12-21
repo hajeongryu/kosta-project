@@ -4,7 +4,7 @@ SELECT project_image "프로젝트 이미지"
         , user_name "프로젝트 작성자 이름"
         , project_brief "프로젝트 요약"
         , target_price "목표금액"
-        , get_price "모인금액" --목표금액/모인금액
+        , sum_price "모인금액" --목표금액/모인금액
         , end_date "종료일" --sysdate에서 enddate빼기
         
 FROM project p
@@ -13,7 +13,7 @@ FROM project p
     JOIN users u
         ON p.user_no = u.user_no
     JOIN orders  --쓰이지는 않는 경우도 있는데 코드 재활용성을 위해 그냥 넣어둠
-        ON p.project_no = orders.project_no
+        ON p.project_no = orders.project_no;
         
         
         
