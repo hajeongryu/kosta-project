@@ -1,7 +1,8 @@
 package com.team.project.vo;
 
-import java.sql.Blob;
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import com.team.user.vo.Users;
 
@@ -19,14 +20,14 @@ public class Comments {
 	private Community postNo;
 	private Project projectNo;
 	private Users UserNo;
-	private Blob commentContent;
+	private String commentContent;
 	private Date commentDate;
 	public Comments() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Comments(int commentNo, Community postNo, Project projectNo, Users userNo, Blob commentContent,
+	public Comments(int commentNo, Community postNo, Project projectNo, Users userNo, String commentContent,
 			Date commentDate) {
 		super();
 		this.commentNo = commentNo;
@@ -61,10 +62,10 @@ public class Comments {
 	public void setUserNo(Users userNo) {
 		UserNo = userNo;
 	}
-	public Blob getCommentContent() {
+	public String getCommentContent() {
 		return commentContent;
 	}
-	public void setCommentContent(Blob commentContent) {
+	public void setCommentContent(String commentContent) {
 		this.commentContent = commentContent;
 	}
 	public Date getCommentDate() {

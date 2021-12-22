@@ -1,7 +1,9 @@
 package com.team.order.vo;
 
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import com.team.project.vo.Project;
 import com.team.project.vo.Reward;

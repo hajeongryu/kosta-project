@@ -1,6 +1,6 @@
 package com.team.user.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 /*
 	`card_no`	NUMBER(8)	NOT NULL,
