@@ -6,14 +6,14 @@ import java.util.List;
 	`following` NUMBER(8) NOT NULL, 
 	`user_no` NUMBER(8) NOT NULL
 */
-public class Following {
+public class Follow {
 	private Users userNo;
 	private List<Users> following;
-	public Following() {
+	public Follow() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Following(Users userNo, List<Users> following) {
+	public Follow(Users userNo, List<Users> following) {
 		super();
 		this.userNo = userNo;
 		this.following = following;
