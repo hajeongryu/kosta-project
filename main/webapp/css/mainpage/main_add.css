@@ -71,11 +71,11 @@
 }
 .mainAdd .slidelist .left {
     left: -25px;
-    background: url("/rhollEE/images/mainpage/left.png") center center / 100% no-repeat;
+    background: url("../../images/mainpage/left.png") center center / 100% no-repeat;
 }
 .mainAdd .slidelist .right {
     right: -25px;
-    background: url("/rhollEE/images/mainpage/right.png") center center / 100% no-repeat;
+    background: url("../../images/mainpage/right.png") center center / 100% no-repeat;
 }
 
 /* INPUT 체크되면 변화값이 li까지 전달되는 스타일 */

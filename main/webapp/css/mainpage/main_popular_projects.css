@@ -14,7 +14,7 @@ button.pop-nextB{
     height: 100%;
     width: 50px;
     z-index: 50;
-    background: url("/rhollEE/images/mainpage/right2.png") center center / 100% no-repeat;
+    background: url("../../images/mainpage/right2.png") center center / 100% no-repeat;
 }
 button.pop-backB{
     margin-right: 700px;
@@ -23,7 +23,7 @@ button.pop-backB{
     width: 50px;
     z-index: 50;
     z-index: 50;
-    background: url("/rhollEE/images/mainpage/left2.png") center center / 100% no-repeat;
+    background: url("../../images/mainpage/left2.png") center center / 100% no-repeat;
     position: absolute;
     z-index: 50;
     transition: all 1.5s; 
@@ -90,7 +90,7 @@ button.pop-backB{
 
 /* Buttons */
 .fundingList .listInfo .status{
-    background: url( "/rhollEE/images/mainpage/stats.PNG" ) no-repeat;
+    background: url( "../../images/mainpage/stats.PNG" ) no-repeat;
     border: none;
     width: 65.5px;
     height: 34px;
@@ -99,7 +99,7 @@ button.pop-backB{
     
 }
 .fundingList .listInfo .achiev{
-    background: url( "/rhollEE/images/mainpage/rate.PNG" ) no-repeat;
+    background: url( "../../images/mainpage/rate.PNG" ) no-repeat;
     border: none;
     width: 78.34px;
     height: 34px;
@@ -107,7 +107,7 @@ button.pop-backB{
     margin-right: 15px;
 }
 .fundingList .listInfo .recommend{
-    background: url( "/rhollEE/images/mainpage/choice.PNG" ) no-repeat;
+    background: url( "../../images/mainpage/choice.PNG" ) no-repeat;
     border: none;
     width: 91px;
     height: 34px;

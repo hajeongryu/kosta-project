@@ -1,5 +1,6 @@
 package com.team.project.dao;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import com.team.exception.AddException;
@@ -28,4 +29,13 @@ public interface ProjectDAOInterface {
 	public void modify(Project project) throws ModifyException;
 	public void remove(int projectNo) throws RemoveException;
 	
+=======
+import com.team.exception.FindException;
+import com.team.project.vo.DisplayProjectType;
+
+public interface ProjectDAOInterface {
+	
+	public DisplayProjectType findByProjectNo(int projectNo) throws FindException;
+
+>>>>>>> main
 }

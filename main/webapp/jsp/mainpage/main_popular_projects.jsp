@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<link rel="stylesheet" type="text/css" href="/rhollEE/css/mainpage/main_popular_projects.css">
+<link rel="stylesheet" type="text/css" href="../../css/mainpage/main_popular_projects.css">
     
 <div class="fundingList popular-project">
   <!-- 게시판 이름 -->
@@ -21,7 +21,7 @@
           <!-- 글 -->
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="../../images/mainpage/1.jpeg" alt="l"><button class="like"></button>
               <!-- 정보 -->
               <div class="info">
                   <div class ="catelink">
@@ -41,7 +41,7 @@
 
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="../../images/mainpage/1.jpeg" alt="l"><button class="like"></button>
               <!-- 정보 -->
               <div class="info">
                   <div class ="catelink">
@@ -60,7 +60,7 @@
           </div>
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="../../images/mainpage/1.jpeg" alt="l"><button class="like"></button>
               <!-- 정보 -->
               <div class="info">
                   <div class ="catelink">
@@ -82,7 +82,7 @@
           
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="../../images/mainpage/1.jpeg" alt="l"><button class="like"></button>
               <!-- 정보 -->
               <div class="info">
                   <div class ="catelink">
@@ -107,7 +107,7 @@
 
           <div class="item" >
               <!-- 사진 -->
-              <img  class="item-image" src="/rhollEE/images/mainpage/2.jpeg" alt="2"><button class="like"></button>
+              <img  class="item-image" src="../../images/mainpage/2.jpeg" alt="2"><button class="like"></button>
               <!-- 정보 -->
               <div class="info">
             <div class ="catelink">
@@ -127,7 +127,7 @@
 
             <div class="item" >
                 <!-- 사진 -->
-                <img class="item-image" src="/rhollEE/images/mainpage/3.jpeg" alt="l"><button class="like"></button>
+                <img class="item-image" src="../../images/mainpage/3.jpeg" alt="l"><button class="like"></button>
                 <!-- 정보 -->
                 <div class="info">
                     <div class ="catelink">
@@ -149,7 +149,7 @@
 
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/4.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="../../images/mainpage/4.jpeg" alt="l"><button class="like"></button>
               <!-- 정보 -->
               <div class="info"> 
                 <div class ="catelink">

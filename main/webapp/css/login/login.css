@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+*{
+    width: 100%;
+    margin: auto;
+    max-width: 1100px;
+	box-sizing: border-box;
+	padding: 0;
+	
+}
+.logo>a>img {
+	display: block;
+    margin: auto;
+	width:200px;
+}
+.login_box {
+	width: 60%;
+}
+.login_box2 {
+	width: 90%;
+}
+.sns_login>button {
+	height: 35px;
+	margin: 5px;
+	border: 1px solid;
+	border-radius: 4px;
+}
+.email_login * {
+	height: 35px;
+	margin: 5px;
+	border: 1px solid;
+	border-radius: 4px;
+}
+.login_text {
+	height: 35px;
+	margin: 5px;
+	font-size: 7px;
+}
