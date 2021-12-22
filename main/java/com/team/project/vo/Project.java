@@ -1,6 +1,6 @@
 package com.team.project.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.team.user.vo.Users;
 
