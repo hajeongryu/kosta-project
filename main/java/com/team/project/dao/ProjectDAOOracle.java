@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-<<<<<<< HEAD
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,17 +12,24 @@ import com.team.exception.AddException;
 import com.team.exception.FindException;
 import com.team.exception.ModifyException;
 import com.team.exception.RemoveException;
+import com.team.project.vo.DisplayProjectType;
 import com.team.project.vo.Project;
 import com.team.sql.MyConnection;
 
-public class ProjectDAOOracle implements ProjectDAOInterface{
-	private static ProjectDAOOracle dao = new ProjectDAOOracle();
+
+
+public class ProjectDAOOracle implements ProjectDAOInterface {
+	
+	
+		private static ProjectDAOOracle dao = new ProjectDAOOracle();
 	private ProjectDAOOracle() {
 		
 	}
 	public static ProjectDAOOracle getInstance() {
 		return dao;
 	}
+
+
 	@Override
 	public List<Project> findAll() throws FindException {
 		Connection con = null; //DB연결
@@ -43,21 +50,14 @@ public class ProjectDAOOracle implements ProjectDAOInterface{
 			}
 			if(list.size() == 0) {
 				throw new FindException("상품이 없습니다");
-=======
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.team.exception.FindException;
-import com.team.project.vo.DisplayProjectType;
-import com.team.sql.MyConnection;
-
-public class ProjectDAOOracle implements ProjectDAOInterface {
-
-
-
+			}
+			return null;
+			}catch (Exception e) {
+				throw new FindException("상품이 없습니다");
+			}
+		}
 	@Override
-	public DisplayProjectType findByProjectNo(int inProjectNo) throws FindException {
+	public Project findByProjectNo(int inProjectNo) throws FindException {
 		Connection con =null;
 		Statement stmt = null;
 		ResultSet rs= null;
@@ -94,13 +94,13 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				int spoortCnt = rs.getInt("support_cnt");
 				String projectImage = rs.getString("project_image");
 				
-				DisplayProjectType dpt = 
-						new DisplayProjectType(projectNo, cateogryName, userName, 
-												longTitle, target_price, sum_price, 
-												endDate, spoortCnt, projectImage);
+				Project dpt = null;
+						//new Project(projectNo, cateogryName, userName, 
+							//					longTitle, target_price, sum_price, 
+								//				endDate, spoortCnt, projectImage);
 
 
-				if (dpt.projectNo == inProjectNo) {
+				if (dpt.getProjectNo()== inProjectNo) {
 					return dpt;
 				}
 				
@@ -122,7 +122,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 
 	
 	
-	public	List<DisplayProjectType> findProject(String category,  //service쪽에서 카테고리 null 값받으면 String값 "all" 넣어서 전달
+	public	List<Project> findProject(String category,  //service쪽에서 카테고리 null 값받으면 String값 "all" 넣어서 전달
 												 String ongoing,
 												 String editorPick,
 												 String achiveRate,
@@ -131,7 +131,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
 		
-		List<DisplayProjectType> list= new ArrayList<DisplayProjectType>();
+		List<Project> list= new ArrayList<Project>();
 		String selectSQL = "SELECT  p.project_no "
 								+ ",category_name "
 								+ ", user_name "
@@ -178,32 +178,28 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				int spoortCnt = rs.getInt("support_cnt");
 				String projectImage = rs.getString("project_image");
 				
-				DisplayProjectType dpt = 
-						new DisplayProjectType(projectNo, cateogryName, userName, 
-												longTitle, target_price, sum_price, 
-												endDate, spoortCnt, projectImage);
+				Project dpt = null;
+				//		new DisplayProjectType(projectNo, cateogryName, userName, 
+				//								longTitle, target_price, sum_price, 
+				//								endDate, spoortCnt, projectImage);
 				
 				list.add(dpt);
 			}
 
 			if(list.isEmpty()) {
 				throw new FindException();
->>>>>>> main
 			}
 			return list;
 		} catch (SQLException e) {
 			e.printStackTrace();
-<<<<<<< HEAD
 			throw new FindException(e.getMessage());
 		}finally {
 			MyConnection.close(rs, pstmt, con);
 		}
 	}
-	@Override
-	public Project findByProjectNo(int ProjectNo) throws FindException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	
+	
 	@Override
 	public void add(Project project) throws AddException {
 		// TODO Auto-generated method stub
@@ -218,14 +214,16 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 	public void remove(int projectNo) throws RemoveException {
 		// TODO Auto-generated method stub
 		
-=======
-			throw new FindException();
-		}finally {
-			MyConnection.close(rs,pstmt,con);
-		}
-		
 	}
+	
+	
+	
 
+	
+
+	//내부 매소드-------------------------------------------------------------------------------------
+	
+	
 	private String categoryAndSQLAdd (String category, String selectSQL)  throws FindException{
 			//requnset value: onging
 			//1. 진행중 프로젝트
@@ -243,9 +241,6 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				
 			return selectSQL;
 	}
-	
-	
-	
 	
 	
 	
@@ -355,7 +350,6 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 		}	
 		return selectSQL;
 
->>>>>>> main
 	}
 	
 	
