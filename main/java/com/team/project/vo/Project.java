@@ -1,6 +1,7 @@
 package com.team.project.vo;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 
 import com.team.user.vo.Users;
 
@@ -42,6 +43,8 @@ public class Project {            ;
 	private Category category;
 	private Users user;
 	
+	//프로젝트의 선물삼자들
+	private List<Reward> reward;
 	                                  
 
 	public Project() {
@@ -97,6 +100,16 @@ public class Project {            ;
 
 	public void setProjectChange(ProjectChange projectChange) {
 		this.projectChange = projectChange;
+	}
+
+
+	public List<Reward> getReward() {
+		return reward;
+	}
+
+
+	public void setReward(List<Reward> reward) {
+		this.reward = reward;
 	}
 
 

@@ -6,20 +6,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.team.exception.AddException;
 import com.team.exception.FindException;
 import com.team.exception.ModifyException;
 import com.team.exception.RemoveException;
-import com.team.project.vo.DisplayProjectType;
+import com.team.project.vo.Category;
 import com.team.project.vo.Project;
+import com.team.project.vo.ProjectChange;
+import com.team.project.vo.Reward;
 import com.team.sql.MyConnection;
+import com.team.user.vo.Users;
 
 
 
 public class ProjectDAOOracle implements ProjectDAOInterface {
-	
+	//TODO : findbyuserNo 만들기
+	//TODO : 주목할만한 프로젝트
+	//public  List<DisplayProjectType> findAttentionProject();
 	
 		private static ProjectDAOOracle dao = new ProjectDAOOracle();
 	private ProjectDAOOracle() {
@@ -30,47 +36,24 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 	}
 
 
+
 	@Override
 	public List<Project> findAll() throws FindException {
 		Connection con = null; //DB연결
-		PreparedStatement pstmt = null; //SQL송신
+		Statement stmt = null; //SQL송신
 		ResultSet rs = null; //결과 수신
-		String selectAllSQL = "SELECT * FROM project ORDER BY project_no ASC";
 		List<Project> list = new ArrayList<>();
-		try {
-			con = MyConnection.getConnection();
-			pstmt = con.prepareStatement(selectAllSQL);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				int projtNo = rs.getInt("project_no");
-				String projtName = rs.getString("prod_name");
-				int prodPrice = rs.getInt("prod_price");
-				Project p = new Project();
-				list.add(p);
-			}
-			if(list.size() == 0) {
-				throw new FindException("상품이 없습니다");
-			}
-			return null;
-			}catch (Exception e) {
-				throw new FindException("상품이 없습니다");
-			}
-		}
-	@Override
-	public Project findByProjectNo(int inProjectNo) throws FindException {
-		Connection con =null;
-		Statement stmt = null;
-		ResultSet rs= null;
 		
 		String selectSQL = "SELECT  p.project_no"
-								+ ",category_name "
+								+ ", category_name "
 								+ ", user_name "
-								+ ", long_title"
-								+ ", target_price"
+								+ ", long_title "
+								+ ", project_content "
+								+ ", target_price "
 								+ ", sum_price "
 								+ ", end_date "
-								+ ", support_cnt"
-								+ ", project_image"
+								+ ", support_cnt "
+								+ ", project_image "
 					+ " FROM project p"
 					+ "    JOIN project_change c"
 					+ "        ON p.project_no =c.project_no"
@@ -78,32 +61,148 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 					+ "        ON p.user_no = u.user_no"
 					+ "    JOIN category cate"
 					+ "        ON p.category_no = cate.category_no";
+		
 		try {
 			con = MyConnection.getConnection();
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(selectSQL);
+		
+			while(rs.next()) {
+
+				Project fp= new Project();
+				//Project Table
+
+				int	projectNo = rs.getInt("project_no");
+				String longTitle = rs.getString("long_title"); 
+				String projectContent= rs.getString("project_content"); 
+				int targetPrice = rs.getInt("target_price");
+				Date endDate =rs.getDate("end_date");
+				String projectImage = rs.getString("project_image");
+
+				fp.setProjectNo(projectNo);
+				fp.setLongTitle(longTitle);
+				fp.setTargetPrice(targetPrice);
+				fp.setEndDate(endDate);
+				fp.setProjectImage(projectImage);
+				fp.setProjectContent(projectContent);
+
+				//[JOIN] ProjectChange 
+				int sumPrice = rs.getInt("sum_price");
+				int spoortCnt = rs.getInt("support_cnt");
+				ProjectChange pc = new ProjectChange();
+				pc.setSumPrice(sumPrice);
+				pc.setSupportCnt(spoortCnt);
+				
+				fp.setProjectChange(pc);
+				
+				//[JOIN] Cateogty Talbe
+				String cateogryName = rs.getString("category_name");
+				Category cate = new Category();
+				cate.setCategoryName(cateogryName);
+				
+				fp.setCategory(cate);
+				
+				
+				//[JOIN] Users Table
+				String userName = rs.getString("user_name"); 
+				Users user = new Users();
+				user.setUserName(userName);
+				
+				fp.setUser(user);
+				
+				list.add(fp);
+			}
+			
+			
+			if(list.isEmpty()) {
+				throw new FindException();
+			}
+
+			return list;
+
+			}catch (Exception e) {
+				throw new FindException("상품이 없습니다");
+			}finally {
+				MyConnection.close(rs,stmt,con);
+			}
+		}
+
+
+	@Override
+	public Project findByProjectNo(int inProjectNo) throws FindException {
+	Connection con =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		
+		String selectSQL = "SELECT  p.project_no"
+								+ ", category_name "
+								+ ", user_name "
+								+ ", long_title "
+								+ ", project_content "
+								+ ", target_price "
+								+ ", sum_price "
+								+ ", end_date "
+								+ ", support_cnt "
+								+ ", project_image "
+					+ " FROM project p"
+					+ "    JOIN project_change c"
+					+ "        ON p.project_no =c.project_no"
+					+ "    JOIN users u"
+					+ "        ON p.user_no = u.user_no"
+					+ "    JOIN category cate"
+					+ "        ON p.category_no = cate.category_no"
+					+ " WHERE p.project_no = ?";
+		try {
+			con = MyConnection.getConnection();
+			pstmt = con.prepareStatement(selectSQL);
+			pstmt.setInt(1, inProjectNo);
+			
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				int	projectNo = rs.getInt("p.project_no");
-				String cateogryName = rs.getString("category_name");
-				String userName = rs.getString("user_name"); 
+
+				Project fp= new Project();
+
+				//Project Table
+				int	projectNo = rs.getInt("project_no");
 				String longTitle = rs.getString("long_title"); 
-				int target_price = rs.getInt("target_price");
-				int sum_price = rs.getInt("end_date ");
-				java.sql.Date endDate =rs.getDate("end_date");
-				int spoortCnt = rs.getInt("support_cnt");
+				String projectContent= rs.getString("project_content"); 
+				int targetPrice = rs.getInt("target_price");
+				Date endDate =rs.getDate("end_date");
 				String projectImage = rs.getString("project_image");
-				
-				Project dpt = null;
-						//new Project(projectNo, cateogryName, userName, 
-							//					longTitle, target_price, sum_price, 
-								//				endDate, spoortCnt, projectImage);
 
+				fp.setProjectNo(projectNo);
+				fp.setLongTitle(longTitle);
+				fp.setTargetPrice(targetPrice);
+				fp.setEndDate(endDate);
+				fp.setProjectImage(projectImage);
+				fp.setProjectContent(projectContent);
 
-				if (dpt.getProjectNo()== inProjectNo) {
-					return dpt;
-				}
+				//[JOIN] ProjectChange 
+				int sumPrice = rs.getInt("sum_price");
+				int spoortCnt = rs.getInt("support_cnt");
+				ProjectChange pc = new ProjectChange();
+				pc.setSumPrice(sumPrice);
+				pc.setSupportCnt(spoortCnt);
 				
+				fp.setProjectChange(pc);
+				
+				//[JOIN] Cateogty Talbe
+				String cateogryName = rs.getString("category_name");
+				Category cate = new Category();
+				cate.setCategoryName(cateogryName);
+				
+				fp.setCategory(cate);
+				
+				
+				//[JOIN] Users Table
+				String userName = rs.getString("user_name"); 
+				Users user = new Users();
+				user.setUserName(userName);
+				
+				fp.setUser(user);
+				
+				return fp;
 			}
 
 			throw new FindException();
@@ -111,18 +210,181 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 			e.printStackTrace();
 			throw new FindException();
 		}finally {
-			MyConnection.close(rs,stmt,con);
+			MyConnection.close(rs,pstmt,con);
 		}
 		
 	}
+
+
 	
-	//TODO : findbyuserNo 만들기
-	//TODO : 주목할만한 프로젝트
-								//public  List<DisplayProjectType> findAttentionProject();
+	@Override
+	public List<Project> findByUserNo(int inUserNo) throws FindException {
+		Connection con =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs= null;
+		List<Project> list= new ArrayList<Project>();
+
+		String selectSQL = "SELECT  p.project_no"
+								+ ", category_name"
+								+ ", user_name"
+								+ ", long_title"
+								+ ", project_content"
+								+ ", target_price"
+								+ ", sum_price"
+								+ ", end_date"
+								+ ", support_cnt"
+								+ ", project_image"
+					+ " FROM project p"
+					+ " JOIN project_change c"
+					+ "   ON p.project_no =c.project_no"
+					+ " JOIN users u"
+					+ "   ON p.user_no = u.user_no"
+					+ " JOIN category cate"
+					+ "   ON p.category_no = cate.category_no"
+					+ " WHERE p.user_no = ?";
+		try {
+			con = MyConnection.getConnection();
+			pstmt = con.prepareStatement(selectSQL);
+			
+			//맞는지?
+			pstmt.setInt(1, inUserNo);
+			rs = pstmt.executeQuery();
+			System.out.println("a");
+			
+			while(rs.next()) {
+
+				Project fp= new Project();
+
+				//Project Table
+
+				int	projectNo = rs.getInt("project_no");
+				String longTitle = rs.getString("long_title"); 
+				System.out.println(longTitle);
+				String projectContent= rs.getString("project_content"); 
+				int targetPrice = rs.getInt("target_price");
+				Date endDate =rs.getDate("end_date");
+				String projectImage = rs.getString("project_image");
+
+				fp.setProjectNo(projectNo);
+				fp.setLongTitle(longTitle);
+				fp.setTargetPrice(targetPrice);
+				fp.setEndDate(endDate);
+				fp.setProjectImage(projectImage);
+				fp.setProjectContent(projectContent);
+
+				//[JOIN] ProjectChange 
+				int sumPrice = rs.getInt("sum_price");
+				int spoortCnt = rs.getInt("support_cnt");
+				ProjectChange pc = new ProjectChange();
+				pc.setSumPrice(sumPrice);
+				pc.setSupportCnt(spoortCnt);
+				
+				fp.setProjectChange(pc);
+				
+				//[JOIN] Cateogty Talbe
+				String cateogryName = rs.getString("category_name");
+				Category cate = new Category();
+				cate.setCategoryName(cateogryName);
+				
+				fp.setCategory(cate);
+				
+				
+				//[JOIN] Users Table
+				String userName = rs.getString("user_name"); 
+				Users user = new Users();
+				user.setUserName(userName);
+				
+				fp.setUser(user);
+				
+				list.add(fp);
+			}
+			if(list.isEmpty()) {
+				throw new FindException();
+			}
+			return list;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new FindException();
+		}finally {
+			MyConnection.close(rs,pstmt,con);
+		}
+	}
 
 	
 	
-	public	List<Project> findProject(String category,  //service쪽에서 카테고리 null 값받으면 String값 "all" 넣어서 전달
+	@Override
+	public List<Reward> findReward(int inProjectNo) throws FindException {
+		// TODO Auto-generated method stub
+		Connection con = null; //DB연결
+		PreparedStatement pstmt = null; //SQL송신
+		ResultSet rs = null; //결과 수신
+
+		List<Reward> list= new ArrayList<Reward>();
+
+		String selectSQL = "SELECT reward_no"
+						+ ", reward_price"
+						+ ", reward_name"
+						+ ", deliver_date"
+						+ ", reward_num"
+						+ ", reward_sales_cnt"
+						+ ", item_name"
+						+ ", deliver_select"
+				+ " FROM reward"
+				+ " WHERE project_no =?";
+		
+		try {
+			con = MyConnection.getConnection();
+			pstmt = con.prepareStatement(selectSQL);
+			pstmt.setInt(1, inProjectNo);
+			
+			rs=pstmt.executeQuery();
+			
+		
+
+			while(rs.next()) {
+				Reward rw = new Reward();
+		
+				
+				// Reward Table
+				int rewardNo= rs.getInt("reward_no");
+				int rewardPrice= rs.getInt("reward_price");
+				String rewardName= rs.getString("reward_name"); 
+				int deliverDate= rs.getInt("deliver_date");
+				int rewardNum= rs.getInt("reward_num");
+				int rewardSaleCnt= rs.getInt("reward_sales_cnt");
+				String itemName= rs.getString("item_name"); 
+				String deliverSelect= rs.getString("deliver_select"); 
+
+				rw.setRewardNo(rewardNo);
+				rw.setRewardPrice(rewardPrice);
+				rw.setRewardName(rewardName);
+				rw.setDeliverDate(deliverDate);
+				rw.setRewardNum(rewardNum);
+				rw.setRewardSalesCnt(rewardSaleCnt);
+				rw.setItemName(itemName);
+				rw.setDeliverSelect(deliverSelect);
+				
+				list.add(rw);
+			}
+			
+			
+			if(list.isEmpty()) {
+				throw new FindException("상품이 없습니다");
+			}
+
+			return list;
+
+			}catch (Exception e) {
+				e.printStackTrace();
+				throw new FindException();
+			}finally {
+				MyConnection.close(rs,pstmt,con);
+			}
+
+	}
+
+	public	List<Project> findByRequestDate(String category,  //service쪽에서 카테고리 null 값받으면 String값 "all" 넣어서 전달
 												 String ongoing,
 												 String editorPick,
 												 String achiveRate,
@@ -132,28 +394,29 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 		ResultSet rs= null;
 		
 		List<Project> list= new ArrayList<Project>();
-		String selectSQL = "SELECT  p.project_no "
-								+ ",category_name "
-								+ ", user_name "
-								+ ", long_title"
-								+ ", target_price"
-								+ ", sum_price "
-								+ ", end_date "
-								+ ", support_cnt"
-								+ ", project_image"
-					+ " FROM project p"
-					+ "    JOIN project_change c"
-					+ "        ON p.project_no =c.project_no"
-					+ "    JOIN users u"
-					+ "        ON p.user_no = u.user_no"
-					+ "    JOIN category cate"
-					+ "        ON p.category_no = cate.category_no";
-		
+		String selectSQL = "SELECT  p.project_no"
+							+ ", category_name"
+							+ ", user_name"
+							+ ", long_title"
+							+ ", project_content"
+							+ ", target_price"
+							+ ", sum_price"
+							+ ", end_date"
+							+ ", support_cnt"
+							+ ", project_image"
+				+ " FROM project p"
+				+ " JOIN project_change c"
+				+ "   ON p.project_no =c.project_no"
+				+ " JOIN users u"
+				+ "   ON p.user_no = u.user_no"
+				+ " JOIN category cate"
+				+ "   ON p.category_no = cate.category_no";
 		
 		
 		try {
 			con = MyConnection.getConnection();
 			pstmt = con.prepareStatement(selectSQL);
+			System.out.println("a");
 			
 			selectSQL= categoryAndSQLAdd(category, selectSQL);
 			selectSQL= ongoingAndSQLAdd(ongoing, selectSQL);
@@ -167,29 +430,58 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 			}
 		
 			rs = pstmt.executeQuery();
+		
 			while(rs.next()) {
-				int	projectNo = rs.getInt("p.project_no");
-				String cateogryName = rs.getString("category_name");
-				String userName = rs.getString("user_name"); 
-				String longTitle = rs.getString("long_title"); 
-				int target_price = rs.getInt("target_price");
-				int sum_price = rs.getInt("end_date ");
-				java.sql.Date endDate =rs.getDate("end_date");
-				int spoortCnt = rs.getInt("support_cnt");
-				String projectImage = rs.getString("project_image");
-				
-				Project dpt = null;
-				//		new DisplayProjectType(projectNo, cateogryName, userName, 
-				//								longTitle, target_price, sum_price, 
-				//								endDate, spoortCnt, projectImage);
-				
-				list.add(dpt);
-			}
 
+				Project fp= new Project();
+
+				//Project Table
+
+				int	projectNo = rs.getInt("project_no");
+				String longTitle = rs.getString("long_title"); 
+				String projectContent= rs.getString("project_content"); 
+				int targetPrice = rs.getInt("target_price");
+				Date endDate =rs.getDate("end_date");
+				String projectImage = rs.getString("project_image");
+
+				fp.setProjectNo(projectNo);
+				fp.setLongTitle(longTitle);
+				fp.setTargetPrice(targetPrice);
+				fp.setEndDate(endDate);
+				fp.setProjectImage(projectImage);
+				fp.setProjectContent(projectContent);
+
+				//[JOIN] ProjectChange 
+				int sumPrice = rs.getInt("sum_price");
+				int spoortCnt = rs.getInt("support_cnt");
+				ProjectChange pc = new ProjectChange();
+				pc.setSumPrice(sumPrice);
+				pc.setSupportCnt(spoortCnt);
+				
+				fp.setProjectChange(pc);
+				
+				//[JOIN] Cateogty Talbe
+				String cateogryName = rs.getString("category_name");
+				Category cate = new Category();
+				cate.setCategoryName(cateogryName);
+				
+				fp.setCategory(cate);
+				
+				
+				//[JOIN] Users Table
+				String userName = rs.getString("user_name"); 
+				Users user = new Users();
+				user.setUserName(userName);
+				
+				fp.setUser(user);
+				
+				list.add(fp);
+			}
 			if(list.isEmpty()) {
 				throw new FindException();
 			}
 			return list;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new FindException(e.getMessage());
@@ -197,6 +489,9 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 			MyConnection.close(rs, pstmt, con);
 		}
 	}
+	
+	
+	
 	
 	
 	
@@ -352,5 +647,20 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 
 	}
 	
+	public static void main(String[] args) {
+		ProjectDAOOracle dao = new ProjectDAOOracle();
+		try {
+			//List<Project> a =dao.findByRequestDate("all","","","","");
+			List<Reward> a =dao.findReward(1);
+			for (Reward p : a) {
+				System.out.println(p.getRewardName());
+				System.out.println(p.getItemName());
+			}
+		} catch (FindException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	
 }
