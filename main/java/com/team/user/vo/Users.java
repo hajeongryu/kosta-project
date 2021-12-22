@@ -24,8 +24,6 @@ import java.util.Objects;
 	`marketing_alarm_check`	CHAR(1)	NULL,
 	`user_signup_date`	DATE	NULL,
 	`user_status`	VARCHAR2(10)	NULL,
-	`address_no`	NUMBER(8)	NOT NULL,
-	`card_no`	VARCHAR2(20)	NOT NULL
 */
 
 
@@ -43,9 +41,6 @@ public class Users {
 	private String	userWebsite;                 
 	private String	userUrl;                     
 		                                         
-	private List<Card> cardsNo;                  
-	private List<Address> addressesNo;           
-	                                             
 	public Users() {                              
 		super();                                  
 		// TODO Auto-generated constructor stub   
@@ -54,7 +49,7 @@ public class Users {
 
 	public Users(int userNo, String userRole, String userId, String userName, String userPwd, Date userSignupDate,
 			String userStatus, String userImage, String userPhone, String userIntroduction, String userWebsite,
-			String userUrl, List<Card> cardsNo, List<Address> addressesNo) {
+			String userUrl) {
 		super();
 		this.userNo = userNo;
 		this.userRole = userRole;
@@ -68,8 +63,6 @@ public class Users {
 		this.userIntroduction = userIntroduction;
 		this.userWebsite = userWebsite;
 		this.userUrl = userUrl;
-		this.cardsNo = cardsNo;
-		this.addressesNo = addressesNo;
 	}
 
 
@@ -167,25 +160,7 @@ public class Users {
 
 	public void setUserUrl(String userUrl) {
 		this.userUrl = userUrl;
-	}
-
-	public List<Card> getCards() {
-		return cardsNo;
-	}
-
-	public void setCards(List<Card> cards) {
-		this.cardsNo = cards;
-	}
-
-	public List<Address> getAddresses() {
-		return addressesNo;
-	}
-
-	public void setAddresses(List<Address> addresses) {
-		this.addressesNo = addresses;
-	}
-	
-	
+	}	
 	
 	
 }
