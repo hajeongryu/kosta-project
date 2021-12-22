@@ -47,7 +47,7 @@ UPDATE users SET user_status=? WHERE user_no=?; --변경
 결제수단
 SELECT * FROM card WHERE user_no=?; --조회
 INSERT INTO card VALUES (~~~~~~~); --카드 추가 card_no는 생략 시퀀스로 자동발급
-변경불가
+변경불가 - 기본배송지 변경
 DELETE * FROM card WHERE card_no=?; --카드삭제
 
 배송지
