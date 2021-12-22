@@ -76,6 +76,10 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 		
 	}
 	
+	//TODO : findbyuserNo 만들기
+	//TODO : 주목할만한 프로젝트
+								//public  List<DisplayProjectType> findAttentionProject();
+
 	
 	
 	public	List<DisplayProjectType> findProject(String category,  //service쪽에서 카테고리 null 값받으면 String값 "all" 넣어서 전달
@@ -88,7 +92,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 		ResultSet rs= null;
 		
 		List<DisplayProjectType> list= new ArrayList<DisplayProjectType>();
-		String selectSQL = "SELECT  p.project_no"
+		String selectSQL = "SELECT  p.project_no "
 								+ ",category_name "
 								+ ", user_name "
 								+ ", long_title"
@@ -105,8 +109,8 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 					+ "    JOIN category cate"
 					+ "        ON p.category_no = cate.category_no";
 		
-	
-				
+		
+		
 		try {
 			con = MyConnection.getConnection();
 			pstmt = con.prepareStatement(selectSQL);
@@ -117,11 +121,12 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 			selectSQL = achiveRateAndSQLAdd(achiveRate, selectSQL);
 			selectSQL = sortAndSQLAdd(sort, selectSQL);
 
-			//전체카테고리가 아닐경우 setString으로 ? 채우기
+			//전체카테고리가 아닐경우setString 실행 
 			if(category != "all"  ) {
 				pstmt.setString(1, category);
 			}
 		
+			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				int	projectNo = rs.getInt("p.project_no");
 				String cateogryName = rs.getString("category_name");
@@ -173,6 +178,10 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 	}
 	
 	
+	
+	
+	
+	
 	/**
 	 * 반드시 ongoing이 앞에올것
 	 * @param ongoing
@@ -205,11 +214,6 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 			
 			return selectSQL;
 	}
-
-	
-	
-	
-	
 	
 	private String editorPickAndSQLAdd (String editorPick, String selectSQL)  throws FindException{
 			//리퀘스트값 editorpick = "1" / null
@@ -225,8 +229,6 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 		}
 		return selectSQL;
 	}
-
-	
 	
 	private String achiveRateAndSQLAdd (String achiveRate, String selectSQL)  throws FindException{
 			//@리퀘스트값 achieveRate=    "1" 75%이하   "2"75~100%    "3:100% 이상  / null
@@ -252,7 +254,6 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 
 		return selectSQL;
 	}
-	
 	
 	private String sortAndSQLAdd (String sort, String selectSQL) throws FindException {
 			//@리퀘스트값 sort = popular(인기순)	publishedAt(최신순)	pledges(후원순)	amount(금액순) ended(마감 임박순)

@@ -2,26 +2,27 @@ SELECT  p.project_no"프로젝트 번호"
         ,category_name "카테고리 이름"
         , user_name "프로젝트 작성자 이름"
         , long_title "프로젝트 제목"
+        , project_content "프로젝트 내용"
         , target_price "목표금액"
         , sum_price "모인금액" --목표금액/모인금액
         , end_date "종료일" --sysdate에서 enddate빼기
         , support_cnt"후원자 수"
         , project_image "프로젝트 이미지"
-FROM project p
-    JOIN project_change c
-        ON p.project_no =c.project_no
-    JOIN users u
-        ON p.user_no = u.user_no
-<<<<<<< HEAD
-    JOIN category cate
-        ON p.category_no = cate.category_no
+        
+        
+FROM project p  --프로젝트 테이블
 
-    --JOIN orders  --쓰이지는 않는 경우도 있는데 코드 재활용성을 위해 그냥 넣어둠
-      --  ON p.project_no = orders.project_no;
-=======
-    JOIN orders  --쓰이지는 않는 경우도 있는데 코드 재활용성을 위해 그냥 넣어둠
-        ON p.project_no = orders.project_no;
->>>>>>> d7f1066ab4a0a1db6cdabd0e93c2c385ad22331a
+    JOIN project_change c --프로젝트_변경 테이블
+        ON p.project_no =c.project_no
+        
+    JOIN users u --유저테이블
+        ON p.user_no = u.user_no
+        
+    JOIN category cate --카테고리 테이블
+        ON p.category_no = cate.category_no;
+
+
+
         
         
         

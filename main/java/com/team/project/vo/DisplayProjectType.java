@@ -9,7 +9,8 @@ import java.util.Date;//유틸로 임포트
  * 		JOIN CATEGORY
  * 		 
  * 
- *		 p.project_no"프로젝트 번호"
+ * SELECT (
+ 		 p.project_no"프로젝트 번호"
         ,category_name "카테고리 이름"
         , user_name "프로젝트 작성자 이름"
         , long_title "프로젝트 제목"
@@ -18,9 +19,12 @@ import java.util.Date;//유틸로 임포트
         , end_date "종료일" --sysdate에서 enddate빼기
         , support_cnt"후원자 수"
         , project_image "프로젝트 이미지" 
+
+        )
  * 
  * 
  */
+
 
 public class DisplayProjectType {
 	public int	projectNo;

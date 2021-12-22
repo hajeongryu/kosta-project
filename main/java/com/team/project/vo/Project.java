@@ -36,8 +36,11 @@ public class Project {            ;
 	private String	shortTitle    ;   
 	private String	projectContent;   
 	private String	projectUrl    ;   
-	                                  
+	//Ueser user
+	//
 	
+	                                  
+
 	public Project() {
 		super();
 		// TODO Auto-generated constructor stub
