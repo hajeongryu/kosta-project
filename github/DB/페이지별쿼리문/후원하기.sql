@@ -3,7 +3,7 @@ SELECT c.category_name 카테고리이름
     ,p.long_title 프로젝트이름
     ,p.project_image 프로젝트이미지
     ,u.user_name 창작자이름
-    ,pc.sum_price 모인금액
+    ,pc.get_price 모인금액
     ,(sysdate-p.end_date) 남은시간
     ,p.target_price 목표금액
     ,(p.end_date+7) 결제일
