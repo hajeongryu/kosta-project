@@ -3,7 +3,7 @@ SELECT c.category_name 카테고리이름
     ,p.long_title 프로젝트이름
     ,p.project_image 프로젝트이미지
     ,u.user_name 창작자이름
-    ,pc.sum_price 모인금액
+    ,pc.get_price 모인금액
     ,(sysdate-p.end_date) 남은시간
     ,p.target_price 목표금액
     ,(p.end_date+7) 결제일
@@ -30,14 +30,12 @@ FROM community c JOIN users u ON c.user_no=u.user_no;
 
 INSERT INTO community(post_no, project_no, post_content, post_date, user_no)
 VALUES(post_seq.NEXTVAL,'?','?',SYSDATE,'?');
-DELETE FROM post WHERE project_no=?;
 
 --댓글
 SELECT user_name 작성자이름
-    , comment_content 댓글내용
-    , comment_date 작성일자
+    , comments_content 댓글내용
+    , comments_date 작성일자
 FROM comments c JOIN users u ON c.user_no=u.user_no;
 
 INSERT INTO comments(comment_no, post_no, comment_content, comment_date, user_no)
 VALUES(comment_seq.NEXTVAL,'?','?',SYSDATE,'?');
-DELETE FROM comments WHERE post_no=?;

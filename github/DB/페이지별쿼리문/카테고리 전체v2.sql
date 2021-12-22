@@ -12,11 +12,16 @@ FROM project p
         ON p.project_no =c.project_no
     JOIN users u
         ON p.user_no = u.user_no
+<<<<<<< HEAD
     JOIN category cate
         ON p.category_no = cate.category_no
 
     --JOIN orders  --쓰이지는 않는 경우도 있는데 코드 재활용성을 위해 그냥 넣어둠
       --  ON p.project_no = orders.project_no;
+=======
+    JOIN orders  --쓰이지는 않는 경우도 있는데 코드 재활용성을 위해 그냥 넣어둠
+        ON p.project_no = orders.project_no;
+>>>>>>> d7f1066ab4a0a1db6cdabd0e93c2c385ad22331a
         
         
         

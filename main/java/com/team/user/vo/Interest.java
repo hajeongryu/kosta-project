@@ -1,7 +1,6 @@
-package com.team.interest.vo;
+package com.team.user.vo;
 
 import com.team.project.vo.Project;
-import com.team.user.vo.Users;
 
 public class Interest {
 	
