@@ -36,8 +36,11 @@ public class Project {            ;
 	private String	shortTitle    ;   
 	private String	projectContent;   
 	private String	projectUrl    ;   
-	//Ueser user
-	//
+
+	//JOIN TABLE
+	private ProjectChange projectChange;
+	private Category category;
+	private Users user;
 	
 	                                  
 
@@ -84,6 +87,36 @@ public class Project {            ;
 
 	public void setCategoryNo(Category categoryNo) {
 		this.categoryNo = categoryNo;
+	}
+
+
+	public ProjectChange getProjectChange() {
+		return projectChange;
+	}
+
+
+	public void setProjectChange(ProjectChange projectChange) {
+		this.projectChange = projectChange;
+	}
+
+
+	public Category getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+
+	public Users getUser() {
+		return user;
+	}
+
+
+	public void setUser(Users user) {
+		this.user = user;
 	}
 
 
