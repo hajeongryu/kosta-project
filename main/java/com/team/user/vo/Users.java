@@ -64,7 +64,12 @@ public class Users {
 		this.userWebsite = userWebsite;
 		this.userUrl = userUrl;
 	}
-
+	public Users(String userName, String userId, String userPwd) {
+		super();
+		this.userName = userName;
+		this.userId = userId;
+		this.userPwd = userPwd;
+	}
 
 	public int getUserNo() {
 		return userNo;

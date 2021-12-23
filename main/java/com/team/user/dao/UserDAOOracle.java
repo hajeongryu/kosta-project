@@ -18,6 +18,8 @@ public class UserDAOOracle implements UserDAOInterface {
 	public static UserDAOOracle getInstance() {
 		return dao;
 	}
+	
+	
 	@Override
 	public Users findByUserId(String userId) throws FindException {
 		Connection con = null;
@@ -56,6 +58,8 @@ public class UserDAOOracle implements UserDAOInterface {
 		}
 		
 	}
+	
+	
 	@Override
 	public Users findByUserNo(int userNo) throws FindException {
 		Connection con = null;
@@ -94,27 +98,105 @@ public class UserDAOOracle implements UserDAOInterface {
 		}
 		
 	}
+	
+	
 	@Override
 	public void addUser(Users user) throws AddException {
-		// TODO Auto-generated method stub
-		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String insertDML = "INSERT INTO users(user_name, user_id, user_pwd) VALUES (?,?,?)";
+		try {
+			con = MyConnection.getConnection();
+			pstmt = con.prepareStatement(insertDML);
+			pstmt.setString(1, user.getUserName());
+			pstmt.setString(2, user.getUserId());
+			//userId 중복은 UserService signup에서 처리
+			pstmt.setString(3, user.getUserPwd());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MyConnection.close(pstmt, con);
+		}
 	}
+	
+	
 	@Override
 	public void modifyProfile(Users user) throws ModifyException {
-		// TODO Auto-generated method stub
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String profileUpdateDML="UPDATE users SET user_image=?,"
+										+ " user_name=?,"
+										+ " user_url=?,"
+										+ " user_introduction=?,"
+										+ " user_website=?"
+										+ " WHERE user_no=?";
+		int userNo = user.getUserNo();
 		
+		try {
+			con = MyConnection.getConnection();
+			pstmt = con.prepareStatement(profileUpdateDML);
+			pstmt.setString(1, user.getUserImage());
+			pstmt.setString(2, user.getUserName());
+			pstmt.setString(3, user.getUserUrl());
+			pstmt.setString(4, user.getUserIntroduction());
+			pstmt.setString(5, user.getUserWebsite());
+			pstmt.setInt(6, userNo);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			int errorCode = e.getErrorCode();
+			if(errorCode == 1) {
+				throw new ModifyException("이미 존재하는 URL입니다");
+			} else {
+				e.printStackTrace();
+				throw new ModifyException(e.getMessage());
+			}
+		} finally {
+			MyConnection.close(pstmt, con);
+		}
 	}
+	
+	
 	@Override
 	public void modifyInfo(Users user) throws ModifyException {
-		// TODO Auto-generated method stub
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String infoUpdateDML = "UPDATE users SET user_id=?,"
+											+ " user_pwd=?,"
+											+ " user_phone=?"
+											+ " WHERE user_no=?";
+		int userNo = user.getUserNo();
 		
+		try {
+			con = MyConnection.getConnection();
+			pstmt = con.prepareStatement(infoUpdateDML);
+			pstmt.setString(1, user.getUserId());
+			//userId 중복은 UserService signup에서 처리
+			pstmt.setString(2, user.getUserPwd());
+			pstmt.setString(3, user.getUserPhone());
+			pstmt.setInt(4, userNo);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
+	
+	
 	@Override
-	public void modifyfStatus(Users user) throws ModifyException {
+	public void modifyStatus(Users user) throws ModifyException {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	
+	public static void main(String[] args) {
+		try {
+			dao.findByUserId("id123");
+		} catch (FindException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
 
 
