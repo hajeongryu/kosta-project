@@ -48,7 +48,7 @@ public class UserDAOOracle implements UserDAOInterface {
 						userStatus, userImage, userPhone, userIntroduction, userWebsite, userUrl);
 				return u;
 			} else {
-				throw new FindException("아이디에 해당하는 고객이 없습니다");
+				return null;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -178,25 +178,29 @@ public class UserDAOOracle implements UserDAOInterface {
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			MyConnection.close(pstmt, con);
 		}
 	}
 	
 	
 	@Override
-	public void modifyStatus(Users user) throws ModifyException {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	public static void main(String[] args) {
+	public void modifyStatus(int userNo) throws ModifyException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String statusUpdateDML = "UPDATE users SET user_status=0 WHERE user_no=?";
 		try {
-			dao.findByUserId("id123");
-		} catch (FindException e) {
-			// TODO Auto-generated catch block
+			con = MyConnection.getConnection();
+			pstmt = con.prepareStatement(statusUpdateDML);
+			pstmt.setInt(1, userNo);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			MyConnection.close(pstmt, con);
 		}
 	}
+	
 }
 
 
