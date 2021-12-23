@@ -62,7 +62,7 @@ public interface ProjectDAOInterface {
 	 * @return
 	 * @throws FindException
 	 */
-	public List<Project> findByRequestDate(String category, String ongoing, String editorPick, 
+	public List<Project> findByRequestData(String category, String ongoing, String editorPick, 
 										String achiveRate, String sort, String rowCount) throws FindException;
 	
 	

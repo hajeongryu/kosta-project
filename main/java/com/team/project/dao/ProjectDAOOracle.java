@@ -389,7 +389,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 	
 	//TODO:  category값에 all 이나 null 이외의 값이 들어오면 처리해줘야함
 	
-	public	List<Project> findByRequestDate(String category,  //service쪽에서 카테고리 null 값받으면 String값 "all" 넣어서 전달
+	public	List<Project> findByRequestData(String category,  //service쪽에서 카테고리 null 값받으면 String값 "all" 넣어서 전달
 											String ongoing,
 											String editorPick,
 											String achiveRate,
@@ -584,8 +584,8 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 			//1.진행중
 			if(ongoing =="onGoing") {
 				selectSQL +=" AND c.project_status = '승인' ";
-				selectSQL +=" AND sysdate > P.start_date ";
-				selectSQL +=" AND sysdate <p.end_date  ";
+				selectSQL +=" AND sysdate > p.start_date ";
+				selectSQL +=" AND sysdate < p.end_date  ";
 
 			//2. 성사된 프로젝트
 			}else if(ongoing =="confirm"){
@@ -597,7 +597,12 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 			}else if(ongoing =="prelaunching"){
 				selectSQL +=" AND c.project_status = '승인'";
 				selectSQL +=" AND sysdate  < p.start_date";
+			}else if(ongoing ==null){
 			}
+			else {
+				throw new FindException("ongoing 값이 잘못되었습니다.");
+			}
+
 			
 			return selectSQL;
 	}
@@ -613,7 +618,11 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 		//3-1.에디터 추천 프로젝트(1)
 		if(editorPick =="1") {
 			selectSQL +=" AND p.editor_pick = '1'";
+		}else if(editorPick==null){
 		}
+		else {
+				throw new FindException("editorPick 값이 잘못되었습니다.");
+			}
 		return selectSQL;
 	}
 	
@@ -637,7 +646,11 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 		}else if (achiveRate =="3") {
 			selectSQL+= " AND (c.sum_price / p.target_price) >1.00";
 			
+		}else if(achiveRate==null){
 		}
+		else {
+				throw new FindException("achiveRate 값이 잘못되었습니다.");
+			}
 
 		return selectSQL;
 	}
@@ -686,7 +699,11 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 		}else if(sort=="endDate") {
 			selectSQL +=" ORDER BY p.end_date ASC";
 			
+		}else if(sort==null){
 		}
+		else {
+				throw new FindException("sort 값이 잘못되었습니다.");
+			}
 		return selectSQL;
 
 	}
@@ -695,7 +712,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 		ProjectDAOOracle dao = new ProjectDAOOracle();
 		try {
 			System.out.println("신규 프로젝트");
-			List<Project> a =dao.findByRequestDate(null, "onGoing", null, null, "publishedAt", null);
+			List<Project> a =dao.findByRequestData(null, "onGoing", null, null, "publishedAt", null);
 			for (Project p : a) {
 				System.out.println(p.getProjectNo());
 				System.out.println(p.getLongTitle());
@@ -705,7 +722,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 			}
 		
 			System.out.println("공개예쩡 프로젝트");
-			List<Project> b =dao.findByRequestDate(null, "prelaunching", null, null, "popular", null);
+			List<Project> b =dao.findByRequestData(null, "prelaunching", null, null, "popular", null);
 			for (Project p : b) {
 				System.out.println(p.getProjectNo());
 				System.out.println(p.getLongTitle());
@@ -715,7 +732,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 			}
 
 			System.out.println("마감임박 프로젝트");
-			List<Project> c =dao.findByRequestDate(null, "onGoing", null, null, "endcome", null);
+			List<Project> c =dao.findByRequestData(null, "onGoing", null, null, "endcome", null);
 			for (Project p : c) {
 				System.out.println(p.getProjectNo());
 				System.out.println(p.getLongTitle());
@@ -726,7 +743,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 			
 			
 			System.out.println("인기 프로젝트");
-			List<Project> d =dao.findByRequestDate(null, "onGoing", null, null, "popular", null);
+			List<Project> d =dao.findByRequestData(null, "onGoing", null, null, "popular", null);
 			for (Project p : d) {
 				System.out.println(p.getProjectNo());
 				System.out.println(p.getLongTitle());
@@ -736,7 +753,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 			}
 
 			System.out.println("주목할만한 프로젝트");
-			List<Project> e =dao.findByRequestDate(null, "onGoing", null, "3", null, null);
+			List<Project> e =dao.findByRequestData(null, "onGoing", null, "3", null, null);
 			for (Project p : e) {
 				System.out.println(p.getProjectNo());
 				System.out.println(p.getLongTitle());
