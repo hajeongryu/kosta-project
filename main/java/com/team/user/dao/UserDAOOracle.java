@@ -19,7 +19,7 @@ public class UserDAOOracle implements UserDAOInterface {
 		return dao;
 	}
 	@Override
-	public Users findByUserId(String id) throws FindException {
+	public Users findByUserId(String userId) throws FindException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -27,22 +27,22 @@ public class UserDAOOracle implements UserDAOInterface {
 			con = MyConnection.getConnection();
 			String selectSQL = "SELECT * FROM users WHERE user_id=?";
 			pstmt = con.prepareStatement(selectSQL);
-			pstmt.setNString(1, id);
+			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				int userNo = rs.getInt("userNo");
-				String userRole = rs.getString("userRole");
-				String userImage = rs.getString("userImage");
-				String userName = rs.getString("userName");
-				String userPwd = rs.getString("userPwd");
-				String userPhone = rs.getString("userPhone");
-				String userIntroduction = rs.getString("userIntroduction");
-				String userWebsite = rs.getString("userWebsite");
-				String userUrl = rs.getString("userUrl");
-				Date userSignupDate = rs.getDate("userSignupDate");
-				String userStatus = rs.getString("userStatus");
-				Users u = new Users(userNo, userRole, id, userName, userPwd, userSignupDate, 
+				int userNo = rs.getInt("user_no");
+				String userRole = rs.getString("user_role");
+				String userImage = rs.getString("user_image");
+				String userName = rs.getString("user_name");
+				String userPwd = rs.getString("user_pwd");
+				String userPhone = rs.getString("user_phone");
+				String userIntroduction = rs.getString("user_introduction");
+				String userWebsite = rs.getString("user_website");
+				String userUrl = rs.getString("user_url");
+				Date userSignupDate = rs.getDate("user_signup_date");
+				String userStatus = rs.getString("user_status");
+				Users u = new Users(userNo, userRole, userId, userName, userPwd, userSignupDate, 
 						userStatus, userImage, userPhone, userIntroduction, userWebsite, userUrl);
 				return u;
 			} else {
@@ -57,9 +57,42 @@ public class UserDAOOracle implements UserDAOInterface {
 		
 	}
 	@Override
-	public Users findByUserNo(int userNO) throws FindException {
-		// TODO Auto-generated method stub
-		return null;
+	public Users findByUserNo(int userNo) throws FindException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = MyConnection.getConnection();
+			String selectSQL = "SELECT * FROM users WHERE user_no=?";
+			pstmt = con.prepareStatement(selectSQL);
+			pstmt.setInt(1, userNo);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String userRole = rs.getString("user_role");
+				String userId = rs.getString("user_id");
+				String userImage = rs.getString("user_image");
+				String userName = rs.getString("user_name");
+				String userPwd = rs.getString("user_pwd");
+				String userPhone = rs.getString("user_phone");
+				String userIntroduction = rs.getString("user_introduction");
+				String userWebsite = rs.getString("user_website");
+				String userUrl = rs.getString("user_url");
+				Date userSignupDate = rs.getDate("user_signup_date");
+				String userStatus = rs.getString("user_status");
+				Users u = new Users(userNo, userRole, userId, userName, userPwd, userSignupDate, 
+						userStatus, userImage, userPhone, userIntroduction, userWebsite, userUrl);
+				return u;
+			} else {
+				throw new FindException("아이디에 해당하는 고객이 없습니다");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new FindException(e.getMessage());
+		} finally {
+			MyConnection.close(rs, pstmt, con);
+		}
+		
 	}
 	@Override
 	public void addUser(Users user) throws AddException {
@@ -83,3 +116,5 @@ public class UserDAOOracle implements UserDAOInterface {
 	}
 
 }
+
+
