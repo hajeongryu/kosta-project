@@ -18,8 +18,16 @@ import com.team.sql.MyConnection;
 import com.team.user.vo.Interest;
 import com.team.user.vo.Users;
 
-public class InterestDAOOracle implements InterestDAOInterface {
+import oracle.jdbc.internal.OracleDate;
 
+public class InterestDAOOracle implements InterestDAOInterface {
+	private static InterestDAOOracle dao = new InterestDAOOracle();
+	private InterestDAOOracle() {
+		
+	}
+	public static InterestDAOOracle getInstance() {
+		return dao;
+	}
 	@Override 
 	public Boolean findInterest(int projectNo, int userNo) throws FindException {
 		Connection con = null;
@@ -91,22 +99,24 @@ public class InterestDAOOracle implements InterestDAOInterface {
 	}
 	@Override
 	public List<Interest> findByUserNo(int userNo) throws FindException {
-		String selectSQL = "SELECT p.project_no"
-				+ "        ,p.project_image"
-				+ "        ,p.editor_pick"
-				+ "        ,p.long_title"
-				+ "        ,c.category_name"
-				+ "        ,u.user_name"
-				+ "        ,p.project_brief"
-				+ "        ,p.target_price"
-				+ "        ,pc.sum_price"
-				+ "        ,pc.support_cnt"
-				+ "        ,p.end_date"
-				+ " FROM project p"
-				+ "    JOIN project_change pc ON p.project_no=pc.project_no"
-				+ "    JOIN users u ON p.user_no = u.user_no"
-				+ "    JOIN category c ON p.category_no=c.category_no"
-				+ " WHERE p.user_no=?";
+		String selectSQL = "SELECT i.project_no"
+				+ "        ,i.interest_alarm"
+				+ "        ,p.project_image "
+				+ "        ,p.editor_pick "
+				+ "        ,p.long_title "
+				+ "        ,c.category_name "
+				+ "        ,u.user_name "
+				+ "        ,p.project_brief "
+				+ "        ,p.target_price "
+				+ "        ,pc.sum_price "
+				+ "        ,pc.support_cnt "
+				+ "        ,p.end_date "
+				+ " FROM interest i "
+				+ "    JOIN project p ON i.project_no = p.project_no "
+				+ "    JOIN project_change pc ON i.project_no=pc.project_no "
+				+ "    JOIN users u ON p.user_no = u.user_no "
+				+ "    JOIN category c ON p.category_no=c.category_no "
+				+ " WHERE i.user_no=?";
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -125,6 +135,7 @@ public class InterestDAOOracle implements InterestDAOInterface {
 			ProjectChange pc = null;
 			while(rs.next()) {
 				int project_no = rs.getInt("project_no");
+				String interest_alarm = rs.getString("interest_alarm");
 				String project_img = rs.getString("project_image");
 				String editor_pick = rs.getString("editor_pick");
 				String long_title = rs.getString("long_title");
@@ -134,8 +145,8 @@ public class InterestDAOOracle implements InterestDAOInterface {
 				int target_price = rs.getInt("target_price");
 				int sum_price = rs.getInt("sum_price");
 				int support_cnt = rs.getInt("support_cnt");
-				Date left_time = rs.getDate("end_date");
-				
+				Date end_date = rs.getDate("end_date");
+		
 				inter = new Interest();
 				p = new Project();
 				c = new Category();
@@ -143,6 +154,7 @@ public class InterestDAOOracle implements InterestDAOInterface {
 				pc = new ProjectChange();
 				
 				p.setProjectNo(project_no);
+				inter.setInterestAlarm(interest_alarm);
 				p.setProjectImage(project_img);
 				p.setEditorPick(editor_pick);
 				p.setLongTitle(long_title);
@@ -152,7 +164,7 @@ public class InterestDAOOracle implements InterestDAOInterface {
 				p.setTargetPrice(target_price);
 				pc.setSumPrice(sum_price);
 				pc.setSupportCnt(support_cnt);
-				p.setEndDate(left_time);
+				p.setEndDate(end_date);
 				
 				inter.setLikeProject(p);
 				inter.setProjectCategory(c);
@@ -171,4 +183,27 @@ public class InterestDAOOracle implements InterestDAOInterface {
 			MyConnection.close(rs, pstmt, con);
 		}
 	}
+//	public static void main(String[] args) {
+//		InterestDAOOracle dao = InterestDAOOracle.getInstance();
+//		try {
+//			List<Interest> i = new ArrayList<>();
+//			i = dao.findByUserNo(1);
+//			for(Interest a: i) {
+//				System.out.print(a.getLikeProject().getProjectNo()+", ");
+//				System.out.print(a.getInterestAlarm()+", ");
+//				System.out.print(a.getLikeProject().getProjectImage()+", ");
+//				System.out.print(a.getLikeProject().getEditorPick()+", ");
+//				System.out.print(a.getLikeProject().getLongTitle()+", ");
+//				System.out.print(a.getProjectCategory().getCategoryName()+", ");
+//				System.out.print(a.getLikeUser().getUserName()+", ");
+//				System.out.print(a.getLikeProject().getProjectBrief()+", ");
+//				System.out.print(a.getLikeProject().getTargetPrice()+", ");
+//				System.out.print(a.getProjectChange().getSumPrice()+", ");
+//				System.out.print(a.getProjectChange().getSupportCnt()+", ");
+//				System.out.println(a.getLikeProject().getEndDate());	
+//			}
+//		} catch (FindException e) {
+//			e.printStackTrace();
+//		}
+//	}
 }
