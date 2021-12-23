@@ -1,33 +1,48 @@
 package com.team.user.vo;
 
+import com.team.project.vo.Category;
 import com.team.project.vo.Project;
+import com.team.project.vo.ProjectChange;
 
 public class Interest {
-	
-	private Project	projectNo    ;
-	private Users	userNo       ;
+	private Project	likeProject;
+	private Users	likeUser;
 	private String	interestAlarm;
+	
+	//JOIN
+	private Category projectCategory;
+	private ProjectChange projectChange;
+	
 	public Interest() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public Interest(Project projectNo, Users userNo, String interestAlarm) {
+	public Interest(Project likeProject, Users likeUser, String interestAlarm) {
 		super();
-		this.projectNo = projectNo;
-		this.userNo = userNo;
+		this.likeProject = likeProject;
+		this.likeUser = likeUser;
 		this.interestAlarm = interestAlarm;
 	}
-	public Project getProjectNo() {
-		return projectNo;
+	
+	public Interest(Project likeProject, Users likeUser, String interestAlarm, Category projectCategory,
+			ProjectChange projectChange) {
+		super();
+		this.likeProject = likeProject;
+		this.likeUser = likeUser;
+		this.interestAlarm = interestAlarm;
+		this.projectCategory = projectCategory;
+		this.projectChange = projectChange;
 	}
-	public void setProjectNo(Project projectNo) {
-		this.projectNo = projectNo;
+	public Project getLikeProject() {
+		return likeProject;
 	}
-	public Users getUserNo() {
-		return userNo;
+	public void setLikeProject(Project likeProject) {
+		this.likeProject = likeProject;
 	}
-	public void setUserNo(Users userNo) {
-		this.userNo = userNo;
+	public Users getLikeUser() {
+		return likeUser;
+	}
+	public void setLikeUser(Users likeUser) {
+		this.likeUser = likeUser;
 	}
 	public String getInterestAlarm() {
 		return interestAlarm;
@@ -35,7 +50,21 @@ public class Interest {
 	public void setInterestAlarm(String interestAlarm) {
 		this.interestAlarm = interestAlarm;
 	}
+	public Category getProjectCategory() {
+		return projectCategory;
+	}
+	public void setProjectCategory(Category projectCategory) {
+		this.projectCategory = projectCategory;
+	}
+	public ProjectChange getProjectChange() {
+		return projectChange;
+	}
+	public void setProjectChange(ProjectChange projectChange) {
+		this.projectChange = projectChange;
+	}
 	
-	
+	public void printInfo() {
+		System.out.println("프로젝트번호:"+likeProject+", 유저번호:"+likeUser+", 좋아요/알람:"+interestAlarm);	
+	}
 
 }

@@ -7,6 +7,7 @@ import com.team.exception.FindException;
 import com.team.exception.ModifyException;
 import com.team.exception.RemoveException;
 import com.team.project.vo.Project;
+import com.team.project.vo.Reward;
 
 public interface ProjectDAOInterface {
 	/**
@@ -23,6 +24,14 @@ public interface ProjectDAOInterface {
 	 * @throws FindException 프로젝트가 없는 경우 예외발생
 	 */
 	public Project findByProjectNo(int ProjectNo) throws FindException;
+
+	public List<Reward> findReward(int ProjectNo) throws FindException;
+
+	public List<Project> findByUserNo(int userNo) throws FindException;
+
+	
+	public List<Project> findByRequestDate(String category, String ongoing, String editorPick, 
+										String achiveRate, String sort) throws FindException;
 	
 	public void add(Project project) throws AddException;
 	public void modify(Project project) throws ModifyException;
