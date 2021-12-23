@@ -1,6 +1,6 @@
 package com.team.user.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 /*
 	`card_no`	NUMBER(8)	NOT NULL,
@@ -14,8 +14,8 @@ import java.util.Date;
 
 public class Card {
 	private int	cardNo            ;
-	private Users	userNo        ;
-	private int	cardNum           ;
+	private int	userNo        ;
+	private String	cardNum           ;
 	private Date	cardValidDate ;
 	private String	cardPwd       ;
 	private String	cardOwnerBirth;
@@ -24,7 +24,7 @@ public class Card {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Card(int cardNo, Users userNo, int cardNum, Date cardValidDate, String cardPwd, String cardOwnerBirth,
+	public Card(int cardNo, int userNo, String cardNum, Date cardValidDate, String cardPwd, String cardOwnerBirth,
 			String defaultCard) {
 		super();
 		this.cardNo = cardNo;
@@ -35,22 +35,37 @@ public class Card {
 		this.cardOwnerBirth = cardOwnerBirth;
 		this.defaultCard = defaultCard;
 	}
+	public Card(int userNo, String cardNum, Date cardValidDate, String cardPwd, String cardOwnerBirth,
+			String defaultCard) {
+		super();
+		this.userNo = userNo;
+		this.cardNum = cardNum;
+		this.cardValidDate = cardValidDate;
+		this.cardPwd = cardPwd;
+		this.cardOwnerBirth = cardOwnerBirth;
+		this.defaultCard = defaultCard;
+	}
+	public Card(int cardNo, String defaultCard) {
+		super();
+		this.cardNo = cardNo;
+		this.defaultCard = defaultCard;
+	}
 	public int getCardNo() {
 		return cardNo;
 	}
 	public void setCardNo(int cardNo) {
 		this.cardNo = cardNo;
 	}
-	public Users getUserNo() {
+	public int getUserNo() {
 		return userNo;
 	}
-	public void setUserNo(Users userNo) {
+	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
-	public int getCardNum() {
+	public String getCardNum() {
 		return cardNum;
 	}
-	public void setCardNum(int cardNum) {
+	public void setCardNum(String cardNum) {
 		this.cardNum = cardNum;
 	}
 	public Date getCardValidDate() {
