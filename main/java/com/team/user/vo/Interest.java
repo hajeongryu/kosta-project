@@ -16,13 +16,6 @@ public class Interest {
 	public Interest() {
 		super();
 	}
-	public Interest(Project likeProject, Users likeUser, String interestAlarm) {
-		super();
-		this.likeProject = likeProject;
-		this.likeUser = likeUser;
-		this.interestAlarm = interestAlarm;
-	}
-	
 	public Interest(Project likeProject, Users likeUser, String interestAlarm, Category projectCategory,
 			ProjectChange projectChange) {
 		super();

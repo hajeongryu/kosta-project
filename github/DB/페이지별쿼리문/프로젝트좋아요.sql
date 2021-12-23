@@ -17,7 +17,7 @@ FROM project p
 WHERE p.user_no=1;
 
 --좋아요/알림 추가하기
-INSERT INTO interest VALUES(1,4,'I');
+INSERT INTO interest(project_no, user_no, interest_alarm) VALUES(1,4,'I');
 
 --좋아요/알림 삭제하기
 DELETE FROM interest WHERE project_no=1 and user_no=4;

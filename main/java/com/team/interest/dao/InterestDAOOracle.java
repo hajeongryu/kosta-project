@@ -20,7 +20,6 @@ import com.team.user.vo.Users;
 
 public class InterestDAOOracle implements InterestDAOInterface {
 
-	//boolean????
 	@Override 
 	public Boolean findInterest(int projectNo, int userNo) throws FindException {
 		Connection con = null;
@@ -37,8 +36,6 @@ public class InterestDAOOracle implements InterestDAOInterface {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				String interestAlarm = rs.getString("interest_alarm");
-//				Interest i = new Interest(projectNo, userNo, interestAlarm);
-//				return i;
 				return true;
 			}
 			throw new FindException("좋아요/알림 누르지 않음");
@@ -52,7 +49,7 @@ public class InterestDAOOracle implements InterestDAOInterface {
 	}
 
 	@Override
-	public void addInterest(int projectNo, int userNo, String interestAlarm) throws AddException {
+	public void clickInterest(int projectNo, int userNo, String interestAlarm) throws AddException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -78,29 +75,20 @@ public class InterestDAOOracle implements InterestDAOInterface {
 				System.out.println("좋아요/알림 존재하지 않음");
 				con = MyConnection.getConnection(); //DB와 연결
 				
-				String insertSQL = "INSERT INTO interest VALUES(?,?,?)";
+				String insertSQL = "INSERT INTO interest(project_no, user_no, interest_alarm) VALUES(?,?,?)";
 				pstmt = con.prepareStatement(insertSQL);
 				pstmt.setInt(1,projectNo);
 				pstmt.setInt(2, userNo);
 				pstmt.setString(3, interestAlarm);
 				pstmt.executeUpdate();
-				System.out.println("왜안돼ㅠㅠㅠㅠㅠ");
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			} finally {
 				// 5. DB연결닫기
-				System.out.println("4");
 				MyConnection.close(pstmt, con);
 			}
-			
 		}
 	}
-
-	@Override
-	public void removeInterest(int projectNo, int userNo) throws RemoveException {
-
-	}
-
 	@Override
 	public List<Interest> findByUserNo(int userNo) throws FindException {
 		String selectSQL = "SELECT p.project_no"
@@ -182,34 +170,5 @@ public class InterestDAOOracle implements InterestDAOInterface {
 		}finally {
 			MyConnection.close(rs, pstmt, con);
 		}
-	}
-	
-	public static void main(String[] args) {
-		InterestDAOOracle dao = new InterestDAOOracle();
-//		System.out.println("--findInterest테스트");
-//		try {
-//			System.out.println(dao.findInterest(4, 1));
-//		} catch (FindException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-//		System.out.println("--하트눌렀을때 테스트--");
-//		try {
-//			dao.addInterest(1, 4, "I");
-//		} catch (AddException e) {
-//			e.printStackTrace();
-//		}
-		
-//		System.out.println("--findByUserNo--");
-//		try {
-//			List<Interest> i = new ArrayList<>();
-//			i = dao.findByUserNo(1);
-//			for(Interest a: i) {
-//				System.out.println(a);
-//			}
-//		} catch (FindException e) {
-//			e.printStackTrace();
-//		}
 	}
 }

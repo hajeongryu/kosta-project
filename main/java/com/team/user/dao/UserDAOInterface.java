@@ -12,14 +12,14 @@ public interface UserDAOInterface {
 	 * @return
 	 * @throws FindException
 	 */
-	public Users findByUserId(String id) throws FindException;
+	public Users findByUserId(String userId) throws FindException;
 	/**
 	 * 회원번호로 검색
 	 * @param userNO
 	 * @return
 	 * @throws FindException
 	 */
-	public Users findByUserNo(int userNO) throws FindException;
+	public Users findByUserNo(int userNo) throws FindException;
 	/**
 	 * 사용자 추가
 	 * @param user
