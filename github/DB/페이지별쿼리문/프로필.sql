@@ -69,7 +69,7 @@ JOIN project p
     ON o.project_no=p.project_no
 JOIN reward r
     ON r.reward_no=o.reward_no
-JOIN categoty c
+JOIN category c
     ON c.category_no=p.category_no
 JOIN address a
     ON a.address_no=o.address_no

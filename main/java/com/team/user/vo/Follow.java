@@ -7,21 +7,21 @@ import java.util.List;
 	`user_no` NUMBER(8) NOT NULL
 */
 public class Follow {
-	private Users userNo;
+	private int userNo;
 	private List<Users> following;
 	public Follow() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Follow(Users userNo, List<Users> following) {
+	public Follow(int userNo, List<Users> following) {
 		super();
 		this.userNo = userNo;
 		this.following = following;
 	}
-	public Users getUserNo() {
+	public int getUserNo() {
 		return userNo;
 	}
-	public void setUserNo(Users userNo) {
+	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
 	public List<Users> getFollowing() {
