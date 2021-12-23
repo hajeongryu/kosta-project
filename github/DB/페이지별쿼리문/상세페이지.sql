@@ -22,21 +22,25 @@ SELECT reward_price 선물금액
     ,item_name 아이템이름
 FROM reward;
 
---커뮤니티
+--커뮤니티 전체
 SELECT user_name 작성자이름
     , post_content 게시글내용
     , post_date 작성일자
-FROM community c JOIN users u ON c.user_no=u.user_no;
+FROM community c JOIN users u ON c.user_no=u.user_no
+WHERE project_no = 1;
+
 --커뮤니티 작성
 INSERT INTO community(post_no, project_no, post_content, post_date, user_no)
 VALUES(post_seq.NEXTVAL,'?','?',SYSDATE,'?');
 
 
+SELECT * FROM community;
+
 
 --댓글
 SELECT user_name 작성자이름
-    , comments_content 댓글내용
-    , comments_date 작성일자
+    , comment_content 댓글내용
+    , comment_date 작성일자
 FROM comments c JOIN users u ON c.user_no=u.user_no;
 
 INSERT INTO comments(comment_no, post_no, comment_content, comment_date, user_no)
