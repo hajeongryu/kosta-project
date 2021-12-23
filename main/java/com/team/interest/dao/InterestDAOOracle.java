@@ -152,24 +152,31 @@ public class InterestDAOOracle implements InterestDAOInterface {
 				c = new Category();
 				u = new Users();
 				pc = new ProjectChange();
-				
+	
 				p.setProjectNo(project_no);
 				inter.setInterestAlarm(interest_alarm);
 				p.setProjectImage(project_img);
 				p.setEditorPick(editor_pick);
 				p.setLongTitle(long_title);
+				
+				// Interest의 Project의 Category에 set
 				c.setCategoryName(category);
+				p.setCategory(c);
+				
 				u.setUserName(user_name);
+				
 				p.setProjectBrief(brief);
 				p.setTargetPrice(target_price);
+				
+				// Interest의 Project의 ProjectChange에 set
 				pc.setSumPrice(sum_price);
 				pc.setSupportCnt(support_cnt);
+				p.setProjectChange(pc);
+				
 				p.setEndDate(end_date);
 				
 				inter.setLikeProject(p);
-				inter.setProjectCategory(c);
 				inter.setLikeUser(u);
-				inter.setProjectChange(pc);
 				inters.add(inter);
 			}
 			if(inters.size()==0) {
@@ -194,12 +201,12 @@ public class InterestDAOOracle implements InterestDAOInterface {
 //				System.out.print(a.getLikeProject().getProjectImage()+", ");
 //				System.out.print(a.getLikeProject().getEditorPick()+", ");
 //				System.out.print(a.getLikeProject().getLongTitle()+", ");
-//				System.out.print(a.getProjectCategory().getCategoryName()+", ");
+//				System.out.print(a.getLikeProject().getCategory().getCategoryName()+", ");
 //				System.out.print(a.getLikeUser().getUserName()+", ");
 //				System.out.print(a.getLikeProject().getProjectBrief()+", ");
 //				System.out.print(a.getLikeProject().getTargetPrice()+", ");
-//				System.out.print(a.getProjectChange().getSumPrice()+", ");
-//				System.out.print(a.getProjectChange().getSupportCnt()+", ");
+//				System.out.print(a.getLikeProject().getProjectChange().getSumPrice()+", ");
+//				System.out.print(a.getLikeProject().getProjectChange().getSupportCnt()+", ");
 //				System.out.println(a.getLikeProject().getEndDate());	
 //			}
 //		} catch (FindException e) {
