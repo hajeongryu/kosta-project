@@ -10,11 +10,18 @@ import com.team.project.vo.Community;
 
 public interface CommentsDAOInterface {
 	/**
-	 * 커뮤니티의 모든 댓글을 반환
+	 * 모든 댓글을 반환
 	 * @return
 	 * @throws FindException
 	 */
 	public List<Comments> findComment() throws FindException;
+	
+	/**
+	 * 커뮤니티 번호에 해당하는 댓글들을 반환
+	 * @return
+	 * @throws FindException
+	 */
+	public List<Comments> findByPostNo(int postNo) throws FindException;
 	
 	/**
 	 * 커뮤니티 게시글을 추가한다
@@ -28,7 +35,7 @@ public interface CommentsDAOInterface {
 	 * @param comm
 	 * @throws RemoveException
 	 */
-	public void remove(Community comm) throws RemoveException;
+	public void remove(Comments comm) throws RemoveException;
 
 	
 

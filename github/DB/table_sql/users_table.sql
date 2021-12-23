@@ -41,3 +41,6 @@ BEGIN
     INTO :NEW.user_no
     FROM DUAL;
 END;
+
+--user_id 유니크 제약 추가
+ALTER TABLE users ADD CONSTRAINT user_id_uq UNIQUE (user_id);
