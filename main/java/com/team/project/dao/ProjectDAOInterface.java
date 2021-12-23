@@ -10,28 +10,63 @@ import com.team.project.vo.Project;
 import com.team.project.vo.Reward;
 
 public interface ProjectDAOInterface {
+	
 	/**
-	 * 전체상품을 반환한다
+	 * DB내의 모든 프로젝트들을 반환해 줍니다.
 	 * @return
 	 * @throws FindException 프로젝트가 없는 경우에 예외발생
 	 */
 	public List<Project> findAll() throws FindException;
 	
+
 	/**
-	 * 프로젝트 번호에 해당하는 상품을 반환
+	 * ProjectNo에 해당하는 프로젝트를 찾아서 반환해 줍니다.
 	 * @param ProjectNo 프로젝트번호
 	 * @return 
 	 * @throws FindException 프로젝트가 없는 경우 예외발생
 	 */
 	public Project findByProjectNo(int ProjectNo) throws FindException;
 
+	
+	/**
+	 * 프로젝트가 소유한 상품(판매되는 목록)들 을 반환해줍니다.
+	 * @param ProjectNo
+	 * @return
+	 * @throws FindException
+	 */
 	public List<Reward> findReward(int ProjectNo) throws FindException;
 
+
+	/**
+	 * 해당 유저가 제작한 프로젝트들 을 반환해 줍니다.
+	 * @param userNo
+	 * @return
+	 * @throws FindException
+	 */
 	public List<Project> findByUserNo(int userNo) throws FindException;
 
 	
-	public List<Project> findByRequestDate(String category, String ongoing, String editorPick, 
-										String achiveRate, String sort) throws FindException;
+	/**
+	 * Request값을 매개변수로 전달받아 요구사항에 맞는 게시글을 반환해 줍니다.
+	 * null 값이 들어있을시 해당 정렬은 사용안함
+	 * 
+	 * 
+	 * @param category(카테고리)  	          ="all"(전체) , "1"(보드게임) "2"(티알피지) 등등..
+	 *										카테고리쪽에 null이 들어올시 자동으로 "all"전체로 처리
+	 * 
+	 * @param ongoing(진행상황)    		  = "onGoing"(진행중),  "confirm" , "prelaunching"공개예정
+	 * @param editorPick(에디터 추천여부)     ="1"(에디터 추천) 
+	 * @param achiveRate(달성률)   		  = "1" (75퍼이하 달성률),  "2" (75~100달성률),  "3" (100%이상 달성률)
+	 * @param sort(정렬)                   = popular(인기순) publishedAt(최신순) pledges(후원순) amount(금액순) ended(마감 임박순),endDate,startDate
+	 * @param rowCount(출력갯수)  			  = "1" 한개 , "2" 두개...  null일시(100개) 
+	 * @return
+	 * @throws FindException
+	 */
+	public List<Project> findByRequestData(String category, String ongoing, String editorPick, 
+										String achiveRate, String sort, String rowCount) throws FindException;
+	
+	
+
 	
 	public void add(Project project) throws AddException;
 	public void modify(Project project) throws ModifyException;

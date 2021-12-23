@@ -60,7 +60,6 @@ public class CommunityDAOOracle implements CommunityDAOInterface{
 				String	postContent = rs.getString("post_content");
 				Date	postDt = rs.getDate("post_date");   
 				
-				      
 				post = new Community();
 				post.setPostDate(postDt);
 				post.setPostContent(postContent);
@@ -90,7 +89,6 @@ public class CommunityDAOOracle implements CommunityDAOInterface{
 	public void add(Community comm) throws AddException {
 		Connection con = null; 
 		PreparedStatement pstmt = null; 
-		
 		
 		String insertInfoSQL =
 				" INSERT INTO community(post_no, project_no, post_content, post_date, user_no)"
@@ -142,8 +140,5 @@ public class CommunityDAOOracle implements CommunityDAOInterface{
 			MyConnection.close(pstmt, con);
 		}
 
-	}
-	public static void main(String[] args) {
-				
 	}
 }

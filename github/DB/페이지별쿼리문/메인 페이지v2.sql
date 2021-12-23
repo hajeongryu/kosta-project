@@ -5,6 +5,7 @@ SELECT  p.project_no"프로젝트 번호"
         ,category_name "카테고리 이름"
         , user_name "프로젝트 작성자 이름"
         , long_title "프로젝트 제목"
+        , project_content "프로젝트 내용"
         , target_price "목표금액"
         , sum_price "모인금액" --목표금액/모인금액
         , end_date "종료일" --sysdate에서 enddate빼기
