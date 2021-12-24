@@ -17,23 +17,22 @@ import com.team.user.vo.Users;
 */
 public class Comments {
 	private int commentNo;
-	private Community postNo;
-	private Project projectNo;
-	private Users UserNo;
+	private Community post;
+	private Users maker;
 	private String commentContent;
 	private Date commentDate;
+	
 	public Comments() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Comments(int commentNo, Community postNo, Project projectNo, Users userNo, String commentContent,
+	public Comments(int commentNo, Community post, Users maker, String commentContent,
 			Date commentDate) {
 		super();
 		this.commentNo = commentNo;
-		this.postNo = postNo;
-		this.projectNo = projectNo;
-		UserNo = userNo;
+		this.post = post;
+		this.maker = maker;
 		this.commentContent = commentContent;
 		this.commentDate = commentDate;
 	}
@@ -44,23 +43,17 @@ public class Comments {
 	public void setCommentNo(int commentNo) {
 		this.commentNo = commentNo;
 	}
-	public Community getPostNo() {
-		return postNo;
+	public Community getPost() {
+		return post;
 	}
-	public void setPostNo(Community postNo) {
-		this.postNo = postNo;
+	public void setPost(Community post) {
+		this.post = post;
 	}
-	public Project getProjectNo() {
-		return projectNo;
+	public Users getMaker() {
+		return maker;
 	}
-	public void setProjectNo(Project projectNo) {
-		this.projectNo = projectNo;
-	}
-	public Users getUserNo() {
-		return UserNo;
-	}
-	public void setUserNo(Users userNo) {
-		UserNo = userNo;
+	public void setMaker(Users maker) {
+		this.maker = maker;
 	}
 	public String getCommentContent() {
 		return commentContent;
@@ -73,7 +66,5 @@ public class Comments {
 	}
 	public void setCommentDate(Date commentDate) {
 		this.commentDate = commentDate;
-	}
-	
-	
+	}	
 }

@@ -17,10 +17,10 @@ import com.team.user.vo.Users;
 
 public class Community {
 	private int	postNo         ;
-	private Project	projectNo  ;
+	private Project	project  ;
 	private Date	postDate   ;
 	private String	postContent;
-	private Users	userNo     ;
+	private Users	maker     ;
 	private List<Comments> 	comments   ;
 	
 	public Community() {
@@ -28,23 +28,14 @@ public class Community {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	public Community(Date postDate, String postContent, List<Comments> comments) {
-		super();
-		this.postDate = postDate;
-		this.postContent = postContent;
-		this.comments = comments;
-	}
-
-
-	public Community(int postNo, Project projectNo, Date postDate, String postContent, Users userNo,
+	public Community(int postNo, Project project, Date postDate, String postContent, Users maker,
 			List<Comments> comments) {
 		super();
 		this.postNo = postNo;
-		this.projectNo = projectNo;
+		this.project = project;
 		this.postDate = postDate;
 		this.postContent = postContent;
-		this.userNo = userNo;
+		this.maker = maker;
 		this.comments = comments;
 	}
 
@@ -56,12 +47,12 @@ public class Community {
 		this.postNo = postNo;
 	}
 
-	public Project getProjectNo() {
-		return projectNo;
+	public Project getProject() {
+		return project;
 	}
 
-	public void setProjectNo(Project projectNo) {
-		this.projectNo = projectNo;
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 	public Date getPostDate() {
@@ -80,12 +71,12 @@ public class Community {
 		this.postContent = postContent;
 	}
 
-	public Users getUserNo() {
-		return userNo;
+	public Users getMaker() {
+		return maker;
 	}
 
-	public void setUserNo(Users userNo) {
-		this.userNo = userNo;
+	public void setMaker(Users maker) {
+		this.maker = maker;
 	}
 
 	public List<Comments> getComments() {
@@ -95,6 +86,5 @@ public class Community {
 	public void setComments(List<Comments> comments) {
 		this.comments = comments;
 	}
-	
 			
 }
