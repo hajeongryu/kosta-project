@@ -1,0 +1,170 @@
+@charset "UTF-8";
+@import url("./baselayer.css");
+:root{
+  --main-width :1056px
+}
+a{
+  text-decoration: none;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  color: black;
+  white-space: nowrap;
+}
+
+.header{
+  margin-top: 10px;
+}
+.navbar{
+  height: 60px;
+  padding: 0;
+  line-height: 60px;
+}
+#user-menu {
+  float: right;
+  list-style: none;
+  margin: 0;
+}
+#user-menu li {
+  float: left;
+}
+#user-menu li a {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  color: #545454;
+}
+#user-menu li:not(:last-child){
+  margin-right: 30px;
+}
+
+.cate-navbar{
+  /* height: 56px; */
+  padding: 0;
+  line-height: 60px;
+  position: fixed;
+}
+#main-menu{
+  float: left;
+  list-style: none;
+  margin: 0;
+  padding-left: 10px;
+}
+#main-menu li{
+  float: left;
+}
+#main-menu li a {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  color: #545454;
+}
+#main-menu li:not(:last-child){
+  margin-right: 30px;
+}
+.search{
+  /* float: right; */
+}
+
+#sub-menu {
+  list-style: none;
+  position: absolute;
+  z-index: 1;
+  opacity: 0.7;
+  display: flex;
+  background-color: dimgrey;
+  height: 100px;
+  width: 1200px;
+  visibility: hidden;
+  /* y축설정 */
+    transform:translateY(-50%);
+}
+
+
+/* -------------------------- */
+
+/* 메뉴 손가락올릴떄 */
+#main-menu > li > a:hover{
+  color: orange;
+  transition:color 0.7s;
+}
+
+#main-menu > li.search >input{
+  /* 조정5px로해서 메뉴바 자연스럽게 내려오게하기 */
+  padding-bottom: 5px;
+  padding-right:  1px;
+  border-radius: 8px;
+  border:0 solid black;
+  border:1 solid #dadadf;
+}
+
+#main-menu > li.search >button{
+  background-color: seashell;
+  border:1 solid #dadadf;
+  border-radius: 1000px;
+}
+
+.cate{
+  /* overflow: auto hidden;
+  margin-top: 56px;
+  position: absolute;
+  display: flex; */
+  /* height: 0px; */
+  /* max-height: 500px; */
+  transition: height 0.2s ease-in-out 0s;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  flex-direction: column;
+  /* width: 100%; */
+  background: rgb(255, 255, 255);
+  z-index: -1;
+  user-select: none;
+  box-shadow: rgb(0 0 0 / 8%) 0px 6px 7px;
+}
+div.cate > div{
+	margin-top: 4px;
+    display: inline-flex;
+    width: 60px;
+    line-height: 18px;
+    -webkit-box-pack: center;
+    justify-content: center;
+    
+    color: rgb(61, 61, 61);
+    
+}
+div.cate>div>a{
+	align-items: flex-start;
+	font-size: 13px;
+    word-break: keep-all;
+    text-align: center;
+}
+
+/* #sub-menu > li {
+  padding: 16px 28px;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+#sub-menu > li >  a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+}
+
+#main-menu > li:hover #sub-menu{
+  비져블코드
+  visibility: visible;
+  transition:all 0.6s;
+    transform:translateY(0%);
+}
+
+#sub-menu > li :hover{
+  color: orange;
+  transition:color 0.3s;
+}
+#sub-menu > li:hover{
+  background-color: tomato;
+  transition:color 0.3s;
+}
+#sub-menu > li:hover >a{
+  li만 호버해도 a도 같이변경
+  color: orange;
+} */
