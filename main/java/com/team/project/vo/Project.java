@@ -3,6 +3,7 @@ package com.team.project.vo;
 import java.util.Date;
 import java.util.List;
 
+import com.team.user.vo.Interest;
 import com.team.user.vo.Users;
 
 
@@ -25,8 +26,6 @@ import com.team.user.vo.Users;
 
 public class Project {            ;
 	private int	projectNo         ;   
-	private Category	categoryNo;   
-	private Users	userNo        ;   
 	private String	longTitle     ;   
 	private String	projectBrief  ;   
 	private String	editorPick    ;   
@@ -41,10 +40,14 @@ public class Project {            ;
 	//JOIN TABLE
 	private ProjectChange projectChange;
 	private Category category;
-	private Users user;
+	private Users maker;
 	
 	//프로젝트의 선물삼자들
 	private List<Reward> reward;
+
+	//좋아요 상태 (로그인 유저가 이프로젝트가 좋아요 일시 true)
+	private boolean loginedUserProjectInterest=false; 
+
 	                                  
 
 	public Project() {
@@ -53,13 +56,11 @@ public class Project {            ;
 	}
 
 
-	public Project(int projectNo, Category categoryNo, Users userNo, String longTitle, String projectBrief,
+	public Project(int projectNo,  String longTitle, String projectBrief,
 			String editorPick, String projectImage, int targetPrice, Date startDate, Date endDate, String shortTitle,
 			String projectContent, String projectUrl) {
 		super();
 		this.projectNo = projectNo;
-		this.categoryNo = categoryNo;
-		this.userNo = userNo;
 		this.longTitle = longTitle;
 		this.projectBrief = projectBrief;
 		this.editorPick = editorPick;
@@ -78,19 +79,35 @@ public class Project {            ;
 	}
 
 
+	public Users getMaker() {
+		return maker;
+	}
+	
+
+
+
+	
+
+	public boolean isLoginedUserProjectInterest() {
+		return loginedUserProjectInterest;
+	}
+
+
+	public void setLoginedUserProjectInterest(boolean loginedUserProjectInterestState) {
+		this.loginedUserProjectInterest= loginedUserProjectInterestState;
+	}
+
+
+	public void setMaker(Users maker) {
+		this.maker = maker;
+	}
+
+
 	public void setProjectNo(int projectNo) {
 		this.projectNo = projectNo;
 	}
 
 
-	public Category getCategoryNo() {
-		return categoryNo;
-	}
-
-
-	public void setCategoryNo(Category categoryNo) {
-		this.categoryNo = categoryNo;
-	}
 
 
 	public ProjectChange getProjectChange() {
@@ -123,24 +140,6 @@ public class Project {            ;
 	}
 
 
-	public Users getUser() {
-		return user;
-	}
-
-
-	public void setUser(Users user) {
-		this.user = user;
-	}
-
-
-	public Users getUserNo() {
-		return userNo;
-	}
-
-
-	public void setUserNo(Users userNo) {
-		this.userNo = userNo;
-	}
 
 
 	public String getLongTitle() {

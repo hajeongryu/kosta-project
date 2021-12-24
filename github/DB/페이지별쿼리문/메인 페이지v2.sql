@@ -21,7 +21,7 @@ FROM project p
 
 -- 달성률 100% 이상
 WHERE (c.sum_price / p.target_price) >1.00
-    AND sysdate < p.end_date --진행중 '승인' 필요없음 이미 모금됬기떄문에
+    AND sysdate < p.end_date 
     AND ROWNUM <=8
 ORDER BY p.end_date ASC;
 
@@ -81,14 +81,25 @@ FROM project p
     JOIN category cate
         ON p.category_no = cate.category_no
         
+        
+   
+        
 WHERE c.project_status IN ('승인')
         -- 진행중 =시작됨+마감일 안지난거
     -- 시작 된거 (시작일)1월5일 <(오늘)1월6일   ||         (1월6일) < 현재(1월5일) (x)
     AND sysdate > P.start_date
-     -- 마감일 안 지난거 (o) 0 > -1(음수) = 오늘(1/1)- 마감일(1/2)  || (x) 0 > 4(양수) = 오늘(1/5) -마감일(1/1)  
-    AND -10 >= (sysdate -p.end_date ) --10일전       -10=오늘(1/10) -종료일(1/20)(종료 10일전) 
-                                      --            -3 =오늘(1/17) - 종료일(1/20) (종료3일전)
+    --진행중
+    AND 0>(sysdate-p.end_date)
     
+    
+     -- 마감일 안 지난거 (o) 0 > -1(음수) = 오늘(1/1)- 마감일(1/2)  || (x) 0 > 4(양수) = 오늘(1/5) -마감일(1/1)  
+    AND 10> (p.end_date-sysdate ) --10일전       -10=오늘(1/10) -종료일(1/20)(종료 10일전) 
+                                      --                            -3 =오늘(1/17) - 종료일(1/20) (종료3일전)  -1~-8보이는데 
+    
+                                                    --   (o) -8 >   -1 = 1/21  -sysdate
+                                                    --   (o) -8 >   -1 = 12/20 - 1/21  
+                                                    --   (x) -8 > -7 = 12/20 - 12/27 이경우 마감일 전이라 마감임박이 아님   
+                                                    --   (x) -10 > -10 = 12/20 - 12/30   
     
 ORDER BY p.end_date ASC;
 

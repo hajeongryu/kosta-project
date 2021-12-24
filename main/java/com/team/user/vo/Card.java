@@ -1,6 +1,6 @@
 package com.team.user.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 /*
 	`card_no`	NUMBER(8)	NOT NULL,
@@ -14,8 +14,8 @@ import java.util.Date;
 
 public class Card {
 	private int	cardNo            ;
-	private Users	userNo        ;
-	private int	cardNum           ;
+	private Users	user        ;
+	private String	cardNum           ;
 	private Date	cardValidDate ;
 	private String	cardPwd       ;
 	private String	cardOwnerBirth;
@@ -24,15 +24,30 @@ public class Card {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Card(int cardNo, Users userNo, int cardNum, Date cardValidDate, String cardPwd, String cardOwnerBirth,
+	public Card(int cardNo, Users user, String cardNum, Date cardValidDate, String cardPwd, String cardOwnerBirth,
 			String defaultCard) {
 		super();
 		this.cardNo = cardNo;
-		this.userNo = userNo;
+		this.user = user;
 		this.cardNum = cardNum;
 		this.cardValidDate = cardValidDate;
 		this.cardPwd = cardPwd;
 		this.cardOwnerBirth = cardOwnerBirth;
+		this.defaultCard = defaultCard;
+	}
+	public Card(Users user, String cardNum, Date cardValidDate, String cardPwd, String cardOwnerBirth,
+			String defaultCard) {
+		super();
+		this.user = user;
+		this.cardNum = cardNum;
+		this.cardValidDate = cardValidDate;
+		this.cardPwd = cardPwd;
+		this.cardOwnerBirth = cardOwnerBirth;
+		this.defaultCard = defaultCard;
+	}
+	public Card(int cardNo, String defaultCard) {
+		super();
+		this.cardNo = cardNo;
 		this.defaultCard = defaultCard;
 	}
 	public int getCardNo() {
@@ -41,16 +56,16 @@ public class Card {
 	public void setCardNo(int cardNo) {
 		this.cardNo = cardNo;
 	}
-	public Users getUserNo() {
-		return userNo;
+	public Users getUser() {
+		return user;
 	}
-	public void setUserNo(Users userNo) {
-		this.userNo = userNo;
+	public void setUser(Users user) {
+		this.user = user;
 	}
-	public int getCardNum() {
+	public String getCardNum() {
 		return cardNum;
 	}
-	public void setCardNum(int cardNum) {
+	public void setCardNum(String cardNum) {
 		this.cardNum = cardNum;
 	}
 	public Date getCardValidDate() {

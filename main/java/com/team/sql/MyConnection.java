@@ -64,4 +64,11 @@ public class MyConnection {
 		close(stmt);
 		close(con);
 	}
+	public static void close( Statement stmt, Statement stmt2, Statement stmt3, ResultSet rs, Connection con) {
+		close(stmt3);
+		close(stmt2);
+		close(rs);
+		close(stmt);
+		close(con);
+	}
 }
