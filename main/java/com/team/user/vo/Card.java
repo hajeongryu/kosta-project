@@ -14,7 +14,7 @@ import java.sql.Date;
 
 public class Card {
 	private int	cardNo            ;
-	private int	userNo        ;
+	private Users	user        ;
 	private String	cardNum           ;
 	private Date	cardValidDate ;
 	private String	cardPwd       ;
@@ -24,21 +24,21 @@ public class Card {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Card(int cardNo, int userNo, String cardNum, Date cardValidDate, String cardPwd, String cardOwnerBirth,
+	public Card(int cardNo, Users user, String cardNum, Date cardValidDate, String cardPwd, String cardOwnerBirth,
 			String defaultCard) {
 		super();
 		this.cardNo = cardNo;
-		this.userNo = userNo;
+		this.user = user;
 		this.cardNum = cardNum;
 		this.cardValidDate = cardValidDate;
 		this.cardPwd = cardPwd;
 		this.cardOwnerBirth = cardOwnerBirth;
 		this.defaultCard = defaultCard;
 	}
-	public Card(int userNo, String cardNum, Date cardValidDate, String cardPwd, String cardOwnerBirth,
+	public Card(Users user, String cardNum, Date cardValidDate, String cardPwd, String cardOwnerBirth,
 			String defaultCard) {
 		super();
-		this.userNo = userNo;
+		this.user = user;
 		this.cardNum = cardNum;
 		this.cardValidDate = cardValidDate;
 		this.cardPwd = cardPwd;
@@ -56,11 +56,11 @@ public class Card {
 	public void setCardNo(int cardNo) {
 		this.cardNo = cardNo;
 	}
-	public int getUserNo() {
-		return userNo;
+	public Users getUser() {
+		return user;
 	}
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+	public void setUser(Users user) {
+		this.user = user;
 	}
 	public String getCardNum() {
 		return cardNum;
