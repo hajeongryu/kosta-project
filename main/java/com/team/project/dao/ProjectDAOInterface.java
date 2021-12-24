@@ -21,20 +21,20 @@ public interface ProjectDAOInterface {
 
 	/**
 	 * ProjectNo에 해당하는 프로젝트를 찾아서 반환해 줍니다.
-	 * @param ProjectNo 프로젝트번호
+	 * @param projectNo 프로젝트번호
 	 * @return 
 	 * @throws FindException 프로젝트가 없는 경우 예외발생
 	 */
-	public Project findByProjectNo(int ProjectNo) throws FindException;
+	public Project findByProjectNo(int projectNo) throws FindException;
 
 	
 	/**
 	 * 프로젝트가 소유한 상품(판매되는 목록)들 을 반환해줍니다.
-	 * @param ProjectNo
+	 * @param projectNo
 	 * @return
 	 * @throws FindException
 	 */
-	public List<Reward> findReward(int ProjectNo) throws FindException;
+	public List<Reward> findReward(int projectNo) throws FindException;
 
 
 	/**
@@ -51,19 +51,20 @@ public interface ProjectDAOInterface {
 	 * null 값이 들어있을시 해당 정렬은 사용안함
 	 * 
 	 * 
-	 * @param category(카테고리)  	          ="all"(전체) , "1"(보드게임) "2"(티알피지) 등등..
+	 * @param category (카테고리)  	          ="all"(전체) , "1"(보드게임) "2"(티알피지) 등등..
 	 *										카테고리쪽에 null이 들어올시 자동으로 "all"전체로 처리
 	 * 
-	 * @param ongoing(진행상황)    		  = "onGoing"(진행중),  "confirm" , "prelaunching"공개예정
-	 * @param editorPick(에디터 추천여부)     ="1"(에디터 추천) 
-	 * @param achiveRate(달성률)   		  = "1" (75퍼이하 달성률),  "2" (75~100달성률),  "3" (100%이상 달성률)
-	 * @param sort(정렬)                   = popular(인기순) publishedAt(최신순) pledges(후원순) amount(금액순) ended(마감 임박순),endDate,startDate
-	 * @param rowCount(출력갯수)  			  = "1" 한개 , "2" 두개...  null일시(100개) 
+	 * @param ongoing (진행상황)    		  = "onGoing"(진행중),  "confirm" , "prelaunching"공개예정
+	 * @param editorPick (에디터 추천여부)     ="1"(에디터 추천) 
+	 * @param achiveRate (달성률)   		  = "1" (75퍼이하 달성률),  "2" (75~100달성률),  "3" (100%이상 달성률)
+	 * @param sort (정렬)                   = popular(인기순) publishedAt(최신순) pledges(후원순) amount(금액순) ended(마감 임박순),endDate,startDate
+	 * @param rowCount (출력갯수)  			  = "1" 한개 , "2" 두개...  null일시(100개) 
+	 * @param loginedUserNo (로그인한 유저가 좋아했는지 판단하는 용도)  ="1"(user_no 1이 이 프로젝트를 좋아했는지 loginedUserProjectInterest를 수정) 
 	 * @return
 	 * @throws FindException
 	 */
 	public List<Project> findByRequestData(String category, String ongoing, String editorPick, 
-										String achiveRate, String sort, String rowCount) throws FindException;
+										String achiveRate, String sort, String rowCount , String loginedUserNo) throws FindException;
 	
 	
 
