@@ -68,9 +68,9 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 		
 			while(rs.next()) {
 
-				Project fp= new Project();
-				//Project Table
+				Project project= new Project();
 
+				//Project Table
 				int	projectNo = rs.getInt("project_no");
 				String longTitle = rs.getString("long_title"); 
 				String projectContent= rs.getString("project_content"); 
@@ -78,12 +78,12 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				Date endDate =rs.getDate("end_date");
 				String projectImage = rs.getString("project_image");
 
-				fp.setProjectNo(projectNo);
-				fp.setLongTitle(longTitle);
-				fp.setTargetPrice(targetPrice);
-				fp.setEndDate(endDate);
-				fp.setProjectImage(projectImage);
-				fp.setProjectContent(projectContent);
+				project.setProjectNo(projectNo);
+				project.setLongTitle(longTitle);
+				project.setTargetPrice(targetPrice);
+				project.setEndDate(endDate);
+				project.setProjectImage(projectImage);
+				project.setProjectContent(projectContent);
 
 				//[JOIN] ProjectChange 
 				int sumPrice = rs.getInt("sum_price");
@@ -92,14 +92,14 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				pc.setSumPrice(sumPrice);
 				pc.setSupportCnt(spoortCnt);
 				
-				fp.setProjectChange(pc);
+				project.setProjectChange(pc);
 				
 				//[JOIN] Cateogty Talbe
 				String cateogryName = rs.getString("category_name");
-				Category cate = new Category();
-				cate.setCategoryName(cateogryName);
+				Category categotyObject = new Category();
+				categotyObject.setCategoryName(cateogryName);
 				
-				fp.setCategory(cate);
+				project.setCategory(categotyObject);
 				
 				
 				//[JOIN] Users Table
@@ -107,9 +107,10 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				Users user = new Users();
 				user.setUserName(userName);
 				
-				fp.setUser(user);
+				project.setMaker(user);
 				
-				list.add(fp);
+				
+				list.add(project);
 			}
 			
 			
@@ -160,7 +161,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 			
 			while(rs.next()) {
 
-				Project fp= new Project();
+				Project project= new Project();
 
 				//Project Table
 				int	projectNo = rs.getInt("project_no");
@@ -170,12 +171,12 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				Date endDate =rs.getDate("end_date");
 				String projectImage = rs.getString("project_image");
 
-				fp.setProjectNo(projectNo);
-				fp.setLongTitle(longTitle);
-				fp.setTargetPrice(targetPrice);
-				fp.setEndDate(endDate);
-				fp.setProjectImage(projectImage);
-				fp.setProjectContent(projectContent);
+				project.setProjectNo(projectNo);
+				project.setLongTitle(longTitle);
+				project.setTargetPrice(targetPrice);
+				project.setEndDate(endDate);
+				project.setProjectImage(projectImage);
+				project.setProjectContent(projectContent);
 
 				//[JOIN] ProjectChange 
 				int sumPrice = rs.getInt("sum_price");
@@ -184,14 +185,14 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				pc.setSumPrice(sumPrice);
 				pc.setSupportCnt(spoortCnt);
 				
-				fp.setProjectChange(pc);
+				project.setProjectChange(pc);
 				
 				//[JOIN] Cateogty Talbe
 				String cateogryName = rs.getString("category_name");
 				Category cate = new Category();
 				cate.setCategoryName(cateogryName);
 				
-				fp.setCategory(cate);
+				project.setCategory(cate);
 				
 				
 				//[JOIN] Users Table
@@ -199,9 +200,9 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				Users user = new Users();
 				user.setUserName(userName);
 				
-				fp.setUser(user);
+				project.setMaker(user);
 				
-				return fp;
+				return project;
 			}
 
 			throw new FindException();
@@ -252,7 +253,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 			
 			while(rs.next()) {
 
-				Project fp= new Project();
+				Project project= new Project();
 
 				//Project Table
 
@@ -264,12 +265,12 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				Date endDate =rs.getDate("end_date");
 				String projectImage = rs.getString("project_image");
 
-				fp.setProjectNo(projectNo);
-				fp.setLongTitle(longTitle);
-				fp.setTargetPrice(targetPrice);
-				fp.setEndDate(endDate);
-				fp.setProjectImage(projectImage);
-				fp.setProjectContent(projectContent);
+				project.setProjectNo(projectNo);
+				project.setLongTitle(longTitle);
+				project.setTargetPrice(targetPrice);
+				project.setEndDate(endDate);
+				project.setProjectImage(projectImage);
+				project.setProjectContent(projectContent);
 
 				//[JOIN] ProjectChange 
 				int sumPrice = rs.getInt("sum_price");
@@ -278,14 +279,14 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				pc.setSumPrice(sumPrice);
 				pc.setSupportCnt(spoortCnt);
 				
-				fp.setProjectChange(pc);
+				project.setProjectChange(pc);
 				
 				//[JOIN] Cateogty Talbe
 				String cateogryName = rs.getString("category_name");
 				Category cate = new Category();
 				cate.setCategoryName(cateogryName);
 				
-				fp.setCategory(cate);
+				project.setCategory(cate);
 				
 				
 				//[JOIN] Users Table
@@ -293,9 +294,9 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				Users user = new Users();
 				user.setUserName(userName);
 				
-				fp.setUser(user);
+				project.setMaker(user);
 				
-				list.add(fp);
+				list.add(project);
 			}
 			if(list.isEmpty()) {
 				throw new FindException();
@@ -394,7 +395,8 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 											String editorPick,
 											String achiveRate,
 											String sort,
-											String rowCount ) throws FindException{
+											String rowCount,
+											String loginedUserNo) throws FindException{
 		Connection con =null;
 		PreparedStatement pstmt = null;
 		ResultSet rs= null;
@@ -408,7 +410,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 		}
 
 
-		List<Project> list= new ArrayList<Project>();
+		List<Project> findedProjectlist= new ArrayList<Project>();
 		String selectSQL = "SELECT  p.project_no"
 							+ ", category_name"
 							+ ", user_name"
@@ -418,47 +420,67 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 							+ ", sum_price"
 							+ ", end_date"
 							+ ", support_cnt"
-							+ ", project_image"
-				+ " FROM project p"
-				+ " JOIN project_change c"
-				+ "   ON p.project_no =c.project_no"
-				+ " JOIN users u"
-				+ "   ON p.user_no = u.user_no"
-				+ " JOIN category cate"
-				+ "   ON p.category_no = cate.category_no";
+							+ ", project_image";
+			if(loginedUserNo!= null) {
+								// x(?) 유저의 좋아요 누른 여부
+					selectSQL+=", i.user_no "; 
+							}
+
+			selectSQL+= " FROM project p"
+							+ " JOIN project_change c"
+								+ "   ON p.project_no =c.project_no"
+							+ " JOIN users u"
+								+ "   ON p.user_no = u.user_no"
+							+ " JOIN category cate"
+								+ "   ON p.category_no = cate.category_no";
+
+			if(loginedUserNo != null) {
+					selectSQL+=" LEFT OUTER JOIN interest i"
+								  + " ON p.project_no = i.project_no AND i.user_no =? ";
+			}
+
 			
 			selectSQL= categoryAndSQLAdd(category, selectSQL);
-			selectSQL+= "AND ROWNUM <= ?";
+			selectSQL+= " AND ROWNUM <= ?";
 			selectSQL= ongoingAndSQLAdd(ongoing, selectSQL);
 			selectSQL=editorPickAndSQLAdd(editorPick, selectSQL); 
 			selectSQL = achiveRateAndSQLAdd(achiveRate, selectSQL);
 			selectSQL = sortAndSQLAdd(sort, selectSQL);
 
-					try {
+		try {
 			con = MyConnection.getConnection();
 			pstmt = con.prepareStatement(selectSQL);
 		
 			//전체카테고리가 아닐경우setString 실행 
 			//cate = null  , 1
 	
+			//로그인 안했을때
+			if(loginedUserNo== null) {
 
-
-			if( category == "all") {
-				pstmt.setString(1, rowCount);
-				System.out.println("성공");
+				if( category == "all") {
+					pstmt.setString(1, rowCount);
+				}else {
+					pstmt.setString(1, category);
+					pstmt.setString(2, rowCount);
+				}
+			//로그인 했을때
 			}else {
-				pstmt.setString(1, category);
-				pstmt.setString(2, rowCount);
-			}
+				System.out.println(loginedUserNo);
+				pstmt.setString(1, loginedUserNo);
 
+				if( category == "all") {
+					pstmt.setString(2, rowCount);
+				}else {
+					pstmt.setString(2, category);
+					pstmt.setString(3, rowCount);
+				}
+			}
 		
 			rs = pstmt.executeQuery();
 		
 			while(rs.next()) {
 
-				Project fp= new Project();
-
-
+				Project project= new Project();
 
 				//Project Table
 				int	projectNo = rs.getInt("project_no");
@@ -468,12 +490,12 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				Date endDate =rs.getDate("end_date");
 				String projectImage = rs.getString("project_image");
 
-				fp.setProjectNo(projectNo);
-				fp.setLongTitle(longTitle);
-				fp.setTargetPrice(targetPrice);
-				fp.setEndDate(endDate);
-				fp.setProjectImage(projectImage);
-				fp.setProjectContent(projectContent);
+				project.setProjectNo(projectNo);
+				project.setLongTitle(longTitle);
+				project.setTargetPrice(targetPrice);
+				project.setEndDate(endDate);
+				project.setProjectImage(projectImage);
+				project.setProjectContent(projectContent);
 
 				
 				//[JOIN] ProjectChange 
@@ -483,31 +505,40 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				pc.setSumPrice(sumPrice);
 				pc.setSupportCnt(spoortCnt);
 				
-				fp.setProjectChange(pc);
+				project.setProjectChange(pc);
 				
 				
 				//[JOIN] Cateogty Talbe
 				String cateogryName = rs.getString("category_name");
-				Category cate = new Category();
-				cate.setCategoryName(cateogryName);
+				Category categoryObj = new Category();
+				categoryObj.setCategoryName(cateogryName);
 				
-				fp.setCategory(cate);
+				project.setCategory(categoryObj);
 				
 				
 				//[JOIN] Users Table
 				String userName = rs.getString("user_name"); 
-				Users user = new Users();
-				user.setUserName(userName);
+				Users userObj = new Users();
+				userObj.setUserName(userName);
 				
-				fp.setUser(user);
+				project.setMaker(userObj);
 				
-				list.add(fp);
+				
+				if(loginedUserNo != null) {
+					String interestUserNo = rs.getString("user_no");
+					if(interestUserNo !=null ) {
+						project.setLoginedUserProjectInterest(true);;
+					}
+				}
+				
+
+				findedProjectlist.add(project);
 			}
 
-			if(list.isEmpty()) {
+			if(findedProjectlist.isEmpty()) {
 				throw new FindException("프로젝트를 찾지 못하였습니다. isEmpty()");
 			}
-			return list;
+			return findedProjectlist;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -712,52 +743,53 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 		ProjectDAOOracle dao = new ProjectDAOOracle();
 		try {
 			System.out.println("신규 프로젝트");
-			List<Project> a =dao.findByRequestData(null, "onGoing", null, null, "publishedAt", null);
+			List<Project> a =dao.findByRequestData(null, "onGoing", null, null, "publishedAt", null,null);
 			for (Project p : a) {
 				System.out.println(p.getProjectNo());
 				System.out.println(p.getLongTitle());
-				Users u = p.getUser(); 
+				Users u = p.getMaker(); 
 				System.out.println(u.getUserName());
 				System.out.println();
 			}
 		
 			System.out.println("공개예쩡 프로젝트");
-			List<Project> b =dao.findByRequestData(null, "prelaunching", null, null, "popular", null);
+			List<Project> b =dao.findByRequestData(null, "prelaunching", null, null, "popular", null,null);
 			for (Project p : b) {
 				System.out.println(p.getProjectNo());
 				System.out.println(p.getLongTitle());
-				Users u = p.getUser(); 
+				Users u = p.getMaker(); 
 				System.out.println(u.getUserName());
 				System.out.println();
 			}
 
 			System.out.println("마감임박 프로젝트");
-			List<Project> c =dao.findByRequestData(null, "onGoing", null, null, "endcome", null);
+			List<Project> c =dao.findByRequestData(null, "onGoing", null, null, "endcome", null,null);
 			for (Project p : c) {
 				System.out.println(p.getProjectNo());
 				System.out.println(p.getLongTitle());
-				Users u = p.getUser(); 
+				Users u = p.getMaker(); 
 				System.out.println(u.getUserName());
 				System.out.println();
 			}
 			
 			
 			System.out.println("인기 프로젝트");
-			List<Project> d =dao.findByRequestData(null, "onGoing", null, null, "popular", null);
+			List<Project> d =dao.findByRequestData(null, "onGoing", null, null, "popular", null,null);
+			
 			for (Project p : d) {
 				System.out.println(p.getProjectNo());
 				System.out.println(p.getLongTitle());
-				Users u = p.getUser(); 
+				Users u = p.getMaker(); 
 				System.out.println(u.getUserName());
 				System.out.println();
 			}
 
 			System.out.println("주목할만한 프로젝트");
-			List<Project> e =dao.findByRequestData(null, "onGoing", null, "3", null, null);
+			List<Project> e =dao.findByRequestData(null, "onGoing", null, "3", null, null,null);
 			for (Project p : e) {
 				System.out.println(p.getProjectNo());
 				System.out.println(p.getLongTitle());
-				Users u = p.getUser(); 
+				Users u = p.getMaker(); 
 				System.out.println(u.getUserName());
 				System.out.println();
 			}

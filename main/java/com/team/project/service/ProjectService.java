@@ -23,15 +23,16 @@ public class ProjectService {
 	
 	
 	public List<Project> getProjects(String category,
-							String ongoning,
+							String ongoing,
+							String editorPick,
 							String achiveRate,
 							String sort,
-							String rowCount) throws FindException{
+							String rowCount,
+							String loginedUserNo) throws FindException{
 		
 		dao = ProjectDAOOracle.getInstance();
-		List<Project> findedProjects =dao.findByRequestData(category, category, ongoning, achiveRate, sort, rowCount);
-
-		return findedProjects;
+		List<Project> findedProjects =dao.findByRequestData(category, ongoing, editorPick, achiveRate, sort, rowCount, loginedUserNo);
+				return findedProjects;
 	}
 	
 	
@@ -53,42 +54,42 @@ public class ProjectService {
 	
 	
 	
-	public List<Project> getAttentionProject() throws FindException{
+	public List<Project> getAttentionProject(String loginedUserNo) throws FindException{
 		dao = ProjectDAOOracle.getInstance();
-		List<Project> findedProjects =dao.findByRequestData(null, "onGoing", null, "3", null, null);
+		List<Project> findedProjects =dao.findByRequestData(null, "onGoing", null, "3", null, null,loginedUserNo);
 		return findedProjects;
 	}
 	
 	
 
-	public List<Project> getPopularProject() throws FindException{
+	public List<Project> getPopularProject(String loginedUserNo) throws FindException{
 		dao = ProjectDAOOracle.getInstance();
-		List<Project> findedProjects=dao.findByRequestData(null, "onGoing", null, null, "popular", null);
+		List<Project> findedProjects=dao.findByRequestData(null, "onGoing", null, null, "popular", null,loginedUserNo);
 		return findedProjects;
 	}
 
 	
 	
-	public List<Project> getEndcomeProject() throws FindException{
+	public List<Project> getEndcomeProject(String loginedUserNo) throws FindException{
 	
 		dao = ProjectDAOOracle.getInstance();
-		List<Project> findedProjects =dao.findByRequestData(null, "onGoing", null, null, "endcome", null);
+		List<Project> findedProjects =dao.findByRequestData(null, "onGoing", null, null, "endcome", null,loginedUserNo);
 		return findedProjects;
 	}
 	
 	
 	
-	public List<Project> getReleaseProject() throws FindException{
+	public List<Project> getReleaseProject(String loginedUserNo) throws FindException{
 		dao = ProjectDAOOracle.getInstance();
-		List<Project> findedProjects =dao.findByRequestData(null, "prelaunching", null, null, "popular", null);
+		List<Project> findedProjects =dao.findByRequestData(null, "prelaunching", null, null, "popular", null,loginedUserNo);
 		return findedProjects;
 	}
 	
 	
 	
-	public List<Project> getNewProject() throws FindException{
+	public List<Project> getNewProject(String loginedUserNo) throws FindException{
 		dao = ProjectDAOOracle.getInstance();
-		List<Project> findedProjects =dao.findByRequestData(null, "onGoing", null, null, "publishedAt", null);
+		List<Project> findedProjects =dao.findByRequestData(null, "onGoing", null, null, "publishedAt", null,loginedUserNo);
 		return findedProjects;
 	}
 	
@@ -96,23 +97,48 @@ public class ProjectService {
 	public static void main(String[] args) {
 		ProjectService service1 =ProjectService.getInstance();
 		try {
-			List<Project> list;
-			//list =service1.getAdProjects(1, 2, 3);
-			list =service1.getAttentionProject(); //잘됨
-			//list =service1.getPopularProject(); //잘됨
-			//list =service1.getEndcomeProject(); //잘됨
-			//list =service1.getReleaseProject();//잘됨
-			//list =service1.getNewProject(); //잘됨
+			List<Project> list=null;
 			
-			for(Project p : list) {
-				System.out.println("=====================");
-				System.out.println(p.getProjectNo());
-				System.out.println(p.getLongTitle());
-				System.out.println(p.getUserNo());
+			for (int i =0; i<6; i++) {
 
-				Users u =p.getUser();
-				System.out.println(u.getUserName());
-				System.out.println("=====================");
+				if(i==0) {
+					System.out.println(">메인페이지 광고");
+					list =service1.getAdProjects(4, 5, 3); //잘됨
+				}else if(i==1) {
+					System.out.println(">인기 프로젝트");
+					list =service1.getPopularProject(null); //잘됨
+
+				}else if(i==2) {
+					System.out.println(">마감임박 프로젝트");
+					list =service1.getEndcomeProject(null); //잘됨
+
+				}else if(i==3) {
+					System.out.println(">공개예정 프로젝트");
+					list =service1.getReleaseProject("1");//잘됨
+
+				}else if(i==4) {
+					System.out.println(">신규 프로젝트");
+					list =service1.getNewProject(null); //잘됨
+
+				}else if(i==5) {
+				System.out.println(">주목할 만한 프로젝트");
+					list =service1.getAttentionProject(null); //잘됨
+				}else if(i==6) {
+					
+				}
+				
+				for(Project p : list) {
+					System.out.println("=====================");
+					System.out.println(p.getProjectNo());
+					System.out.println(p.getLongTitle());
+					System.out.println("좋아요 상태"+p.isLoginedUserProjectInterest());
+
+					Users u =p.getMaker();
+					System.out.println(u.getUserName());
+					System.out.println("=====================");
+				}
+				System.out.println();
+				System.out.println();
 			}
 		} catch (FindException e) {
 			// TODO Auto-generated catch block
