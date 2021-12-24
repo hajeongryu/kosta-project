@@ -18,11 +18,26 @@ public interface AddrDAOInterface {
 	public List<Address> findByUserNo(int userNo) throws FindException;
 	
 	/**
+	 * 배송지번호에 해당하는 배송지 객체를 반환한다
+	 * @param addressNo
+	 * @return
+	 * @throws FindException
+	 */
+	public Address findByAddressNo(int addressNo) throws FindException;
+	
+	/**
 	 * 배송지를 추가한다
 	 * @param address
 	 * @throws AddException
 	 */
 	public void addAddress(Address address) throws AddException;
+	
+	/**
+	 * 선택한 배송지를 기본배송지로 바꾸고 나머지는 기본배송지에서 제외한다
+	 * @param address
+	 * @throws ModifyException
+	 */
+	public void modifyDefaultAddress(Address address) throws ModifyException;
 	
 	/**
 	 * 등록한 배송지 정보를 수정한다

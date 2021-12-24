@@ -16,31 +16,42 @@ public class Address {
 	
 	private int addressNo;
 	private Users user;
-	private String receverName;
-	private int receverZipcode;
-	private String receverAddress;
-	private String receverAddressDetailed;
-	private int receiverPhone;
-	private String defualtAddress;
+	private String receiverName;
+	private int receiverZipcode;
+	private String receiverAddress;
+	private String receiverAddressDetailed;
+	private String receiverPhone;
+	private String defaultAddress;
 	
-	public Address() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	
-	public Address(int addressNo, Users user, String receverName, int receverZipcode, String receverAddress,
-			String receverAddressDetailed, int receiverPhone, String defualtAddress) {
+	
+	public Address(int addressNo, Users user, String receiverName, int receiverZipcode, String receiverAddress,
+			String receiverAddressDetailed, String receiverPhone, String defaultAddress) {
 		super();
 		this.addressNo = addressNo;
 		this.user = user;
-		this.receverName = receverName;
-		this.receverZipcode = receverZipcode;
-		this.receverAddress = receverAddress;
-		this.receverAddressDetailed = receverAddressDetailed;
+		this.receiverName = receiverName;
+		this.receiverZipcode = receiverZipcode;
+		this.receiverAddress = receiverAddress;
+		this.receiverAddressDetailed = receiverAddressDetailed;
 		this.receiverPhone = receiverPhone;
-		this.defualtAddress = defualtAddress;
+		this.defaultAddress = defaultAddress;
 	}
-	
+	public Address(Users user, String receiverName, int receiverZipcode, String receiverAddress,
+			String receiverAddressDetailed, String receiverPhone, String defaultAddress) {
+		super();
+		this.user = user;
+		this.receiverName = receiverName;
+		this.receiverZipcode = receiverZipcode;
+		this.receiverAddress = receiverAddress;
+		this.receiverAddressDetailed = receiverAddressDetailed;
+		this.receiverPhone = receiverPhone;
+		this.defaultAddress = defaultAddress;
+	}
+	public Address(int addressNo, String defaultAddress) {
+		this.addressNo = addressNo;
+		this.defaultAddress = defaultAddress;
+	}
 	public int getAddressNo() {
 		return addressNo;
 	}
@@ -53,42 +64,44 @@ public class Address {
 	public void setUser(Users user) {
 		this.user = user;
 	}
-	public String getReceverName() {
-		return receverName;
+	public String getReceiverName() {
+		return receiverName;
 	}
-	public void setReceverName(String receverName) {
-		this.receverName = receverName;
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
 	}
-	public int getReceverZipcode() {
-		return receverZipcode;
+	public int getReceiverZipcode() {
+		return receiverZipcode;
 	}
-	public void setReceverZipcode(int receverZipcode) {
-		this.receverZipcode = receverZipcode;
+	public void setReceiverZipcode(int receiverZipcode) {
+		this.receiverZipcode = receiverZipcode;
 	}
-	public String getReceverAddress() {
-		return receverAddress;
+	public String getReceiverAddress() {
+		return receiverAddress;
 	}
-	public void setReceverAddress(String receverAddress) {
-		this.receverAddress = receverAddress;
+	public void setReceiverAddress(String receiverAddress) {
+		this.receiverAddress = receiverAddress;
 	}
-	public String getReceverAddressDetailed() {
-		return receverAddressDetailed;
+	public String getReceiverAddressDetailed() {
+		return receiverAddressDetailed;
 	}
-	public void setReceverAddressDetailed(String receverAddressDetailed) {
-		this.receverAddressDetailed = receverAddressDetailed;
+	public void setReceiverAddressDetailed(String receiverAddressDetailed) {
+		this.receiverAddressDetailed = receiverAddressDetailed;
 	}
-	public int getReceiverPhone() {
+	public String getReceiverPhone() {
 		return receiverPhone;
 	}
-	public void setReceiverPhone(int receiverPhone) {
+	public void setReceiverPhone(String receiverPhone) {
 		this.receiverPhone = receiverPhone;
 	}
-	public String getDefualtAddress() {
-		return defualtAddress;
+	public String getDefaultAddress() {
+		return defaultAddress;
 	}
-	public void setDefualtAddress(String defualtAddress) {
-		this.defualtAddress = defualtAddress;
+	public void setDefaultAddress(String defaultAddress) {
+		this.defaultAddress = defaultAddress;
 	}
+	
+
 	
 	
 	
