@@ -1,8 +1,6 @@
 package com.team.user.vo;
 
-import com.team.project.vo.Category;
 import com.team.project.vo.Project;
-import com.team.project.vo.ProjectChange;
 
 public class Interest {
 	private Project	likeProject;

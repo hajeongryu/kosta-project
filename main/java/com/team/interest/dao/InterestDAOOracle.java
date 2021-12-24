@@ -10,15 +10,12 @@ import java.util.List;
 
 import com.team.exception.AddException;
 import com.team.exception.FindException;
-import com.team.exception.RemoveException;
 import com.team.project.vo.Category;
 import com.team.project.vo.Project;
 import com.team.project.vo.ProjectChange;
 import com.team.sql.MyConnection;
 import com.team.user.vo.Interest;
 import com.team.user.vo.Users;
-
-import oracle.jdbc.internal.OracleDate;
 
 public class InterestDAOOracle implements InterestDAOInterface {
 	private static InterestDAOOracle dao = new InterestDAOOracle();
