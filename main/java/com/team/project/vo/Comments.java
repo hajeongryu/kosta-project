@@ -37,6 +37,14 @@ public class Comments {
 		this.commentDate = commentDate;
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Comments [commentNo=" + commentNo + ", post=" + post + ", maker=" + maker + ", commentContent="
+				+ commentContent + ", commentDate=" + commentDate + "]";
+	}
+
 	public int getCommentNo() {
 		return commentNo;
 	}
@@ -66,5 +74,6 @@ public class Comments {
 	}
 	public void setCommentDate(Date commentDate) {
 		this.commentDate = commentDate;
-	}	
+	}
+	
 }

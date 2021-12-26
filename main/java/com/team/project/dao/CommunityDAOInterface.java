@@ -17,6 +17,15 @@ public interface CommunityDAOInterface {
 	public List<Community> findAll() throws FindException;
 	
 	/**
+	 * 프로젝트 번호에 해당하는 커뮤니티 게시글을 반환(SELECT * FROM community WHERE project_no =?)
+	 * @param ProjectNo 프로젝트번호
+	 * @return
+	 * @throws FindException
+	 */
+	public List<Community> findProjectNo(int ProjectNo) throws FindException;
+	
+	
+	/**
 	 * 프로젝트 번호에 해당하는 커뮤니티 게시글을 반환
 	 * @param ProjectNo 프로젝트번호
 	 * @return

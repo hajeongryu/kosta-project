@@ -13,8 +13,11 @@ public class PostService {
 	public static PostService getInstance() {
 		return service;
 	}
+	public List<Community> findProjectNo(int projectNo) throws FindException{
+		return dao.findProjectNo(projectNo);
+	}
 	
-	public List<Community> findByProjectNo(int projectNo) throws FindException{
+	public List<Community> findByProjectNo(int projectNo) throws FindException{		
 		return dao.findByProjectNo(projectNo);
 	}
 	

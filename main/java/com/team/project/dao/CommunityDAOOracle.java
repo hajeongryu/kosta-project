@@ -32,6 +32,63 @@ public class CommunityDAOOracle implements CommunityDAOInterface{
 	public List<Community> findAll() throws FindException {
 		return null;
 	}
+	
+	@Override
+	public List<Community> findProjectNo(int paramProjectNo) throws FindException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String selectProjectNoSQL = "SELECT * FROM community WHERE project_no = ?";
+		
+		
+		try {
+			con = MyConnection.getConnection();
+			pstmt = con.prepareStatement(selectProjectNoSQL);
+			pstmt.setInt(1, paramProjectNo);
+			rs = pstmt.executeQuery();
+			
+			List<Community> posts = new ArrayList<>();
+			Community post = null;
+//			List<Comments> comments = null;
+//			Comments comment = null;
+
+			while(rs.next()) {			
+				int 	userNo = rs.getInt("user_no");
+				int		postNo = rs.getInt("post_no");
+				String	postContent = rs.getString("post_content");
+				Date	postDt = rs.getDate("post_date");
+				
+				
+				post = new Community();
+				post.setPostDate(postDt);
+				post.setPostContent(postContent);
+				post.setPostNo(postNo);
+				
+				//user
+				Users u = new Users();
+				u.setUserNo(userNo);
+				post.setMaker(u);
+				
+//				//List<comments>
+//				comments = new ArrayList<>();
+//				post.setComments(comments);
+				
+				
+				posts.add(post);
+
+			}
+			return posts;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new FindException(e.getMessage());
+		} finally {
+			MyConnection.close(rs, pstmt, con);
+		}
+
+	}
+	
+	
 	@Override
 	public List<Community> findByProjectNo(int paramPjNo) throws FindException {
 		Connection con = null; //DB연결
@@ -39,6 +96,7 @@ public class CommunityDAOOracle implements CommunityDAOInterface{
 		ResultSet rs = null; //결과 수신
 
 		String selectProjectNoSQL = "SELECT user_name"
+				+ ", post_no"
 				+ ", post_content"
 				+ ", post_date"
 				+ " FROM community c JOIN users u ON c.user_no=u.user_no"
@@ -52,27 +110,30 @@ public class CommunityDAOOracle implements CommunityDAOInterface{
 
 			List<Community> posts = new ArrayList<>();
 			Community post = null;
-			List<Comments> comments = null;
+			//List<Comments> comments = null;
 
 
 			while(rs.next()) {			
 				String  userName = rs.getString("user_name");
+				int		postNo = rs.getInt("post_no");
 				String	postContent = rs.getString("post_content");
 				Date	postDt = rs.getDate("post_date");   
 				
 				post = new Community();
 				post.setPostDate(postDt);
 				post.setPostContent(postContent);
-							
+				post.setPostNo(postNo);
+				
 				//user
 				Users u = new Users();
 				u.setUserName(userName);
-				post.setUserNo(u);
+				post.setMaker(u);
 				
-				//List<comments>
-				comments = new ArrayList<>();
-				post.setComments(comments);
-								
+//				//List<comments>
+//				comments = new ArrayList<>();
+//				post.setComments(comments);
+				
+				
 				posts.add(post);
 
 			}
@@ -99,9 +160,9 @@ public class CommunityDAOOracle implements CommunityDAOInterface{
 			//오토커밋해제
 			con.setAutoCommit(false);
 			
-			int projectNo = comm.getProjectNo().getProjectNo();
+			int projectNo = comm.getProject().getProjectNo();
 			String postCon = comm.getPostContent();
-			int userNo = comm.getUserNo().getUserNo();
+			int userNo = comm.getMaker().getUserNo();
 			
 			pstmt.setInt(1, projectNo);
 			pstmt.setString(2, postCon);
@@ -141,4 +202,25 @@ public class CommunityDAOOracle implements CommunityDAOInterface{
 		}
 
 	}
+	
+	
+	public static void main(String[] args) {
+		CommunityDAOOracle dao = CommunityDAOOracle.getInstance();
+		List<Community> c = new ArrayList<>();
+		try {
+			c = dao.findProjectNo(1);
+		
+			for (Community community : c) {
+				System.out.println(community.getPostNo());
+				System.out.println(community.getMaker());
+				System.out.println(community.getPostContent());
+				System.out.println(community.getPostDate());
+			}
+		} catch (FindException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 }

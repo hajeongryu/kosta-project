@@ -24,6 +24,13 @@ public interface CommentsDAOInterface {
 	public List<Comments> findByPostNo(int postNo) throws FindException;
 	
 	/**
+	 * 커뮤니티 번호에 해당하는 댓글들을 반환(select * from all)
+	 * @return
+	 * @throws FindException
+	 */
+	public List<Comments> findPostNo(int postNo) throws FindException;
+	
+	/**
 	 * 커뮤니티 게시글을 추가한다
 	 * @param comm
 	 * @throws AddException 

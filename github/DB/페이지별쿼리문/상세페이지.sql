@@ -22,11 +22,16 @@ SELECT reward_price 선물금액
     ,item_name 아이템이름
 FROM reward;
 
+
 --커뮤니티 전체
+SELECT * FROM community WHERE project_no =1;
+
 SELECT user_name 작성자이름
+    , c.post_no 게시글번호
     , post_content 게시글내용
     , post_date 작성일자
 FROM community c JOIN users u ON c.user_no=u.user_no
+                 JOIN comments cm ON c.post_no=cm.post_no
 WHERE project_no = 1;
 
 --커뮤니티 작성
@@ -39,6 +44,7 @@ SELECT * FROM community;
 
 --댓글
 SELECT user_name 작성자이름
+    , comment_no 댓글번호
     , comment_content 댓글내용
     , comment_date 작성일자
 FROM comments c JOIN users u ON c.user_no=u.user_no;

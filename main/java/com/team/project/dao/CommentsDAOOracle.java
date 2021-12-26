@@ -17,11 +17,71 @@ import com.team.sql.MyConnection;
 import com.team.user.vo.Users;
 
 public class CommentsDAOOracle implements CommentsDAOInterface {
+	private static CommentsDAOOracle dao = new CommentsDAOOracle();
+	private CommentsDAOOracle() {
+		
+	}
+	public static CommentsDAOOracle getInstance() {
+		return dao;
+	}
 
 	@Override
 	public List<Comments> findComment() throws FindException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public List<Comments> findPostNo(int paramPostNo) throws FindException {
+		Connection con = null; //DB연결
+		PreparedStatement pstmt = null; //SQL송신
+		ResultSet rs = null; //결과 수신
+
+		String selectPostNoSQL = "SELECT * FROM comments WHERE post_no = ?";
+
+		try {
+			con = MyConnection.getConnection();
+			pstmt = con.prepareStatement(selectPostNoSQL);
+			pstmt.setInt(1, paramPostNo);
+			rs = pstmt.executeQuery();
+
+			List<Comments> comments = new ArrayList<>();
+			Comments comment = null;
+
+			while(rs.next()) {
+				
+				String	commentContent = rs.getString("comment_content");
+				Date	commentdt = rs.getDate("comment_date");   
+				int		commentNo = rs.getInt("comment_no");
+				int     postNo = rs.getInt("post_no");
+				int userNo = rs.getInt("user_no");
+				
+				comment = new Comments();
+				
+				comment.setCommentDate(commentdt);
+				comment.setCommentContent(commentContent);
+				comment.setCommentNo(commentNo);
+				
+				//post
+				Community post = new Community();
+				post.setPostNo(postNo);
+				comment.setPost(post);
+				
+				//user
+				Users u = new Users();
+				u.setUserNo(userNo);
+				comment.setMaker(u);
+												
+				comments.add(comment);
+			}
+			return comments;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new FindException(e.getMessage());
+		} finally {
+			MyConnection.close(rs, pstmt, con);
+		}
+
 	}
 
 	@Override
@@ -31,9 +91,11 @@ public class CommentsDAOOracle implements CommentsDAOInterface {
 		ResultSet rs = null; //결과 수신
 
 		String selectPostNoSQL = "SELECT user_name"
+				+ ", comment_no"
 				+ ", comment_content"
 				+ ", comment_date"
-				+ " FROM comments com JOIN users u ON c.user_no=u.user_no"
+				+ ", post_no"
+				+ " FROM comments com JOIN users u ON com.user_no=u.user_no"
 				+ " WHERE post_no = ?";
 
 		try {
@@ -49,15 +111,24 @@ public class CommentsDAOOracle implements CommentsDAOInterface {
 				String  userName = rs.getString("user_name");
 				String	commentContent = rs.getString("comment_content");
 				Date	commentdt = rs.getDate("comment_date");   
-								      
+				int		commentNo = rs.getInt("comment_no");
+				int     postNo = rs.getInt("post_no");
+				
 				comment = new Comments();
+				
 				comment.setCommentDate(commentdt);
 				comment.setCommentContent(commentContent);
+				comment.setCommentNo(commentNo);
+				
+				//post
+				Community post = new Community();
+				post.setPostNo(postNo);
+				comment.setPost(post);
 				
 				//user
 				Users u = new Users();
 				u.setUserName(userName);
-				comment.setUserNo(u);
+				comment.setMaker(u);
 												
 				comments.add(comment);
 			}
@@ -86,9 +157,9 @@ public class CommentsDAOOracle implements CommentsDAOInterface {
 			//오토커밋해제
 			con.setAutoCommit(false);
 			
-			int postNo = comm.getPostNo().getPostNo();
+			int postNo = comm.getPost().getPostNo();
 			String commentCon = comm.getCommentContent();
-			int userNo = comm.getUserNo().getUserNo();
+			int userNo = comm.getMaker().getUserNo();
 			
 			pstmt.setInt(1, postNo);
 			pstmt.setString(2, commentCon);
@@ -131,4 +202,27 @@ public class CommentsDAOOracle implements CommentsDAOInterface {
 
 	}
 
+
+
+
+public static void main(String[] args) {
+	CommentsDAOOracle dao = CommentsDAOOracle.getInstance();
+	List<Comments> c = new ArrayList<>();
+	try {
+		c = dao.findPostNo(1);
+		
+		for (Comments comments : c) {
+			System.out.println(comments.getMaker());
+			System.out.println(comments.getCommentNo());
+			System.out.println(comments.getCommentContent());
+			System.out.println(comments.getCommentDate());
+			System.out.println(comments.getPost());
+			
+		}
+		
+	} catch (FindException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	}
 }
