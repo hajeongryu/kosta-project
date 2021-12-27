@@ -71,7 +71,7 @@ public class CommentsDAOOracle implements CommentsDAOInterface {
 				Users u = new Users();
 				u.setUserNo(userNo);
 				comment.setMaker(u);
-												
+				
 				comments.add(comment);
 			}
 			return comments;
@@ -203,26 +203,83 @@ public class CommentsDAOOracle implements CommentsDAOInterface {
 	}
 
 
+//	public int getSeq() {
+//		Connection con = null; //DB연결
+//		PreparedStatement pstmt = null; //SQL송신
+//		ResultSet rs = null; //결과 수신
+//
+//        int result = 1;
+//        try {
+//        	con = MyConnection.getConnection();
+//            // 시퀀스 값을 가져온다. (DUAL : 시퀀스 값을 가져오기위한 임시 테이블)
+//            StringBuffer sql = new StringBuffer();
+//            sql.append("SELECT comments_SEQ.NEXTVAL FROM DUAL");
+//			
+//            pstmt = con.prepareStatement(sql.toString());
+//            rs = pstmt.executeQuery(); // 쿼리 실행
+// 
+//            if (rs.next())    result = rs.getInt(1);
+// 
+//        } catch (Exception e) {
+//            throw new RuntimeException(e.getMessage());
+//        }
+// 
+//        return result;
+//    } 
+       
+     // 댓글 목록 가져오기
+	public ArrayList<Comments> getList(int postNo, int commentNo){
+		Connection con = null; //DB연결
+		PreparedStatement pstmt = null; //SQL송신
+		ResultSet rs = null; //결과 수신
 
-
-public static void main(String[] args) {
-	CommentsDAOOracle dao = CommentsDAOOracle.getInstance();
-	List<Comments> c = new ArrayList<>();
-	try {
-		c = dao.findPostNo(1);
-		
-		for (Comments comments : c) {
-			System.out.println(comments.getMaker());
-			System.out.println(comments.getCommentNo());
-			System.out.println(comments.getCommentContent());
-			System.out.println(comments.getCommentDate());
-			System.out.println(comments.getPost());
-			
+		String SQL = "SELECT * FROM comments WHERE post_no = ? AND comment_no= ? ORDER BY comment_no DESC"; 
+		ArrayList<Comments> list = new ArrayList<Comments>();
+		try {
+			con = MyConnection.getConnection();
+			pstmt = con.prepareStatement(SQL);
+			pstmt.setInt(1, postNo);
+			pstmt.setInt(2, commentNo);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Comments cmt = new Comments();
+				
+				//post
+				Community post = new Community();
+				post.setPostNo(rs.getInt(1));
+				cmt.setPost(post);
+				
+				cmt.setCommentNo(rs.getInt(2));
+				cmt.setCommentContent(rs.getString(3));
+				cmt.setCommentDate(rs.getDate(4));
+				
+				//user
+				Users u = new Users();
+				u.setUserNo(rs.getInt(5));
+				cmt.setMaker(u);
+				
+				list.add(cmt);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
-		
-	} catch (FindException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		return list;
 	}
-	}
+	
+//    public static void main(String[] args) {
+//	CommentsDAOOracle dao = CommentsDAOOracle.getInstance();
+//	List<Comments> c = new ArrayList<>();
+//	//c = dao.findPostNo(1);
+//	c = dao.getList(1, 1);
+//	
+//	for (Comments comments : c) {
+//		System.out.println(comments.getMaker());
+//		System.out.println(comments.getCommentNo());
+//		System.out.println(comments.getCommentContent());
+//		System.out.println(comments.getCommentDate());
+//		System.out.println(comments.getPost());
+//		
+//	}
+//	}
+
 }

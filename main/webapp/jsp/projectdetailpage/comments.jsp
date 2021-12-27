@@ -5,12 +5,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
-
-
-
+ 
 <%
-List<Comments> comments = (List)request.getAttribute("comments");
+List<Comments> comments = (List)request.getAttribute("cmt");
 %>    
 <table class="commentlist">
 <tr><th>커뮤니티번호</th>
