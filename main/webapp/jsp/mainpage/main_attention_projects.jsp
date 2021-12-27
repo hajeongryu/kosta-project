@@ -1,7 +1,12 @@
+<%@page import="com.team.project.vo.Project"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<link rel="stylesheet" type="text/css" href="../../css/mainpage/main_attention_projects.css">
+<%
+List<Project> list = (List)request.getAttribute("list");
+%>
+<link rel="stylesheet" type="text/css" href="/rhollEE/css/mainpage/main_attention_projects.css">
 
 <div class="fundingList">
   <!-- 게시판 이름 -->
@@ -15,10 +20,54 @@
       <!-- 자식랩퍼1 -->
       <div class="item-inrap">
 
+
+<%
+	for( Project p : list){
+%>
+
           <!-- 글 -->
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="../../images/mainpage/1.jpeg" alt="l"><button class="like"></button>
+                  <!--@@@ 사진클릭시 상품페이지로 -->
+              <a href="">
+              		<img class="item-image" src="/rhollEE/images/mainpage/<%=p.getProjectNo() %>.jpeg" alt="l">
+              </a>
+              <%if(p.isLoginedUserProjectInterest()) {%>
+				  <button class="like" ></button>
+              <%}else{ %>
+				  <button class="not-like" ></button>
+              <%}%>
+              <!-- 정보 -->
+              <div class="info">
+                  <div class ="catelink">
+					  <!--@@@ 카테고리 클릭시 카테고리 페이지로 -->
+                      <span class="category"><a href=""><%=p.getCategory().getCategoryName() %></a></span>
+                      <span class="category">|</span>
+					  <!--@@@ Maker 클릭지 상품페이지로 -->
+                      <span class="company"><a href=""><%=p.getMaker().getUserName()%></a></span>
+                  </div>
+                  <!-- (이름, 세부 카테, 설명)-->
+                  
+                  <!--@@@ 상품클릭시 상품페이지로 -->
+                  <a href ="">
+					  <span class="title"><%=p.getLongTitle() %></span>
+				  </a>
+                  <!-- 가격 -->
+                  <div class="priceAndPercent">
+                      <span class="percent"><%= p.getAchiveRate()%>%달성</span>
+                      <span class="leftDay"> 
+                  </div>
+              </div>
+          </div>
+
+
+<%} %>
+
+
+          <!-- 글 -->
+          <div class="item" >
+              <!-- 사진 -->
+              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
                   <div class ="catelink">
@@ -36,9 +85,16 @@
               </div>
           </div>
 
+
+
+
+
+
+
+
           <div class="item" >
               <!-- 사진 -->
-              <img  class="item-image" src="../../images/mainpage/2.jpeg" alt="2"><button class="like"></button>
+              <img  class="item-image" src="/rhollEE/images/mainpage/2.jpeg" alt="2"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
             <div class ="catelink">
@@ -58,7 +114,7 @@
 
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="../../images/mainpage/3.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/3.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
     <div class ="catelink">
@@ -80,7 +136,7 @@
 
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="../../images/mainpage/4.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/4.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info"> 
                 <div class ="catelink">
@@ -100,7 +156,7 @@
           </div>
           <div class="item">
               <!-- 사진 -->
-              <img class="item-image" src="../../images/mainpage/5.png" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/5.png" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
                 <div class ="catelink">
@@ -118,7 +174,7 @@
           </div>
            <div class="item">
               <!-- 사진 -->
-              <img  class="item-image" src="../../images/mainpage/6.jpeg" alt="l"><button class="like"></button>
+              <img  class="item-image" src="/rhollEE/images/mainpage/6.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">                  <div class ="catelink">
                       <span class="category"><a href="">베이킹 · 디저트</a></span>
@@ -138,7 +194,7 @@
 
  <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="../../images/mainpage/1.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
                   <div class ="catelink">
@@ -160,7 +216,7 @@
 
        <div class="item" >
               <!-- 사진 -->
-              <img  class="item-image" src="../../images/mainpage/2.jpeg" alt="2"><button class="like"></button>
+              <img  class="item-image" src="/rhollEE/images/mainpage/2.jpeg" alt="2"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
             <div class ="catelink">

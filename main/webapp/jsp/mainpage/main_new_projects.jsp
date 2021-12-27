@@ -3,18 +3,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    
 <%
-List<Project> popularList = (List)request.getAttribute("popular");
+List<Project> newlist = (List)request.getAttribute("new");
 %>
-<link rel="stylesheet" type="text/css" href="/rhollEE/css/mainpage/main_popular_projects.css">
-    
-<div class="fundingList popular-project">
+<link rel="stylesheet" type="text/css" href="/rhollEE/css/mainpage/main_attention_projects.css">
+
+<div class="fundingList">
   <!-- 게시판 이름 -->
-  <span class="listTitle">인기 프로젝트</span>
-  <span class="listDate">2021년 12월 15일 기준</span>
-  <button class="pop-nextB"></button>
-  <button class="pop-backB"></button>
+  <span class="listTitle">신규 프로젝트</span>
   <!-- 게시판 상태,달성률,추천 -->
   <!-- 현재 총 펀딩 게시물 수 -->
 
@@ -22,13 +18,14 @@ List<Project> popularList = (List)request.getAttribute("popular");
   <div class="item-rapper">
 
       <!-- 자식랩퍼1 -->
-      <div class="item-inrap1">
+      <div class="item-inrap">
 
 
-		<%
-			for(Project p : popularList){
-		%>
-				  <!-- 글 -->
+<%
+	for( Project p : newlist){
+%>
+
+          <!-- 글 -->
           <div class="item" >
               <!-- 사진 -->
                   <!--@@@ 사진클릭시 상품페이지로 -->
@@ -62,72 +59,15 @@ List<Project> popularList = (List)request.getAttribute("popular");
                   </div>
               </div>
           </div>
-          <%} %>
+
+
+<%} %>
+
+
           <!-- 글 -->
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="like"></button>
-              <!-- 정보 -->
-              <div class="info">
-                  <div class ="catelink">
-                      <span class="category"><a href="">공예</a></span>
-                      <span class="category">|</span>
-                      <span class="company"><a href="">오들리 파르메</a></span>
-                  </div>
-                  <!-- (이름, 세부 카테, 설명)-->
-                  <span class="title">내손안의 작은바다<숨비와 파도의 반지></span>
-                  <!-- 가격 -->
-                  <div class="priceAndPercent">
-                      <span class="percent">2794% 달성</span>
-                      <span class="leftDay"> 
-                  </div>
-              </div>
-          </div>
-
-          <div class="item" >
-              <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="like"></button>
-              <!-- 정보 -->
-              <div class="info">
-                  <div class ="catelink">
-                      <span class="category"><a href="">공예</a></span>
-                      <span class="category">|</span>
-                      <span class="company"><a href="">오들리 파르메</a></span>
-                  </div>
-                  <!-- (이름, 세부 카테, 설명)-->
-                  <span class="title">내손안의 작은바다<숨비와 파도의 반지></span>
-                  <!-- 가격 -->
-                  <div class="priceAndPercent">
-                      <span class="percent">2794% 달성</span>
-                      <span class="leftDay"> 
-                  </div>
-              </div>
-          </div>
-          <div class="item" >
-              <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="like"></button>
-              <!-- 정보 -->
-              <div class="info">
-                  <div class ="catelink">
-                      <span class="category"><a href="">공예</a></span>
-                      <span class="category">|</span>
-                      <span class="company"><a href="">오들리 파르메</a></span>
-                  </div>
-                  <!-- (이름, 세부 카테, 설명)-->
-                  <span class="title">내손안의 작은바다<숨비와 파도의 반지></span>
-                  <!-- 가격 -->
-                  <div class="priceAndPercent">
-                      <span class="percent">2794% 달성</span>
-                      <span class="leftDay"> 
-                  </div>
-              </div>
-          </div>
-
-
-          
-          <div class="item" >
-              <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
                   <div class ="catelink">
@@ -150,9 +90,11 @@ List<Project> popularList = (List)request.getAttribute("popular");
 
 
 
+
+
           <div class="item" >
               <!-- 사진 -->
-              <img  class="item-image" src="/rhollEE/images/mainpage/2.jpeg" alt="2"><button class="like"></button>
+              <img  class="item-image" src="/rhollEE/images/mainpage/2.jpeg" alt="2"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
             <div class ="catelink">
@@ -170,31 +112,31 @@ List<Project> popularList = (List)request.getAttribute("popular");
               </div>
           </div>
 
-            <div class="item" >
-                <!-- 사진 -->
-                <img class="item-image" src="/rhollEE/images/mainpage/3.jpeg" alt="l"><button class="like"></button>
-                <!-- 정보 -->
-                <div class="info">
-                    <div class ="catelink">
-                        <span class="category"><a href="">요리책</a></span>
-                        <span class="category">|</span>
-                        <span class="company"><a href="">필라델피아 크림치즈</a></span>
-                    </div>
+          <div class="item" >
+              <!-- 사진 -->
+              <img class="item-image" src="/rhollEE/images/mainpage/3.jpeg" alt="l"><button class="not-like"></button>
+              <!-- 정보 -->
+              <div class="info">
+    <div class ="catelink">
+                      <span class="category"><a href="">요리책</a></span>
+                      <span class="category">|</span>
+                      <span class="company"><a href="">필라델피아 크림치즈</a></span>
+                  </div>
 
 
-                    <!-- (이름, 세부 카테, 설명)-->
-                    <span class="title">제과 명장이 전하는 "필라델피아 크림치즈" 활용 아이디어!</span>
-                                    <!-- 가격 -->
-                    <div class="priceAndPercent">
-                        <span class="percent">32% 달성</span>
-    
-                    </div>
-                </div>
-            </div>
+                  <!-- (이름, 세부 카테, 설명)-->
+                  <span class="title">제과 명장이 전하는 "필라델피아 크림치즈" 활용 아이디어!</span>
+                                <!-- 가격 -->
+                  <div class="priceAndPercent">
+                      <span class="percent">32% 달성</span>
+   
+                  </div>
+              </div>
+          </div>
 
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/4.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/4.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info"> 
                 <div class ="catelink">
@@ -212,9 +154,76 @@ List<Project> popularList = (List)request.getAttribute("popular");
                   </div>
               </div>
           </div>
+          <div class="item">
+              <!-- 사진 -->
+              <img class="item-image" src="/rhollEE/images/mainpage/5.png" alt="l"><button class="not-like"></button>
+              <!-- 정보 -->
+              <div class="info">
+                <div class ="catelink">
+                      <span class="category"><a href="">조향</a></span>
+                      <span class="category">|</span>
+                      <span class="company"><a href="">동네꽃집</a></span>
+                  </div>
+                  <!-- (이름, 세부 카테, 설명)-->
+                  <span class="title">조연은 그만. 오늘은 내가 주인공 할게요 <안개꽃 향수></span>
+                    <!-- 가격 -->
+                  <div class="priceAndPercent">
+                      <span class="percent">3857% 달성</span>
+                  </div>
+              </div>
+          </div>
+           <div class="item">
+              <!-- 사진 -->
+              <img  class="item-image" src="/rhollEE/images/mainpage/6.jpeg" alt="l"><button class="not-like"></button>
+              <!-- 정보 -->
+              <div class="info">                  <div class ="catelink">
+                      <span class="category"><a href="">베이킹 · 디저트</a></span>
+                      <span class="category">|</span>
+                      <span class="company"><a href="">요나폿</a></span>
+                  </div>
+                  <!-- (이름, 세부 카테, 설명)-->
+                  <span class="title">달콤한 연말을 위해, 요나폿의 크리스마스 디저트 박스</span>
+
+
+                  <!-- 가격 -->
+                  <div class="priceAndPercent">
+                      <span class="percent">1445% 달성</span>
+                  </div>
+              </div>
+          </div>               
+
+ <div class="item" >
+              <!-- 사진 -->
+              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="not-like"></button>
+              <!-- 정보 -->
+              <div class="info">
+                  <div class ="catelink">
+                      <span class="category"><a href="">공예</a></span>
+                      <span class="category">|</span>
+                      <span class="company"><a href="">오들리 파르메</a></span>
+                  </div>
+                  <!-- (이름, 세부 카테, 설명)-->
+                  <span class="title">내손안의 작은바다<숨비와 파도의 반지></span>
+                  <!-- 가격 -->
+                  <div class="priceAndPercent">
+                      <span class="percent">2794% 달성</span>
+                      <span class="leftDay"> 
+                  </div>
+              </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
       </div>
       <!-- 1end -->
   </div>
   <!-- 부모랩퍼 end -->
-  <!-- 슬라이드 기능 구현해야함 광고+ 게시물+ 서버시간표시 -->
 </div>
+    

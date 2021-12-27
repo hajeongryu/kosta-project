@@ -7,10 +7,13 @@ SELECT  p.project_no"프로젝트 번호"
         , sum_price "모인금액" --목표금액/모인금액
         , end_date "종료일" --sysdate에서 enddate빼기
         , support_cnt"후원자 수"
-        , project_image "프로젝트 이미지"
+        , project_image "프로젝트 이미지"       
+        --추가되는 코드(유저)
+        , i.user_no "구독자" 
         
         
 FROM project p  --프로젝트 테이블
+
 
     JOIN project_change c --프로젝트_변경 테이블
         ON p.project_no =c.project_no
@@ -19,11 +22,17 @@ FROM project p  --프로젝트 테이블
         ON p.user_no = u.user_no
         
     JOIN category cate --카테고리 테이블
-        ON p.category_no = cate.category_no;
+        ON p.category_no = cate.category_no
 
+--추가되는 코드(유저)
+    LEFT OUTER JOIN interest i
+        ON p.project_no = i.project_no AND i.user_no = 2;
+    
 
 
         
+select *
+from interest;
         
         
 --START
@@ -123,6 +132,7 @@ FROM project p  --프로젝트 테이블
 
 ;
 --END
+select * from card;
 
 SELECT p.project_no , start_date, end_date,project_status ,user_name, sum_price
 FROM project p
@@ -130,3 +140,17 @@ JOIN project_change c
     ON  p.project_no = c.project_no
 JOIN users u
     ON  u.user_no = p.user_no;
+    
+    
+    
+ SELECT  p.project_no
+ , category_name
+ , user_name, long_title, project_content, target_price, sum_price, end_date, support_cnt, project_image, i.user_no 
+
+FROM project p JOIN project_change c   ON p.project_no =c.project_no 
+JOIN users u   ON p.user_no = u.user_no 
+JOIN category cate   ON p.category_no = cate.category_no 
+LEFT OUTER JOIN interest i ON p.project_no = i.project_no AND i.user_no = 1   
+
+WHERE p.category_no >=0  AND ROWNUM <= :2  AND c.project_status = '승인' AND sysdate  < p.start_date 
+ORDER BY c.project_like_cnt DESC;

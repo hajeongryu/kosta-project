@@ -7,7 +7,7 @@ button.endcome-nextB{
     height: 100%;
     width: 50px;
     z-index: 50;
-    background: url("../../images/mainpage/right2.png") center center / 100% no-repeat;
+    background: url("/rhollEE/images/mainpage/right2.png") center center / 100% no-repeat;
 }
 button.endcome-backB{
     margin-right: 700px;
@@ -16,7 +16,7 @@ button.endcome-backB{
     width: 50px;
     z-index: 50;
     z-index: 50;
-    background: url("../../images/mainpage/left2.png") center center / 100% no-repeat;
+    background: url("/rhollEE/images/mainpage/left2.png") center center / 100% no-repeat;
     position: absolute;
     z-index: 50;
     transition: all 1.5s; 
