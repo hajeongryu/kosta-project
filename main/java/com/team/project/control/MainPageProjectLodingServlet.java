@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpSession;
 /**
  * Servlet implementation class MainPageProjectLodingServlet
  */
-@WebServlet("/")
+@WebServlet("")
 public class MainPageProjectLodingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
