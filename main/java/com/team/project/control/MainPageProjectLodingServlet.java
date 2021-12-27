@@ -1,22 +1,24 @@
 package com.team.project.control;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 import com.team.exception.FindException;
 import com.team.project.service.ProjectService;
+import com.team.project.vo.Project;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class MainPageProjectLodingServlet
  */
-@WebServlet("/mp")
+@WebServlet("/")
 public class MainPageProjectLodingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,48 +44,58 @@ public class MainPageProjectLodingServlet extends HttpServlet {
 		
 
 		try {
-			service.getAdProjects(3, 4, 5);
+			List<Project>adList = service.getAdProjects(3, 4, 5);
+			request.setAttribute("ads", adList);
 		} catch (FindException e1) {
-			e1.printStackTrace();
 		}
 		
 
 		try {
-			service.getAttentionProject(loginedUserNo);
+			List<Project> attentionList= service.getAttentionProject(loginedUserNo);
+			request.setAttribute("attention", attentionList);
 		} catch (FindException e) {
-			e.printStackTrace();
 		}
 	
 
 		try {
-			service.getPopularProject(loginedUserNo);
+			List<Project>popluarList= service.getPopularProject(loginedUserNo);
+			request.setAttribute("popular", popluarList );
 		} catch (FindException e) {
-			e.printStackTrace();
 		}
 
 
 		try {
-			service.getEndcomeProject(loginedUserNo);
+			List<Project>endcomeList =service.getEndcomeProject(loginedUserNo);
+			request.setAttribute("endcome",endcomeList );
 		} catch (FindException e) {
-			e.printStackTrace();
 		}
 		
 		
 		
 		try {
-			service.getReleaseProject(loginedUserNo);
+			List<Project>releaseList =service.getReleaseProject(loginedUserNo);
+			request.setAttribute("release",releaseList );
 		} catch (FindException e) {
-			e.printStackTrace();
 		}
 
 
 
 		try {
-			service.getNewProject(loginedUserNo);
+			List<Project> newList =service.getNewProject(loginedUserNo);
+			request.setAttribute("new", newList );
+		} catch (FindException e) {
+		}
+		
+		
+		//테스트용
+		try {
+			List <Project> list =service.getProjects(null, null, null, null, null, null, "1");
+			request.setAttribute("list", list);
 		} catch (FindException e) {
 			e.printStackTrace();
 		}
 		
+
 		String path ="./jsp/mainpage/index.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
@@ -94,7 +106,6 @@ public class MainPageProjectLodingServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
