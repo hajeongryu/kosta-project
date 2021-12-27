@@ -3,7 +3,7 @@
     
 <!DOCTYPE html>
 <head>
-	<link  href="../../css/header.css" rel="stylesheet" type="text/css" >
+	<link rel="stylesheet" href="../../css/header.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="../../js/mainpage/index.js"></script>
   <script src="../menu.jsp"></script>
