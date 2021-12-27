@@ -50,7 +50,7 @@ public class FollowDAOOracle implements FollowDAOInterface {
 				throw new FindException("팔로우한 사용자가 없습니다.");
 			}	
 			Follow f = new Follow(userNo,following,follower);
-			return users;
+			return f;
 		} catch (SQLException e) { //팔로워가 없을 경우 수행
 			e.printStackTrace();
 			throw new FindException(e.getMessage());
