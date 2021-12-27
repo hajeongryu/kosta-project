@@ -25,8 +25,8 @@
                     </a>
                 </li>
             <%}else{ //로그인 된 경우%>
-            	<li class="user-logo">
-	            	<a href="likelist">
+                <li class="user-logo">
+                    <a href="likelist">
                         <span class="user-li">
                             <img src="../../images/mainpage/like.png">
                         </span>
@@ -39,13 +39,26 @@
                         </span>
                     </a>
                 </li>
-                <li class="login-container">
-                    <a href="#">
-                        <span class="user-li login">
-                            <img src="../../">
-                            <span><%=u.getUserName() %></span>
-                        </span>
-                    </a>
+                <li class="login-dropdown">
+                    <span class="user-li login">
+                        <img src="">
+                        <span><%=u.getUserName() %></span>
+                    </span>
+                    <div class="dropdown-content" id="myDropdown">
+                        <a href="">프로필</a>
+                        <hr>
+                        <a href="">후원현황</a>
+                        <a href="">관심 프로젝트</a>
+                        <a href="">팔로우</a>
+                        <hr>
+                        <a href="">알림</a>
+                        <a href="">메시지</a>
+                        <hr>
+                        <a href="">내가 만든 프로젝트</a>
+                        <a href="">설정</a>
+                        <hr>
+                        <a href="">로그아웃</a>
+                    </div>
                 </li>
             <%} %>
             </ul>
