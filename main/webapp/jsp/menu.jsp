@@ -1,15 +1,10 @@
 <%@page import="com.team.user.vo.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script>
-    $(function(){
-        popSlide();
-        endcomeSlide();
-    });
-</script>
+
 <div class="header-container">
     <div class="header-upper">
-        <a href="../../jsp/mainpage/index.jsp" id="logo"><img src="../../images/mainpage/rholling.PNG" height="60px"></a>
+        <a href="<%=request.getContextPath()%>/jsp/mainpage/index.jsp" id="logo"><img src="<%=request.getContextPath()%>/images/mainpage/rholling.PNG" height="60px"></a>
         <nav class="user-menu">
             <ul>
             <%Users u = (Users)session.getAttribute("loginInfo");
@@ -17,9 +12,9 @@
             %>
                 <li><a href=""><span class="user-li">프로젝트 올리기</span></a></li>
                 <li class="login-container">
-                    <a href="../../html/login/login.html">
+                    <a href="<%=request.getContextPath()%>/html/login/login.html">
                         <span class="user-li login">
-                            <img src="../../images/mainpage/user_default.png">
+                            <img src="<%=request.getContextPath()%>/images/mainpage/user_default.png">
                             <span>로그인/회원가입</span>
                         </span>
                     </a>
@@ -28,14 +23,14 @@
                 <li class="user-logo">
                     <a href="interestlist">
                         <span class="user-li">
-                            <img src="../../images/mainpage/like.png">
+                            <img src="<%=request.getContextPath()%>/images/mainpage/like.png">
                         </span>
                     </a>
                 </li>
                 <li class="user-logo">
                     <a href="#">
                         <span class="user-li">
-                            <img src="../../images/mainpage/aram.PNG">
+                            <img src="<%=request.getContextPath()%>/images/mainpage/aram.PNG">
                         </span>
                     </a>
                 </li>
@@ -106,7 +101,7 @@
             <div class="search">
                 <form>
                     <input type="search" placeholder="검색어를 입력해주세요." class="search-input" name="keyword" value="">
-                    <div><img src="../../images/mainpage/search.png"></div>
+                    <div><img src="<%=request.getContextPath()%>/images/mainpage/search.png"></div>
                 </form>
             </div>
         </div>

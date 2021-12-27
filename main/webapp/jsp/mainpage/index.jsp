@@ -3,10 +3,10 @@
     
 <!DOCTYPE html>
 <head>
-	<link  href="css/header.css" rel="stylesheet" type="text/css" >
+	<link  href="<%=request.getContextPath()%>/css/header.css" rel="stylesheet" type="text/css" >
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="js/mainpage/index.js"></script>
-  <script src="jsp/menu.jsp"></script>
+	<script src="<%=request.getContextPath()%>/js/mainpage/index.js"></script>
+  <script src="<%=request.getContextPath()%>/jsp/menu.jsp"></script>
 </head>
 <script>
     $(function(){
@@ -17,7 +17,7 @@
 <body>
   <header>
     <!-- 메뉴 -->
-    <!--  jsp:include page="../menu.jsp"/-->
+    <%@ include file="../menu.jsp" %>
   </header>
 
   <section>
