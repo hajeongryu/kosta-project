@@ -66,12 +66,12 @@ public class CardService {
 	
 	public static void main(String[] args) {
 		//addCardService test
-//		Date d = Date.valueOf("2020-02-02");
-//		try {
-//			service.addCardService(5, "1234123412341234", d, "4444", "20220101", "0");
-//		} catch (AddException e) {
-//			e.printStackTrace();
-//		}
+		Date d = Date.valueOf("2020-02-02");
+		try {
+			service.addCardService(5, "1234123412341234", d, "4444", "20220101", "0");
+		} catch (AddException e) {
+			e.printStackTrace();
+		}
 		
 		
 		//modifyCardService test

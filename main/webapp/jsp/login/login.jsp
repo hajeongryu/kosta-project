@@ -5,12 +5,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Rholling Ideas</title>
-	<link rel="stylesheet" type="text/css" href="../../css/login/login.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login/login.css">
 </head>
 <body>
     <div class="logo">
-        <a href="../../jsp/mainpage/main_nav.jsp">
-            <img src="../../images/mainpage/rholling.PNG">
+        <a href="<%=request.getContextPath()%>/jsp/mainpage/main_nav.jsp">
+            <img src="<%=request.getContextPath()%>/images/mainpage/rholling.PNG">
         </a>
     </div>
     <div class="login_box">
@@ -22,7 +22,7 @@
                     <button>카카오톡 아이디로 로그인</button>
             </div>
             <hr>
-            <form class= "email_login" method="post" action="../../login">
+            <form class= "email_login" method="post" action="<%=request.getContextPath()%>/login">
                 <input type="text" name="id" placeholder="이메일 주소 입력" required>
                 <input type="password" name="pwd" placeholder="비밀번호 입력" required>
                 <button>로그인</button>
