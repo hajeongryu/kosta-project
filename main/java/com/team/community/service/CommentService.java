@@ -25,5 +25,5 @@ public class CommentService {
 	public void add(Comments comm) throws AddException{
 		dao.add(comm);
 	}
-
+	
 }
