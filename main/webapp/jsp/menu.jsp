@@ -17,7 +17,7 @@
             %>
                 <li><a href=""><span class="user-li">프로젝트 올리기</span></a></li>
                 <li class="login-container">
-                    <a href="#">
+                    <a href="../../html/login/login.html">
                         <span class="user-li login">
                             <img src="../../images/mainpage/user_default.png">
                             <span>로그인/회원가입</span>
@@ -26,7 +26,7 @@
                 </li>
             <%}else{ //로그인 된 경우%>
                 <li class="user-logo">
-                    <a href="likelist">
+                    <a href="interestlist">
                         <span class="user-li">
                             <img src="../../images/mainpage/like.png">
                         </span>
@@ -48,7 +48,7 @@
                         <a href="">프로필</a>
                         <hr>
                         <a href="">후원현황</a>
-                        <a href="">관심 프로젝트</a>
+                        <a href="interestlist">관심 프로젝트</a>
                         <a href="">팔로우</a>
                         <hr>
                         <a href="">알림</a>
