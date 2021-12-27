@@ -9,6 +9,9 @@ body{
 	min-width: 992px;
 	background-color: white;
 }
+a{
+	font: inherit;
+}
 section{
 	max-width: 1080px;
 	margin-right: auto;
