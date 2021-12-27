@@ -27,32 +27,30 @@ import com.team.user.vo.Users;
 
 public class Order {                ;
 	private int	paymentNo           ;
-	private Users	userNo          ;
+	private Users	orderUser       ;
 	private Date	paymentDate     ;
 	private int	extraPrice          ;
 	private int	totalPrice          ;
 	private String	paymentResult   ;
-	private Address	addressNo       ;
-	private Reward	rewardNo		;
-	private Project	projectNo       ;
-	private Card	cardNo          ;
+	private Address	address         ;
+	private Reward	reward		    ;
+	private Card	card            ;
 	public Order() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Order(int paymentNo, Users userNo, Date paymentDate, int extraPrice, int totalPrice, String paymentResult,
-			Address addressNo, Reward rewardNo, Project projectNo, Card cardNo) {
+	public Order(int paymentNo, Users orderUser, Date paymentDate, int extraPrice, int totalPrice, String paymentResult,
+			Address address, Reward reward, Card card) {
 		super();
 		this.paymentNo = paymentNo;
-		this.userNo = userNo;
+		this.orderUser = orderUser;
 		this.paymentDate = paymentDate;
 		this.extraPrice = extraPrice;
 		this.totalPrice = totalPrice;
 		this.paymentResult = paymentResult;
-		this.addressNo = addressNo;
-		this.rewardNo = rewardNo;
-		this.projectNo = projectNo;
-		this.cardNo = cardNo;
+		this.address = address;
+		this.reward = reward;
+		this.card = card;
 	}
 	public int getPaymentNo() {
 		return paymentNo;
@@ -60,11 +58,11 @@ public class Order {                ;
 	public void setPaymentNo(int paymentNo) {
 		this.paymentNo = paymentNo;
 	}
-	public Users getUserNo() {
-		return userNo;
+	public Users getOrderUser() {
+		return orderUser;
 	}
-	public void setUserNo(Users userNo) {
-		this.userNo = userNo;
+	public void setOrderUser(Users userNo) {
+		this.orderUser = userNo;
 	}
 	public Date getPaymentDate() {
 		return paymentDate;
@@ -90,29 +88,23 @@ public class Order {                ;
 	public void setPaymentResult(String paymentResult) {
 		this.paymentResult = paymentResult;
 	}
-	public Address getAddressNo() {
-		return addressNo;
+	public Address getAddress() {
+		return address;
 	}
-	public void setAddressNo(Address addressNo) {
-		this.addressNo = addressNo;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
-	public Reward getRewardNo() {
-		return rewardNo;
+	public Reward getReward() {
+		return reward;
 	}
-	public void setRewardNo(Reward rewardNo) {
-		this.rewardNo = rewardNo;
+	public void setReward(Reward reward) {
+		this.reward = reward;
 	}
-	public Project getProjectNo() {
-		return projectNo;
+	public Card getCard() {
+		return card;
 	}
-	public void setProjectNo(Project projectNo) {
-		this.projectNo = projectNo;
-	}
-	public Card getCardNo() {
-		return cardNo;
-	}
-	public void setCardNo(Card cardNo) {
-		this.cardNo = cardNo;
+	public void setCard(Card card) {
+		this.card = card;
 	}
 	
 	

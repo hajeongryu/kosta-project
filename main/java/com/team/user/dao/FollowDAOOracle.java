@@ -22,13 +22,15 @@ public class FollowDAOOracle implements FollowDAOInterface {
 		return dao;
 	}
 	private UserDAOOracle userDao = UserDAOOracle.getInstance();
+	
+		
 	@Override
-	public Follow findFollowerByUserNo(int userNo) throws FindException {
+	public Follow findFollowingByUserNo(int userNo) throws FindException {
 		Connection con = null; 
 		PreparedStatement pstmt = null; 
 		ResultSet rs = null; 
 		
-		String selectSQL =  "select follow from follow"
+		String selectSQL =  "select follow from follow\r\n"
 				+ "where user_no=?";
 		
 		try {
@@ -37,15 +39,51 @@ public class FollowDAOOracle implements FollowDAOInterface {
 			pstmt.setInt(1, userNo);
 			rs = pstmt.executeQuery(); 
 			List<Users> users = new ArrayList<>();
+			List<Users> following = new ArrayList<>();
+			List<Users> follower = new ArrayList<>();
+			while(rs.next()) {		
+				int follow = rs.getInt("follow");
+				Users u = userDao.findByUserNo(follow);
+				following.add(u);
+			}
+			if(following.isEmpty()) {
+				throw new FindException("팔로우한 사용자가 없습니다.");
+			}	
+			Follow f = new Follow(userNo,following,follower);
+			return users;
+		} catch (SQLException e) { //팔로워가 없을 경우 수행
+			e.printStackTrace();
+			throw new FindException(e.getMessage());
+		} finally {
+			MyConnection.close(rs, pstmt, con);
+		}	
+	}
+	
+	@Override
+	public Follow findFollowerByUserNo(int userNo) throws FindException {
+		Connection con = null; 
+		PreparedStatement pstmt = null; 
+		ResultSet rs = null; 
+		
+		String selectSQL =  "select user_no from follow"
+				+ "	where follow=?";
+		
+		try {
+			con = MyConnection.getConnection();
+			pstmt = con.prepareStatement(selectSQL);
+			pstmt.setInt(1, userNo);
+			rs = pstmt.executeQuery(); 
+			List<Users> follower = new ArrayList<>();
+			List<Users> following = new ArrayList<>();
 			while(rs.next()) {		
 				int	follow = rs.getInt("follow");
 				Users u = userDao.findByUserNo(follow);
-				users.add(u);
+				follower.add(u);
 			}
-			if(users.isEmpty()) {
-				throw new FindException("아직 팔로워가 없습니다");
+			if(follower.isEmpty()) {
+				throw new FindException("아직 팔로워가 없습니다.");
 			}	
-			Follow f = new Follow(userNo,users);
+			Follow f = new Follow(userNo,following,follower);
 			return f;
 		} catch (SQLException e) { //팔로워가 없을 경우 수행
 			e.printStackTrace();
@@ -54,12 +92,4 @@ public class FollowDAOOracle implements FollowDAOInterface {
 			MyConnection.close(rs, pstmt, con);
 		}	
 	}
-
-		
-	@Override
-	public Follow findFollowingByUserNo(int userNo) throws FindException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
