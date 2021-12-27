@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" type="text/css" href="../../css/mainpage/main_add.css">
+<link rel="stylesheet" type="text/css" href="css/mainpage/main_add.css"> 
 	<div class="mainAdd">
 		<input type="radio" name="slide" id="slide01" checked>
 		<input type="radio" name="slide" id="slide02">
@@ -12,7 +12,7 @@
 					<a>
 						<label for="slide03" class="left"></label>
                         <div class="mainAdd-title1">
-                            <img class="ad1-img" src="../../images/mainpage/3.jpeg" alt="l">
+                            <img class="ad1-img" src="images/mainpage/3.jpeg">
                             <div class="adinfo">
                                 <!-- db.펀딩 타이틀 -->
                                 <h2>제과 명장이 전하는 필라델피아 크림치즈!</h2>
@@ -29,7 +29,7 @@
 					<a>
 						<label for="slide01" class="left"></label>
                         <div class="mainAdd-title2">
-                            <img class="ad1-img" src="../../images/mainpage/2.jpeg" alt="l">
+                            <img class="ad1-img" src="images/mainpage/2.jpeg">
 
                             <div class="adinfo">
                                 <!-- db.펀딩 타이틀 -->
@@ -47,7 +47,7 @@
 					<a>
 						<label for="slide02" class="left"></label>
                         <div class="mainAdd-title3">
-                            <img class="ad1-img" src="../../images/mainpage/4.jpeg" alt="l">
+                            <img class="ad1-img" src="images/mainpage/4.jpeg" >
                             <div class="adinfo">
                                 <!-- db.펀딩 타이틀 -->
                                 <h2>제과 명장이 전하는 필라델피아 크림치즈!</h2>
