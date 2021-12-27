@@ -53,7 +53,7 @@ WHERE c.project_status IN ('승인')
     AND sysdate > P.start_date
     
      -- 마감일 안 지난거 (o) 0 > -1(음수) = 오늘(1/1)- 마감일(1/2)  || (x) 0 > 4(양수) = 오늘(1/5) -마감일(1/1)  
-    AND p.end_date> (sysdate ) --0이면 날짜같음
+    AND 0>= (sysdate -p.end_date ) --0이면 날짜같음
     
     AND ROWNUM <=12
 

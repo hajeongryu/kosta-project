@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<script>
+    $(function(){
+        popSlide();
+        endcomeSlide();
+    });
+</script>
 <div class="header">
     <nav class="navbar">
         <a href="" id="logo"><img src="../../images/mainpage/rholling.PNG" height="60px"></a>

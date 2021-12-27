@@ -3,8 +3,6 @@ package com.team.project.vo;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.tomcat.jdbc.pool.interceptor.AbstractCreateStatementInterceptor;
-
 import com.team.user.vo.Interest;
 import com.team.user.vo.Users;
 
@@ -88,11 +86,7 @@ public class Project {            ;
 
 
 
-	public int getAchiveRate() {
-		double achiveRate = this.getProjectChange().getSumPrice() / (double)this.getTargetPrice()  *100; 
-		System.out.println((int)achiveRate);
-		return (int)achiveRate;
-	}
+	
 
 	public boolean isLoginedUserProjectInterest() {
 		return loginedUserProjectInterest;

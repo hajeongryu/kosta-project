@@ -3,13 +3,13 @@ package com.team.project.control;
 import java.io.IOException;
 import java.util.List;
 
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.team.exception.FindException;
 import com.team.project.service.ProjectService;
@@ -27,7 +27,7 @@ public class DiscoverServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("서블릿 매핑 테스트");
+		System.out.println("요청됨");
 		
 		
 		HttpSession session = request.getSession();
@@ -66,7 +66,7 @@ public class DiscoverServlet extends HttpServlet {
 		}
 
 		System.out.println("요청됨");
-			path="discover.jsp";
+			path="";
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 	}

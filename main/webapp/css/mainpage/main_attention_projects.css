@@ -91,20 +91,6 @@ button:focus{
 }
 
 
-button.like{
-    background: url("../../images/mainpage/heart2.png") center center / 100% no-repeat;
-    width: 30px;
-    height: 30px;
-}
-
-button.not-like{
-    background: url("../../images/mainpage/heart.png") center center / 100% no-repeat;
-    width: 30px;
-    height: 30px;
-}
-
-
-
 /* 게시판 제목 */
 .fundingList .listTitle{
     width: 93%;
