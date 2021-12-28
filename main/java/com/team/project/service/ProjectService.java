@@ -6,6 +6,7 @@ import java.util.List;
 import com.team.exception.FindException;
 import com.team.project.dao.ProjectDAOOracle;
 import com.team.project.vo.Project;
+import com.team.project.vo.Reward;
 import com.team.user.vo.Users;
 
 public class ProjectService {
@@ -93,6 +94,18 @@ public class ProjectService {
 		return findedProjects;
 	}
 	
+	
+	public Project findByProjectNo(String inProjectNo) throws FindException{
+		dao = ProjectDAOOracle.getInstance();
+		return dao.findByProjectNo(Integer.parseInt(inProjectNo));
+	}
+	
+	
+	public List<Reward> findReward(String inProjectNo) throws FindException{
+		dao = ProjectDAOOracle.getInstance();
+		return dao.findReward(Integer.parseInt(inProjectNo));
+		
+	}
 	
 	public static void main(String[] args) {
 		ProjectService service1 =ProjectService.getInstance();
