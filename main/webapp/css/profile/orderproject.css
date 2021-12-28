@@ -7,10 +7,14 @@
 .order-cnt-search{
     line-height: 44px;
     display: flex;
+    width: 100%;
 }
 .order-cnt{
     width: 57%;
     display: flex;
+}
+.order-cnt>span{
+	color: rgb(255, 87, 87);
 }
 .order-search{
     width: 43%;
@@ -24,10 +28,17 @@
     border-radius: 4px;
     text-align: center;
 }
-.order-search>img{
+.order-search>div{
+    position: absolute;
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+}
+.order-search>div>img{
     display: flex;
     min-width: 32px;
-    transform: scale(0.07);  
+    transform: scale(0.5);  
 }
 .order-search>input{
     display: flex;
@@ -39,6 +50,9 @@
     box-sizing: border-box;
     height: 100%;
     outline: none;
-    margin-left: 12px;
-    appearance: none !important;
+    margin-left: 35px;
+}
+
+.noorder-content{
+	margin: 0 auto;
 }
