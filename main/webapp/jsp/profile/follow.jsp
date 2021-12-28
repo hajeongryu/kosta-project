@@ -1,9 +1,22 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.team.user.vo.Users"%>
 <%@page import="com.team.order.vo.Order"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+    
+<%
+	List<Users> savantList = (List) request.getAttribute("savantList");
+	List<Users> masterList = (List) request.getAttribute("masterList");
+	
+	if(savantList == null){
+		savantList = new ArrayList<>();
+	}
+	if(masterList == null){
+		masterList= new ArrayList<>();
+	}
+%>
 <!DOCTYPE html>
 <head>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css">
@@ -28,9 +41,6 @@
   </header>
   <section>
     <!--본문-->
-    <%List<Users> list = (List)request.getAttribute("list");
-    int following = 0;
-    int follower = 0;%>
     <div class="like-header">
       <div class="like-h1"><h1>팔로우</h1></div>
       <div class="like-select">
@@ -42,10 +52,10 @@
         <%}
         else{%>후원성공(<%=list.size()%>)<%}%> --%>
         <span>
-          <a href="followingist" class="follow">팔로잉 <%=following%></a>
+          <a href="followingist" class="follow">팔로잉 <%=masterList.size()%></a>
         </span>
         <span>
-          <a href="followerlist">팔로워 <%=follower%></a>
+          <a href="followerlist">팔로워 <%=savantList.size()%></a>
         </span>
       </div>
     </div>
