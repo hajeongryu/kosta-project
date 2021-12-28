@@ -10,6 +10,8 @@
 	<link href="<%=request.getContextPath()%>/css/header.css" rel="stylesheet" type="text/css" >
 	<link href="<%=request.getContextPath()%>/css/settings/settingsheader.css" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/css/settings/addressset.css" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/settings/addressset.js"></script>
 <title>Rholling Ideas</title>
 </head>
 
@@ -26,7 +28,6 @@ List<Address> addrs = addrService.findByUserNo(userNo);
     <section class="settings_box">
 		등록된 배송지
 		<button id="address_add">추가</button>
-
 <% 
 if(addrs != null){
 for(Address addr : addrs){
@@ -55,12 +56,11 @@ for(Address addr : addrs){
 			<button id="address_remove">삭제</button>
 		</div>
 
-    </section>
 <%
 }
 }
 %>    
-    
+    </section>
     
 </body>
 </html>

@@ -7,6 +7,8 @@
 	<link href="<%=request.getContextPath()%>/css/header.css" rel="stylesheet" type="text/css" >
 	<link href="<%=request.getContextPath()%>/css/settings/settingsheader.css" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/css/settings/accountset.css" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/settings/accountset.js"></script>
 <title>Rholling Ideas</title>
 </head>
 <body>

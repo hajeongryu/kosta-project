@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.team.user.service.CardService"%>
 <%@page import="com.team.user.vo.Users"%>
 <%@page import="com.team.user.vo.Card"%>
@@ -10,6 +11,8 @@
 	<link href="<%=request.getContextPath()%>/css/header.css" rel="stylesheet" type="text/css" >
 	<link href="<%=request.getContextPath()%>/css/settings/settingsheader.css" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/css/settings/paymentset.css" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/settings/paymentset.js"></script>
 <title>Rholling Ideas</title>
 </head>
 
@@ -43,19 +46,18 @@ for(Card card : cards){
 	
 		<div class="card_box">
 			카드번호 <%=cardNum %><br>
-			유효기간 <%=cardValidDate %><br>
+			유효기간 <%=cardValidDate%><br>
 			생년월일 <%=cardOwnerBirth %><br>
 			기본결제수단여부 <%=defaultCardOX%><br>
 			<button id="card_default">기본결제수단으로 변경</button>
 			<button id="card_remove">삭제</button>
 		</div>
 
-    </section>
 <%
 }
 }
 %>    
-    
+    </section> 
     
 </body>
 </html>
