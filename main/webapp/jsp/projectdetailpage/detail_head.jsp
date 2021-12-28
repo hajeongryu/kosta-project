@@ -1,3 +1,4 @@
+<%@page import="com.team.project.vo.Community"%>
 <%@page import="java.util.List"%>
 <%@page import="com.team.project.vo.Reward"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -18,9 +19,13 @@
  cal.add(Calendar.DATE, 7);
  
  String paymentDay=""+format.format(cal.getTime());
+ 
+ 
  %>
 <link rel="stylesheet" href="../../css/projectdetailpage/detail_head.css">
 <html>
+
+<div class="grid">
 <div class="title">
 	<div class="category">
 	카테고리
@@ -96,5 +101,8 @@
 	<%} }%>
 	</div>
 </div>
+</div>
+
+ <%@include file="./post.jsp" %>
 
 </html>

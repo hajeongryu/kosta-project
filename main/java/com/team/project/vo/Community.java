@@ -27,6 +27,17 @@ public class Community {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Community(Project project, String postContent, Users maker) {
+		super();
+		this.project = project;
+		this.postContent = postContent;
+		this.maker = maker;
+	}
+
+
 
 	public Community(int postNo, Project project, Date postDate, String postContent, Users maker,
 			List<Comments> comments) {

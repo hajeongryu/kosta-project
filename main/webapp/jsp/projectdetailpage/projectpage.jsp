@@ -29,7 +29,7 @@
     
     <div class="community">
     <button>커뮤티니</button>
-    <%@include file="./post.jsp" %>
+   
     </div>
   </section>
 </body>
