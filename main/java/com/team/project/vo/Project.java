@@ -75,6 +75,7 @@ public class Project {            ;
 		this.projectUrl = projectUrl;
 	}
 
+	
 
 	public int getProjectNo() {
 		return projectNo;
@@ -87,6 +88,14 @@ public class Project {            ;
 	
 
 
+	public long getRemainingDays() {
+		Date endDate=this.getEndDate();
+		Date sysDate = new Date();
+		
+		long diffDay = (endDate.getTime() - sysDate.getTime()) /(24*60*60*1000);
+		
+		return diffDay;
+	}
 
 	public int getAchiveRate() {
 		double achiveRate = this.getProjectChange().getSumPrice() / (double)this.getTargetPrice()  *100; 

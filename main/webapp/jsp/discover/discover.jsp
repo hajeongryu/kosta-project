@@ -77,7 +77,7 @@
                       <span class="percent"><%=p.getAchiveRate()%>%</span>
                       <span class="leftDay"> 
                           <img src="/rhollEE/images/mainpage/time.PNG">
-                          <%=p.getEndDate()%>일 남음
+                          <%=p.getRemainingDays() %>일 남음
                       </span>
                   </div>
               </div>
