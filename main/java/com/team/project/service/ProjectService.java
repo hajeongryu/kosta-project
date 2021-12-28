@@ -107,6 +107,11 @@ public class ProjectService {
 		
 	}
 	
+	public List<Project> findByUserNo(String inUserNo) throws FindException{
+		dao = ProjectDAOOracle.getInstance();
+		return dao.findByUserNo(Integer.parseInt(inUserNo));
+	}
+	
 	public static void main(String[] args) {
 		ProjectService service1 =ProjectService.getInstance();
 		try {
