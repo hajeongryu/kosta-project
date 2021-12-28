@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.team.exception.FindException;
+import com.team.interest.service.InterestService;
 import com.team.order.vo.Order;
 import com.team.project.service.ProjectService;
 import com.team.project.vo.Project;
@@ -43,20 +44,23 @@ public class ProfileServlet extends HttpServlet {
 		  
 		  ProjectService proejctService = ProjectService.getInstance();
 		  OrderService orderService = OrderService.getInstace();
+		InterestService interestService = InterestService.getInstance();
+
 		  try {
 			
 			if(loginedUserNo != null) {
 				//1.로그인한 유저가 만든 프로젝트
 				List<Project> ProejctListMadeByLoginedUser = proejctService.findByUserNo(loginedUserNo);
-				request.setAttribute("projectList", ProejctListMadeByLoginedUser);
+				request.setAttribute("projectSize", ProejctListMadeByLoginedUser.size());
 				
 				//2.로그인한 유저가 후원한 프로젝트
 				List<Order> OrderListByLoginedUser = orderService.findByUserNo(Integer.parseInt(loginedUserNo));
-				request.setAttribute("orderList", OrderListByLoginedUser);
+				request.setAttribute("orderSize", OrderListByLoginedUser.size());
 				
 				
 				//3.로그인한 유저가 좋아한 프로젝트
-			
+				int interestCnt= interestService.countInterestProjects(Integer.parseInt(loginedUserNo));
+				request.setAttribute("interestSize",interestCnt);
 			}
 			
 			String path ="./jsp/profile/profile.jsp";

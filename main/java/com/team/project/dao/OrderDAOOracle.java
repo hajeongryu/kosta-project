@@ -60,16 +60,11 @@ public class OrderDAOOracle implements OrderDAOInterface {
 			while(rs.next()) {
 				
 	
-				System.out.println(111111);
 				//Orders Table
 				Date paymentDate = rs.getDate("payment_date");
-				System.out.println(111111);
 				int paymentNo = rs.getInt("payment_no");
-				System.out.println(111111);
 				int totalPrice = rs.getInt("total_price");
-				System.out.println(111111);
 				String paymentResult = rs.getString("payment_result");
-				System.out.println(111111);
 				Order o = new Order();
 				
 				o.setPaymentDate(paymentDate);
@@ -99,7 +94,6 @@ public class OrderDAOOracle implements OrderDAOInterface {
 				//[JOIN] Reward Table
 				int rewardNo = rs.getInt("reward_no");
 				int deliverDate = rs.getInt("deliver_date");
-				System.out.println(333333333);
 				
 				Reward joinedR = new Reward();
 				joinedR.setRewardNo(rewardNo);

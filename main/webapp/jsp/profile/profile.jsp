@@ -7,15 +7,22 @@
     pageEncoding="UTF-8"%>
 
 <%
-	List<Order> projectList = (List)request.getAttribute("projectList");
-	List<Project> orderList = (List)request.getAttribute("orderList");
-	
-	if(projectList ==null){
-		projectList = new ArrayList<>();
-	}
-	if(orderList==null){
-		orderList= new ArrayList<>();
-	}
+
+int projectSize =0;
+int orderSize=0;
+int interestSize=0;
+
+
+if( null!=request.getAttribute("projectSize")){
+	projectSize = (int) request.getAttribute("projectSize");
+}
+if( null!=request.getAttribute("orderSize")){
+orderSize = (int) request.getAttribute("orderSize");
+}
+if( null!=request.getAttribute("interestSize")){
+interestSize = (int) request.getAttribute("interestSize");
+}
+
 %>
 
 
@@ -49,9 +56,9 @@
  
  <section>
  <div class="top_box">
- 	<a href="https://help.tumblbug.com/hc/ko">후원현황 <%=orderList.size()%></a>
-    <a href="https://help.tumblbug.com/hc/ko">관심 프로젝트</a>
-    <a href="https://help.tumblbug.com/hc/ko">만든 프로젝트<%=projectList.size() %></a>
+ 	<a href="https://help.tumblbug.com/hc/ko">후원현황 <%=orderSize%></a>
+    <a href="https://help.tumblbug.com/hc/ko">관심 프로젝트<%=interestSize %></a>
+    <a href="https://help.tumblbug.com/hc/ko">만든 프로젝트<%=projectSize %></a>
  </div>
 	
   		<div class="below_box"></div>
