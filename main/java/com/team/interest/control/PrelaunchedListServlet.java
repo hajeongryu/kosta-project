@@ -35,6 +35,8 @@ public class PrelaunchedListServlet extends HttpServlet {
 		
 		String path = "./jsp/profile/prelaunchedprojectresult.jsp";
 		List<Interest> list = new ArrayList<>();
+		int interCnt = 0;
+		int alarmCnt = 0;
 		
 		if(u != null) {
 			try {
@@ -47,14 +49,14 @@ public class PrelaunchedListServlet extends HttpServlet {
 		
 		// 좋아한, 알림신청 개수
 		try {
-			int interCnt = service.countInterestProjects(userNo);
-			int alarmCnt = service.countAlarmProjects(userNo);
-			request.setAttribute("interCnt", interCnt);
-			request.setAttribute("alarmCnt", alarmCnt);
+			interCnt = service.countInterestProjects(userNo);
+			alarmCnt = service.countAlarmProjects(userNo);
 		} catch (FindException e) {
 			e.printStackTrace();
 		}
 		
+		request.setAttribute("interCnt", interCnt);
+		request.setAttribute("alarmCnt", alarmCnt);
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 	}

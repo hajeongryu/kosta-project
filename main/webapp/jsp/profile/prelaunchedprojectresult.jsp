@@ -51,7 +51,7 @@
 	<br><br>
 	<%if(list.size()==0) {%>
 		<div class="no-content">
-			<img src="<%=request.getContextPath()%>/images/mainpage/like.png">
+			<img src="<%=request.getContextPath()%>/images/profile/empty heart.png">
 			<div>좋아한 프로젝트가 없습니다.</div>
 		</div>
 	<% } %>
