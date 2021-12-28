@@ -36,13 +36,17 @@
                 </li>
                 <li class="login-dropdown">
                     <span class="user-li login">
-                        <img src="">
+                    <%if(u.getUserImage() == null) {%>
+                        <img src="<%=request.getContextPath()%>/images/mainpage/user_default.png">
+                    <%}else{%>
+                        <img src="../files/user_image/<%=u.getUserImage()%>">
+                    <%}%>
                         <span><%=u.getUserName() %></span>
                     </span>
                     <div class="dropdown-content" id="myDropdown">
                         <a href="">프로필</a>
                         <hr>
-                        <a href="">후원현황</a>
+                        <a href="orderlist">후원현황</a>
                         <a href="interestlist">관심 프로젝트</a>
                         <a href="">팔로우</a>
                         <hr>
