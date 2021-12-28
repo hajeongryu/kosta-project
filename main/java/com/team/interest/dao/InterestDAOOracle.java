@@ -125,56 +125,67 @@ public class InterestDAOOracle implements InterestDAOInterface {
 			rs = pstmt.executeQuery();
 			
 			List<Interest> inters = new ArrayList<>();
-			Interest inter = null;
-			Project p = null;
-			Users u = null;
-			Category c = null;
+			Interest interest = null;
+			Project project = null;
+			Users user = null;
+			Category category = null;
 			ProjectChange pc = null;
 			while(rs.next()) {
-				int project_no = rs.getInt("project_no");
+
+				interest = new Interest();
+				project = new Project();
+				category = new Category();
+				user = new Users();
+				pc = new ProjectChange();
+				
+				// Interest Table
 				String interest_alarm = rs.getString("interest_alarm");
+				
+				interest.setInterestAlarm(interest_alarm);
+				
+				// [JOIN] ProjectChange
+				int sum_price = rs.getInt("sum_price");
+				int support_cnt = rs.getInt("support_cnt");
+				
+				pc.setSumPrice(sum_price);
+				pc.setSupportCnt(support_cnt);
+				
+				project.setProjectChange(pc);
+				
+				//[JOIN] Category Table
+				String category_name = rs.getString("category_name");
+				
+				category.setCategoryName(category_name);
+				
+				project.setCategory(category);
+				
+				// [JOIN] Users Table
+				String user_name = rs.getString("user_name"); // 창작자이름
+				
+				user.setUserName(user_name);
+				
+				project.setMaker(user);
+				
+				// [JOIN] Project Table
+				int project_no = rs.getInt("project_no");
 				String project_img = rs.getString("project_image");
 				String editor_pick = rs.getString("editor_pick");
 				String long_title = rs.getString("long_title");
-				String category = rs.getString("category_name");
-				String user_name = rs.getString("user_name"); // 창작자이름
-				String brief = rs.getString("project_brief");
+				String project_brief = rs.getString("project_brief");
 				int target_price = rs.getInt("target_price");
-				int sum_price = rs.getInt("sum_price");
-				int support_cnt = rs.getInt("support_cnt");
 				Date end_date = rs.getDate("end_date");
-		
-				inter = new Interest();
-				p = new Project();
-				c = new Category();
-				u = new Users();
-				pc = new ProjectChange();
-	
-				p.setProjectNo(project_no);
-				inter.setInterestAlarm(interest_alarm);
-				p.setProjectImage(project_img);
-				p.setEditorPick(editor_pick);
-				p.setLongTitle(long_title);
 				
-				// Interest의 Project의 Category에 set
-				c.setCategoryName(category);
-				p.setCategory(c);
+				project.setProjectNo(project_no);
+				project.setProjectImage(project_img);
+				project.setEditorPick(editor_pick);
+				project.setLongTitle(long_title);
+				project.setProjectBrief(project_brief);
+				project.setTargetPrice(target_price);
+				project.setEndDate(end_date);
 				
-				u.setUserName(user_name);
-				
-				p.setProjectBrief(brief);
-				p.setTargetPrice(target_price);
-				
-				// Interest의 Project의 ProjectChange에 set
-				pc.setSumPrice(sum_price);
-				pc.setSupportCnt(support_cnt);
-				p.setProjectChange(pc);
-				
-				p.setEndDate(end_date);
-				
-				inter.setLikeProject(p);
-				inter.setLikeUser(u);
-				inters.add(inter);
+				interest.setLikeProject(project);
+
+				inters.add(interest);
 			}
 			if(inters.size()==0) {
 				throw new FindException("좋아요/알람 없습니다");
