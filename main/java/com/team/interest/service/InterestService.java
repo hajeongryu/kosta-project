@@ -34,10 +34,10 @@ public class InterestService {
 	}
 	
 	/**
-	 * 유저번호가 좋아요/알림누른 프로젝트들을 보여준다
+	 * 유저번호가 좋아요 프로젝트들을 보여준다
 	 * 내역이 존재하지 않으면 FindException이 발생한다
 	 * @param userNo 유저번호
-	 * @return 좋아요/알림 프로젝트정보들
+	 * @return 좋아요 프로젝트정보들
 	 * @throws FindException
 	 */
 	public List<Interest> myInterestProjects(int userNo) throws FindException{
@@ -52,6 +52,14 @@ public class InterestService {
 		}
 		return inters;
 	}
+	
+	/**
+	 * 유저번호가 알림설정한 프로젝트들을 보여준다
+	 * 내역이 존재하지 않으면 FindException이 발생한다
+	 * @param userNo 유저번호
+	 * @return 알림설정한 프로젝트정보들
+	 * @throws FindException
+	 */
 	public List<Interest> myAlarmProjects(int userNo) throws FindException{
 		List<Interest> list = new ArrayList<>();
 		List<Interest> alarm = new ArrayList<>();
@@ -64,6 +72,13 @@ public class InterestService {
 		}
 		return alarm;
 	}
+	
+	/**
+	 * 사용자가 좋아요 누른 프로젝트 개수를 반환한다
+	 * @param userNo 유저번호
+	 * @return 좋아요 누른 프로젝트 개수
+	 * @throws FindException
+	 */
 	public int countInterestProjects(int userNo) throws FindException {
 		List<Interest> list = new ArrayList<>();
 		List<Interest> inters = new ArrayList<>();
@@ -77,6 +92,13 @@ public class InterestService {
 		int cnt = inters.size();
 		return cnt;
 	}
+	
+	/**
+	 * 사용자가 알림설정 누른 프로젝트 개수를 반환한다
+	 * @param userNo 유저번호
+	 * @return 알림설정 누른 프로젝트 개수
+	 * @throws FindException
+	 */
 	public int countAlarmProjects(int userNo) throws FindException {
 		List<Interest> list = new ArrayList<>();
 		List<Interest> alarm = new ArrayList<>();
