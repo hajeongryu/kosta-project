@@ -50,7 +50,7 @@
                         <a href="">메시지</a>
                         <hr>
                         <a href="">내가 만든 프로젝트</a>
-                        <a href="">설정</a>
+                        <a href="<%=request.getContextPath()%>/jsp/settings/profileset.jsp">설정</a>
                         <hr>
                         <a href="">로그아웃</a>
                     </div>
@@ -100,7 +100,7 @@
             </nav>
             <div class="search">
                 <form>
-                    <input type="search" placeholder="검색어를 입력해주세요." class="search-input" name="keyword" value="">
+                    <input type="search" placeholder="검색어를 입력해주세요." class="search-input" name="keyword" value="" autocomplete="off">
                     <div><img src="<%=request.getContextPath()%>/images/mainpage/search.png"></div>
                 </form>
             </div>
