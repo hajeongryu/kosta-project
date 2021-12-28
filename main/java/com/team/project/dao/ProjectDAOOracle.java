@@ -48,6 +48,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 								+ ", user_name "
 								+ ", long_title "
 								+ ", project_content "
+								+ ", project_brief"
 								+ ", target_price "
 								+ ", sum_price "
 								+ ", end_date "
@@ -77,6 +78,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				int targetPrice = rs.getInt("target_price");
 				Date endDate =rs.getDate("end_date");
 				String projectImage = rs.getString("project_image");
+				String projectBrief = rs.getString("project_brief");
 
 				project.setProjectNo(projectNo);
 				project.setLongTitle(longTitle);
@@ -84,6 +86,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				project.setEndDate(endDate);
 				project.setProjectImage(projectImage);
 				project.setProjectContent(projectContent);
+				project.setProjectBrief(projectBrief);
 
 				//[JOIN] ProjectChange 
 				int sumPrice = rs.getInt("sum_price");
@@ -139,6 +142,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 								+ ", user_name "
 								+ ", long_title "
 								+ ", project_content "
+								+ ", project_brief"
 								+ ", target_price "
 								+ ", sum_price "
 								+ ", end_date "
@@ -170,6 +174,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				int targetPrice = rs.getInt("target_price");
 				Date endDate =rs.getDate("end_date");
 				String projectImage = rs.getString("project_image");
+				String projectBrief = rs.getString("project_brief");
 
 				project.setProjectNo(projectNo);
 				project.setLongTitle(longTitle);
@@ -177,6 +182,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				project.setEndDate(endDate);
 				project.setProjectImage(projectImage);
 				project.setProjectContent(projectContent);
+				project.setProjectBrief(projectBrief);
 
 				//[JOIN] ProjectChange 
 				int sumPrice = rs.getInt("sum_price");
@@ -229,6 +235,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 								+ ", user_name"
 								+ ", long_title"
 								+ ", project_content"
+								+ ", project_brief"
 								+ ", target_price"
 								+ ", sum_price"
 								+ ", end_date"
@@ -264,6 +271,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				int targetPrice = rs.getInt("target_price");
 				Date endDate =rs.getDate("end_date");
 				String projectImage = rs.getString("project_image");
+				String projectBrief = rs.getString("project_brief");
 
 				project.setProjectNo(projectNo);
 				project.setLongTitle(longTitle);
@@ -271,6 +279,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				project.setEndDate(endDate);
 				project.setProjectImage(projectImage);
 				project.setProjectContent(projectContent);
+				project.setProjectBrief(projectBrief);
 
 				//[JOIN] ProjectChange 
 				int sumPrice = rs.getInt("sum_price");
@@ -416,6 +425,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 							+ ", user_name"
 							+ ", long_title"
 							+ ", project_content"
+							+ ", project_brief"
 							+ ", target_price"
 							+ ", sum_price"
 							+ ", end_date"
@@ -489,6 +499,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				int targetPrice = rs.getInt("target_price");
 				Date endDate =rs.getDate("end_date");
 				String projectImage = rs.getString("project_image");
+				String projectBrief = rs.getString("project_brief");
 
 				project.setProjectNo(projectNo);
 				project.setLongTitle(longTitle);
@@ -496,6 +507,7 @@ public class ProjectDAOOracle implements ProjectDAOInterface {
 				project.setEndDate(endDate);
 				project.setProjectImage(projectImage);
 				project.setProjectContent(projectContent);
+				project.setProjectBrief(projectBrief);
 
 				
 				//[JOIN] ProjectChange 

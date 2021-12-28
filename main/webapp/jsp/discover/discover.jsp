@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="com.team.project.vo.Project"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,7 +12,7 @@
 	<script src="<%=request.getContextPath()%>/js/mainpage/index.js"></script>
   <script src="<%=request.getContextPath()%>/jsp/menu.jsp"></script>
 <%
-List<Project> discoverList = (List)request.getAttribute("discoverList");
+	List<Project> discoverList = (List)request.getAttribute("discoverList");
 %>
 <%@ include file="../menu.jsp" %>
 <meta charset="UTF-8">
@@ -21,7 +22,7 @@ List<Project> discoverList = (List)request.getAttribute("discoverList");
 
 
 <!-- 펀딩리리스트 -->
-<div class="fundingList" style="width=1106px";>
+<div class="fundingList" style="width: 1100px;">
   <!-- 게시판 이름 -->
   <span class="listTitle">전체</span>
   <!-- 게시판 상태,달성률,추천 -->
@@ -45,10 +46,53 @@ List<Project> discoverList = (List)request.getAttribute("discoverList");
       <!-- 자식랩퍼1 -->
       <div class="item-inrap1">
 
+
+<%
+	for(Project p : discoverList){
+		
+%>
+
+
+     <!-- 글 -->
+          <div class="item" >
+              <!-- 사진 -->
+				<img class="item-image" src="/rhollEE/images/mainpage/<%=p.getProjectNo() %>.jpeg" alt="l"><button class="like"></button>
+              <!-- 정보 -->
+              <div class="info">
+                  <!-- (이름, 세부 카테, 설명)-->
+				  <span class="title"><%=p.getLongTitle() %></span>
+                  <div class ="catelink">
+					  <!--@@@ 카테고리 클릭시 카테고리 페이지로 -->
+					 <span class="category"><a href=""><%=p.getCategory().getCategoryName() %></a></span>
+                      <span class="category">|</span>
+					  <!--@@@ Maker 클릭지 상품페이지로 -->
+                      <span class="company"><a href=""><%=p.getMaker().getUserName()%></a></span>
+           
+                  </div>
+                  <span class="iteminfo"><%=p.getProjectBrief() %></span>
+
+                  <!-- 가격 -->
+                  <div class="priceAndPercent">
+                      <span class="price"><%=p.getProjectChange().getSumPrice() %>원</span>
+                      <span class="percent"><%=p.getAchiveRate()%>%</span>
+                      <span class="leftDay"> 
+                          <img src="/rhollEE/images/mainpage/time.PNG">
+                          <%=p.getEndDate()%>일 남음
+                      </span>
+                  </div>
+              </div>
+          </div>
+
+
+
+
+
+<% }%>
+
           <!-- 글 -->
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="./Images/1.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="like"></button>
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
@@ -65,7 +109,7 @@ List<Project> discoverList = (List)request.getAttribute("discoverList");
                       <span class="price">13,971,000원</span>
                       <span class="percent">2794%</span>
                       <span class="leftDay"> 
-                          <img src="./Images/time.PNG">
+                          <img src="/rhollEE/images/mainpage/time.PNG">
                           44일 남음 
                       </span>
                   </div>
@@ -74,7 +118,7 @@ List<Project> discoverList = (List)request.getAttribute("discoverList");
 
           <div class="item" >
               <!-- 사진 -->
-              <img  class="item-image" src="./Images/2.jpeg" alt="2"><button class="like"></button>
+              <img  class="item-image" src="/rhollEE/images/mainpage/2.jpeg" alt="2"><button class="like"></button>
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
@@ -90,7 +134,7 @@ List<Project> discoverList = (List)request.getAttribute("discoverList");
                       <span class="price">43,693,750원</span>
                       <span class="percent">436%</span>
                       <span class="leftDay"> 
-                          <img src="./Images/time.PNG">
+                          <img src="/rhollEE/images/mainpage/time.PNG">
                           22일 남음 
                       </span>
                   </div>
@@ -99,7 +143,7 @@ List<Project> discoverList = (List)request.getAttribute("discoverList");
 
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="./Images/3.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/3.jpeg" alt="l"><button class="like"></button>
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
@@ -116,7 +160,7 @@ List<Project> discoverList = (List)request.getAttribute("discoverList");
                       <span class="price">1,789,300원</span>
                       <span class="percent">32%</span>
                       <span class="leftDay"> 
-                          <img src="./Images/time.PNG">
+                          <img src="/rhollEE/images/mainpage/time.PNG">
                           27일 남음 
                       </span>
                   </div>
@@ -125,7 +169,7 @@ List<Project> discoverList = (List)request.getAttribute("discoverList");
 
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="./Images/4.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/4.jpeg" alt="l"><button class="like"></button>
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
@@ -142,7 +186,7 @@ List<Project> discoverList = (List)request.getAttribute("discoverList");
                       <span class="price"> 59,868,400원</span>
                       <span class="percent">399%</span>
                       <span class="leftDay"> 
-                          <img src="./Images/time.PNG">
+                          <img src="/rhollEE/images/mainpage/time.PNG">
                           48일 남음 
                       </span>
                   </div>
@@ -150,7 +194,7 @@ List<Project> discoverList = (List)request.getAttribute("discoverList");
           </div>
           <div class="item">
               <!-- 사진 -->
-              <img class="item-image" src="./Images/5.png" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/5.jpeg" alt="l"><button class="like"></button>
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
@@ -167,7 +211,7 @@ List<Project> discoverList = (List)request.getAttribute("discoverList");
                       <span class="price">14,037,000원</span>
                       <span class="percent">3857%</span>
                       <span class="leftDay"> 
-                          <img src="./Images/time.PNG">
+                          <img src="/rhollEE/images/mainpage/time.PNG">
                           68일 남음 
                       </span>
 
@@ -177,7 +221,7 @@ List<Project> discoverList = (List)request.getAttribute("discoverList");
           </div>
            <div class="item">
               <!-- 사진 -->
-              <img  class="item-image" src="./Images/6.jpeg" alt="l"><button class="like"></button>
+              <img  class="item-image" src="/rhollEE/images/mainpage/6.jpeg" alt="l"><button class="like"></button>
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
@@ -194,7 +238,7 @@ List<Project> discoverList = (List)request.getAttribute("discoverList");
                       <span class="price">7,227,000원</span>
                       <span class="percent">1445%</span>
                       <span class="leftDay"> 
-                          <img src="./Images/time.PNG">
+                          <img src="/rhollEE/images/mainpage/time.PNG">
                           15일 남음 
                       </span>
 
@@ -202,6 +246,8 @@ List<Project> discoverList = (List)request.getAttribute("discoverList");
               </div>
 
           </div>               
+  
+
 
       </div>
       <!-- 1end -->
