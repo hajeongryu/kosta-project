@@ -27,7 +27,7 @@
     <%@include file="./main_add.jsp" %>
     
     <!-- 주목할만한 프로젝트 -->
-    <%//@include file="./main_attention_projects.jsp" %>
+    <%@include file="./main_attention_projects.jsp" %>
     
     <div class="ad2">메인광고2</div>
     

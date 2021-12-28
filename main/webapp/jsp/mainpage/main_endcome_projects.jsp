@@ -23,7 +23,8 @@ List<Project> endcomeList = (List)request.getAttribute("endcome");
       <!-- 자식랩퍼1 -->
       <div class="item-inrap1">
 
-	<%
+		<%
+		if(!endcomeList.isEmpty()){
 			for(Project p : endcomeList){
 		%>
 				  <!-- 글 -->
@@ -60,7 +61,8 @@ List<Project> endcomeList = (List)request.getAttribute("endcome");
                   </div>
               </div>
           </div>
-          <%} %>
+          <%} 
+				}%>
 
 
           <!-- 글 -->

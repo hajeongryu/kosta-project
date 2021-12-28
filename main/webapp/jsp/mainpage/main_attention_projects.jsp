@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-List<Project> list = (List)request.getAttribute("list");
+List<Project> attentionList = (List)request.getAttribute("list");
 %>
 <link rel="stylesheet" type="text/css" href="/rhollEE/css/mainpage/main_attention_projects.css">
 
@@ -20,9 +20,9 @@ List<Project> list = (List)request.getAttribute("list");
       <!-- 자식랩퍼1 -->
       <div class="item-inrap">
 
-
 <%
-	for( Project p : list){
+if(!attentionList.isEmpty()){
+	for( Project p : attentionList){
 %>
 
           <!-- 글 -->
@@ -61,7 +61,8 @@ List<Project> list = (List)request.getAttribute("list");
           </div>
 
 
-<%} %>
+<%} 
+		}%>
 
 
           <!-- 글 -->

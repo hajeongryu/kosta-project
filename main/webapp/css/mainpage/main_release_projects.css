@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-button.endcome-nextB{
+button.release-nextB{
     position: absolute;
     margin-left: 1050px;
     margin-bottom: 50px;
@@ -9,7 +9,7 @@ button.endcome-nextB{
     z-index: 50;
     background: url("../../images/mainpage/right2.png") center center / 100% no-repeat;
 }
-button.endcome-backB{
+button.release-backB{
     margin-right: 700px;
     margin-bottom: 50px;
     height: 100%;
@@ -22,12 +22,10 @@ button.endcome-backB{
     transition: all 1.5s; 
 }
 
-.endcome-project >.item-rapper>.item-inrap1{
-	display: flex;
+.release-project >.item-rapper>.item-inrap1{
     flex-wrap: nowrap;
     overflow-x: hidden;
     /* transform: translateX(-20%); */
     
 }
-
 

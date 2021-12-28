@@ -26,6 +26,7 @@ List<Project> popularList = (List)request.getAttribute("popular");
 
 
 		<%
+		if(!popularList.isEmpty()){
 			for(Project p : popularList){
 		%>
 				  <!-- 글 -->
@@ -62,7 +63,8 @@ List<Project> popularList = (List)request.getAttribute("popular");
                   </div>
               </div>
           </div>
-          <%} %>
+          <%} 
+			  }%>
           <!-- 글 -->
           <div class="item" >
               <!-- 사진 -->

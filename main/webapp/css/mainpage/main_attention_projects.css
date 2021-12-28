@@ -30,15 +30,11 @@
 /* intem-rpper 부모--------------------------------------------------------- */
 .fundingList .item-rapper .item-inrap{
     display: flex;
-    flex-wrap: wrap;
 }
 
 
 /* ------------------------------------------------------------------ */
-.fundingList .item-rapper .item-inrap2{
-    display: flex;
-    margin-top: 250px;
-}
+
 /* ----------------아이템---------------------------- */
 .item{
     /* 플렉스 00 추가해야 nowarp해도 flex애들끼리 꽉 안붙음 */

@@ -6,14 +6,15 @@
     
 <%
 List<Project> releaseList = (List)request.getAttribute("release");
+
 %>
-<link rel="stylesheet" type="text/css" href="/rhollEE/css/mainpage/main_popular_projects.css">
+<link rel="stylesheet" type="text/css" href="/rhollEE/css/mainpage/main_release_projects.css">
     
-<div class="fundingList popular-project">
+<div class="fundingList release-project">
   <!-- 게시판 이름 -->
   <span class="listTitle">공개예정 프로젝트</span>
-  <button class="pop-nextB"></button>
-  <button class="pop-backB"></button>
+  <button class="release-nextB"></button>
+  <button class="release-backB"></button>
   <!-- 게시판 상태,달성률,추천 -->
   <!-- 현재 총 펀딩 게시물 수 -->
 
@@ -21,10 +22,11 @@ List<Project> releaseList = (List)request.getAttribute("release");
   <div class="item-rapper">
 
       <!-- 자식랩퍼1 -->
-      <div class="item-inrap1">
+      <div class="item-inrap3">
 
 
 		<%
+		if(!(releaseList.isEmpty())){
 			for(Project p : releaseList){
 		%>
 				  <!-- 글 -->
@@ -61,7 +63,8 @@ List<Project> releaseList = (List)request.getAttribute("release");
                   </div>
               </div>
           </div>
-          <%} %>
+          <%} 
+				}%>
       </div>
       <!-- 1end -->
   </div>

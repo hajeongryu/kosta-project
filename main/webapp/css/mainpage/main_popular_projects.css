@@ -45,18 +45,13 @@ button.pop-backB{
 /* intem-rpper 부모--------------------------------------------------------- */
 .fundingList .item-rapper .item-inrap1{
     display: flex;
-    flex-wrap: wrap;
+    overflow-x: hidden;
 }
 
 
 /* d이쪽 */
 /* 인기프로젝트 리스트 형식---------------10개중4개만표시 나머지 짜름 */
-.popular-project >.item-rapper>.item-inrap1{
-    flex-wrap: nowrap;
-    overflow-x: hidden;
     /* transform: translateX(-20%); */
-    
-}
 
 
 
