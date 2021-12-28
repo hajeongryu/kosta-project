@@ -1,3 +1,5 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.util.Formattable"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="com.team.project.vo.Project"%>
 <%@page import="java.util.List"%>
@@ -13,6 +15,7 @@
   <script src="<%=request.getContextPath()%>/jsp/menu.jsp"></script>
 <%
 	List<Project> discoverList = (List)request.getAttribute("discoverList");
+	DecimalFormat formatter= new DecimalFormat("###,###");
 %>
 <%@ include file="../menu.jsp" %>
 <meta charset="UTF-8">
@@ -57,7 +60,11 @@
           <div class="item" >
               <!-- 사진 -->
 				<img class="item-image" src="/rhollEE/images/mainpage/<%=p.getProjectNo() %>.jpeg" alt="l">
-				<button class="like"></button>
+				<% if(p.isLoginedUserProjectInterest()){ %>
+					<button class="like"></button>
+				<%}else { %>
+					<button class="not-like"></button>
+				<%} %>
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
@@ -74,7 +81,7 @@
 
                   <!-- 가격 -->
                   <div class="priceAndPercent">
-                      <span class="price"><%=p.getProjectChange().getSumPrice() %>원</span>
+                      <span class="price"><%=formatter.format(p.getProjectChange().getSumPrice()) %>원</span>
                       <span class="percent"><%=p.getAchiveRate()%>%</span>
                       <span class="leftDay"> 
                           <img src="/rhollEE/images/mainpage/time.PNG">
@@ -93,7 +100,7 @@
           <!-- 글 -->
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
@@ -119,7 +126,7 @@
 
           <div class="item" >
               <!-- 사진 -->
-              <img  class="item-image" src="/rhollEE/images/mainpage/2.jpeg" alt="2"><button class="like"></button>
+              <img  class="item-image" src="/rhollEE/images/mainpage/2.jpeg" alt="2"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
@@ -144,7 +151,7 @@
 
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/3.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/3.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
@@ -170,7 +177,7 @@
 
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/4.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/4.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
@@ -195,7 +202,7 @@
           </div>
           <div class="item">
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/5.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/5.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
@@ -222,7 +229,7 @@
           </div>
            <div class="item">
               <!-- 사진 -->
-              <img  class="item-image" src="/rhollEE/images/mainpage/6.jpeg" alt="l"><button class="like"></button>
+              <img  class="item-image" src="/rhollEE/images/mainpage/6.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
