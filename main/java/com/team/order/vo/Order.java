@@ -33,8 +33,13 @@ public class Order {                ;
 	private int	totalPrice          ;
 	private String	paymentResult   ;
 	private Address	address         ;
-	private Reward	reward		    ;
 	private Card	card            ;
+	
+	//JOINED TALBLE
+	private Project project			;
+	private Reward	reward		    ;
+	
+
 	public Order() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -51,6 +56,13 @@ public class Order {                ;
 		this.address = address;
 		this.reward = reward;
 		this.card = card;
+	}
+	
+	public Project getProject() {
+		return project;
+	}
+	public void setProject(Project project) {
+		this.project = project;
 	}
 	public int getPaymentNo() {
 		return paymentNo;

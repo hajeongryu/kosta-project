@@ -33,22 +33,22 @@ public class OrderDAOOracle implements OrderDAOInterface {
 		ResultSet rs = null; 
 		List<Order> orderlist = new ArrayList<Order>();
 		
-		String selectSQL = "SELECT o.payment_date \"결제완료일\"\r\n"
-				+ "    ,o.payment_no \"후원번호\"\r\n"
-				+ "    ,p.project_image \"프로젝트 이미지\"\r\n"
-				+ "    ,o.project_no \"프로젝트 번호\"\r\n"
-				+ "    ,p.long_title \"프로젝트 제목\"\r\n"
-				+ "    ,p.project_url \"프로젝트 페이지 주소\"\r\n"
-				+ "    ,p.end_date \"종료일\"\r\n"
-				+ "    ,r.reward_no \"선물 번호\"\r\n"
-				+ "    ,r.deliver_date \"예상전달일\"\r\n"
-				+ "    ,o.total_price \"총 결제금액\"\r\n"
-				+ "    ,o.payment_result \"결제상태\"\r\n"
-				+ " FROM orders o\r\n"
-				+ " JOIN project p\r\n"
-				+ "    ON o.project_no=p.project_no\r\n"
-				+ " JOIN reward r\r\n"
-				+ "    ON r.reward_no=o.reward_no\r\n"
+		String selectSQL = "SELECT o.payment_date"
+				+ "    ,o.payment_no "
+				+ "    ,p.project_image "
+				+ "    ,o.project_no "
+				+ "    ,p.long_title "
+				+ "    ,p.project_url "
+				+ "    ,p.end_date "
+				+ "    ,r.reward_no "
+				+ "    ,r.deliver_date "
+				+ "    ,o.total_price "
+				+ "    ,o.payment_result "
+				+ " FROM orders o "
+				+ " JOIN project p "
+				+ "    ON o.project_no=p.project_no "
+				+ " JOIN reward r "
+				+ "    ON r.reward_no=o.reward_no "
 				+ " WHERE o.user_no=?";
 		
 		try {
@@ -56,44 +56,55 @@ public class OrderDAOOracle implements OrderDAOInterface {
 			pstmt = con.prepareStatement(selectSQL);
 			pstmt.setInt(1, userNo);
 			rs = pstmt.executeQuery(); 
-			Order o = null;
-			Project p = null;
-			Reward r = null;
 		    System.out.println("1");
 			while(rs.next()) {
 				
-				
-				//Project Table
-				String projectImage = rs.getString("project_image");
-				String longTitle = rs.getString("long_title"); 
-				String projectUrl = rs.getString("project_url");
-				Date endDate = rs.getDate("end_date");
-				
-				p = new Project();
-				
-				//[JOIN] Orders Table
+	
+				System.out.println(111111);
+				//Orders Table
 				Date paymentDate = rs.getDate("payment_date");
+				System.out.println(111111);
 				int paymentNo = rs.getInt("payment_no");
-				int	projectNo = rs.getInt("project_no");
+				System.out.println(111111);
 				int totalPrice = rs.getInt("total_price");
+				System.out.println(111111);
 				String paymentResult = rs.getString("payment_result");
-				
-				o = new Order();
+				System.out.println(111111);
+				Order o = new Order();
 				
 				o.setPaymentDate(paymentDate);
 				o.setPaymentNo(paymentNo);
-				p.setProjectNo(projectNo);
 				o.setTotalPrice(totalPrice);
 				o.setPaymentResult(paymentResult);
 				
+				
+				//[JOIN]Project Table
+				String projectImage = rs.getString("project_image");
+				String longTitle = rs.getString("long_title"); 
+				String projectUrl = rs.getString("project_url");
+				int	projectNo = rs.getInt("project_no");
+				Date endDate = rs.getDate("end_date");
+				
+				System.out.println(22222222);
+				Project joinedP = new Project();
+				joinedP.setProjectImage(projectImage);
+				joinedP.setLongTitle(longTitle);
+				joinedP.setProjectUrl(projectUrl);
+				joinedP.setEndDate(endDate);
+				joinedP.setProjectNo(projectNo);
+				
+				o.setProject(joinedP);
+				
+			
 				//[JOIN] Reward Table
 				int rewardNo = rs.getInt("reward_no");
 				int deliverDate = rs.getInt("deliver_date");
+				System.out.println(333333333);
 				
-				r = new Reward();
-				
-				r.setRewardNo(rewardNo);
-				r.setDeliverDate(deliverDate);
+				Reward joinedR = new Reward();
+				joinedR.setRewardNo(rewardNo);
+				joinedR.setDeliverDate(deliverDate);
+				o.setReward(joinedR);
 				
 				orderlist.add(o);
 			}	
