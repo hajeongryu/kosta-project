@@ -195,7 +195,6 @@ public class AddrDAOOracle implements AddrDAOInterface {
 				+ " receiver_zipcode=?, receiver_address=?,"
 				+ " receiver_address_detailed=?, receiver_phone=?,"
 				+ " default_address=? WHERE address_no=?";
-		int addressNo = address.getAddressNo();
 		
 		try {
 			con = MyConnection.getConnection();

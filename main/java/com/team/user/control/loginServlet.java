@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
 		
 		String idValue = request.getParameter("id");
 		String pwdValue = request.getParameter("pwd");
-		System.out.println("userId=" + idValue + ", userPwd" + pwdValue);
+		System.out.println("userId=" + idValue + ", userPwd=" + pwdValue);
 		String resultMsg="";
 		UserService service = UserService.getInstance();
 		
@@ -50,5 +50,9 @@ public class LoginServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 	}
-
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+	
 }

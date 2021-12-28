@@ -1,5 +1,7 @@
 package com.team.user.service;
 
+import java.util.List;
+
 import com.team.exception.AddException;
 import com.team.exception.FindException;
 import com.team.exception.ModifyException;
@@ -17,6 +19,12 @@ public class AddrService {
 		return service;
 	}
 	private UserDAOOracle userDao = UserDAOOracle.getInstance();
+	
+	
+	public List<Address> findByUserNo(int userNo) throws FindException {
+		List<Address> addrs = dao.findByUserNo(userNo);
+		return addrs;
+	}
 	
 	
 	public void addAddrService(int userNo, String receiverName, int receiverZipcode, 

@@ -1,6 +1,7 @@
 package com.team.user.service;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.team.exception.AddException;
 import com.team.exception.FindException;
@@ -19,6 +20,12 @@ public class CardService {
 		return service;
 	}
 	private UserDAOOracle userDao = UserDAOOracle.getInstance(); 
+	
+	
+	public List<Card> findByUserNo(int userNo) throws FindException {
+		List<Card> cards = dao.findByUserNo(userNo);
+		return cards;
+	}
 	
 	
 	public void addCardService(int userNo, String cardNum, Date cardValidDate, String cardPwd, 

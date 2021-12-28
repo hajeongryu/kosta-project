@@ -33,7 +33,8 @@
                 <input type="password" name="pwd" placeholder="비밀번호 입력" required>
                 <button>로그인</button>
             </form>
-            <div class="login_text">아직 Rholling ideas 계정이 없으신가요?<a href="">가입하기</a></div>
+            <div class="login_text">아직 Rholling ideas 계정이 없으신가요?
+            			<a href="<%=request.getContextPath()%>/jsp/login/signup.jsp">가입하기</a></div>
             <hr>
             <div class="login_text"><a href="">혹시 비밀번호를 잊으셨나요?</a></div>
         </div>
