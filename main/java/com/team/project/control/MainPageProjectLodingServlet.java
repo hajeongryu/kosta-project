@@ -6,6 +6,7 @@ import java.util.List;
 import com.team.exception.FindException;
 import com.team.project.service.ProjectService;
 import com.team.project.vo.Project;
+import com.team.user.vo.Users;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -37,10 +38,17 @@ public class MainPageProjectLodingServlet extends HttpServlet {
 		ProjectService service = ProjectService.getInstance();
 
 		System.out.println("요청됨");
+		String loginedUserNo=null;
+		
 		
 		HttpSession session = request.getSession();
-		String loginedUserNo = (String)session.getAttribute("logineduserNo");
-
+		
+		Users u = (Users)session.getAttribute("loginInfo");
+		
+		if( u != null) {
+		loginedUserNo = u.getUserNo()+"";
+		}
+		System.out.println("[MainpageSelvert] 로그인한 유저의 유저번호 : "+loginedUserNo);
 		
 
 		try {
@@ -89,7 +97,7 @@ public class MainPageProjectLodingServlet extends HttpServlet {
 		
 		//테스트용
 		try {
-			List <Project> list =service.getProjects(null, null, null, null, null, null, "1");
+			List <Project> list =service.getProjects(null, null, null, null, null, null, loginedUserNo);
 			request.setAttribute("list", list);
 		} catch (FindException e) {
 			e.printStackTrace();

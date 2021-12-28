@@ -13,7 +13,18 @@
 }
 
 /* 여기가 사이트 넓이 */
+button.like {
+ width: 30px;
+ height: 30px;
+    background: url("../../images/mainpage/heart.png") center center / 100% no-repeat;
+}
 
+button.not-like{
+ width: 30px;
+ height: 30px;
+    background: url("../../images/mainpage/heart2.png") center center / 100% no-repeat;
+ 
+}
 
 /* 펀딩 리스트 (부모) */
 .fundingList{

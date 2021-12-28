@@ -18,7 +18,7 @@ List<Project> attentionList = (List)request.getAttribute("list");
   <div class="item-rapper">
 
       <!-- 자식랩퍼1 -->
-      <div class="item-inrap">
+      <div class="item-inrap" style="flex-wrap: wrap;">
 
 <%
 if(!attentionList.isEmpty()){
@@ -55,7 +55,6 @@ if(!attentionList.isEmpty()){
                   <!-- 가격 -->
                   <div class="priceAndPercent">
                       <span class="percent"><%= p.getAchiveRate()%>%달성</span>
-                      <span class="leftDay"> 
                   </div>
               </div>
           </div>

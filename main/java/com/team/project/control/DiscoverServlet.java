@@ -3,6 +3,11 @@ package com.team.project.control;
 import java.io.IOException;
 import java.util.List;
 
+import com.team.exception.FindException;
+import com.team.project.service.ProjectService;
+import com.team.project.vo.Project;
+import com.team.user.vo.Users;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,10 +15,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import com.team.exception.FindException;
-import com.team.project.service.ProjectService;
-import com.team.project.vo.Project;
 
 /**
  * Servlet implementation class DiscoverServlet
@@ -34,6 +35,7 @@ public class DiscoverServlet extends HttpServlet {
 		
 		String path="";
 		
+		String loginedUserNo =null;
 
 		//리퀘스트 값들 받기
 		String category = request.getParameter("category");
@@ -42,7 +44,13 @@ public class DiscoverServlet extends HttpServlet {
 		String achiveRate= request.getParameter("achiveRate");
 		String sort = request.getParameter("sort");
 		String rowCount = request.getParameter("rowCount");
-		String loginedUserNo = (String) session.getAttribute("userNo");
+		
+		
+		Users u = (Users)session.getAttribute("loginInfo");
+		if(u != null) {
+			loginedUserNo = u.getUserNo()+"";
+		}
+			System.out.println("[discoverSelvert] 로그인한 유저의 유저번호 : "+loginedUserNo);
 
 		
 		

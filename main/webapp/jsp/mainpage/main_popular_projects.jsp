@@ -68,7 +68,7 @@ List<Project> popularList = (List)request.getAttribute("popular");
           <!-- 글 -->
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
                   <div class ="catelink">
@@ -88,7 +88,7 @@ List<Project> popularList = (List)request.getAttribute("popular");
 
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
                   <div class ="catelink">
@@ -107,7 +107,7 @@ List<Project> popularList = (List)request.getAttribute("popular");
           </div>
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
                   <div class ="catelink">
@@ -129,7 +129,7 @@ List<Project> popularList = (List)request.getAttribute("popular");
           
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/1.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
                   <div class ="catelink">
@@ -154,7 +154,7 @@ List<Project> popularList = (List)request.getAttribute("popular");
 
           <div class="item" >
               <!-- 사진 -->
-              <img  class="item-image" src="/rhollEE/images/mainpage/2.jpeg" alt="2"><button class="like"></button>
+              <img  class="item-image" src="/rhollEE/images/mainpage/2.jpeg" alt="2"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info">
             <div class ="catelink">
@@ -174,7 +174,7 @@ List<Project> popularList = (List)request.getAttribute("popular");
 
             <div class="item" >
                 <!-- 사진 -->
-                <img class="item-image" src="/rhollEE/images/mainpage/3.jpeg" alt="l"><button class="like"></button>
+                <img class="item-image" src="/rhollEE/images/mainpage/3.jpeg" alt="l"><button class="not-like"></button>
                 <!-- 정보 -->
                 <div class="info">
                     <div class ="catelink">
@@ -196,7 +196,7 @@ List<Project> popularList = (List)request.getAttribute("popular");
 
           <div class="item" >
               <!-- 사진 -->
-              <img class="item-image" src="/rhollEE/images/mainpage/4.jpeg" alt="l"><button class="like"></button>
+              <img class="item-image" src="/rhollEE/images/mainpage/4.jpeg" alt="l"><button class="not-like"></button>
               <!-- 정보 -->
               <div class="info"> 
                 <div class ="catelink">

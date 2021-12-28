@@ -30,6 +30,7 @@
 /* intem-rpper 부모--------------------------------------------------------- */
 .fundingList .item-rapper .item-inrap{
     display: flex;
+	
 }
 
 
@@ -84,6 +85,19 @@ button:focus{
     border:  none;
     cursor: pointer;
     outline: none;
+}
+
+button.like {
+ width: 30px;
+ height: 30px;
+    background: url("../../images/mainpage/heart2.png") center center / 100% no-repeat;
+}
+
+button.not-like{
+ width: 30px;
+ height: 30px;
+    background: url("../../images/mainpage/heart.png") center center / 100% no-repeat;
+ 
 }
 
 

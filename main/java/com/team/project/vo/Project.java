@@ -88,13 +88,19 @@ public class Project {            ;
 	
 
 
-	public long getRemainingDays() {
+	public String getRemainingDays() {
 		Date endDate=this.getEndDate();
 		Date sysDate = new Date();
 		
 		long diffDay = (endDate.getTime() - sysDate.getTime()) /(24*60*60*1000);
 		
-		return diffDay;
+		if(diffDay>=0) {
+			return diffDay+"일 남음";
+		}
+		
+		else {
+			return Math.abs(diffDay)+"일 지남";
+		}
 	}
 
 	public int getAchiveRate() {

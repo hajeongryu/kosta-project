@@ -18,7 +18,7 @@ List<Project> newlist = (List)request.getAttribute("new");
   <div class="item-rapper">
 
       <!-- 자식랩퍼1 -->
-      <div class="item-inrap">
+      <div class="item-inrap" style ="flex-wrap: wrap;">
 
 
 <%

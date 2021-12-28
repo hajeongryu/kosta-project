@@ -34,7 +34,7 @@
   <!-- 현재 총 펀딩 게시물 수 -->
   <div class="listLength">
       <div>
-      <span class="fundcount">33,577</span>
+      <span class="fundcount"><%=discoverList.size()%></span>
       개의 프로젝트가 있습니다.
       </div>
       <button class="orderBy"></button>
@@ -56,7 +56,8 @@
      <!-- 글 -->
           <div class="item" >
               <!-- 사진 -->
-				<img class="item-image" src="/rhollEE/images/mainpage/<%=p.getProjectNo() %>.jpeg" alt="l"><button class="like"></button>
+				<img class="item-image" src="/rhollEE/images/mainpage/<%=p.getProjectNo() %>.jpeg" alt="l">
+				<button class="like"></button>
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
@@ -77,7 +78,7 @@
                       <span class="percent"><%=p.getAchiveRate()%>%</span>
                       <span class="leftDay"> 
                           <img src="/rhollEE/images/mainpage/time.PNG">
-                          <%=p.getRemainingDays() %>일 남음
+                          <%=p.getRemainingDays() %>
                       </span>
                   </div>
               </div>
