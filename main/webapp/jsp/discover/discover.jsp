@@ -26,7 +26,7 @@
 
 <section>
 <!-- 펀딩리리스트 -->
-<div class="fundingList" style="width: 1100px;">
+<div class="fundingList">
   <!-- 게시판 이름 -->
   <span class="listTitle">전체</span>
   <!-- 게시판 상태,달성률,추천 -->
