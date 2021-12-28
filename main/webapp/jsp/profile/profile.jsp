@@ -1,17 +1,34 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.team.project.vo.Project"%>
+<%@page import="com.team.order.vo.Order"%>
 <%@page import="java.util.List"%>
 <%@page import="com.team.user.vo.Interest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+	List<Order> projectList = (List)request.getAttribute("projectList");
+	List<Project> orderList = (List)request.getAttribute("orderList");
+	
+	if(projectList ==null){
+		projectList = new ArrayList<>();
+	}
+	if(orderList==null){
+		orderList= new ArrayList<>();
+	}
+%>
+
+
     
 <!DOCTYPE html>
 <head>
-  <link rel="stylesheet" href="../../css/header.css">
-  <link rel="stylesheet" href="../../css/profile/interestproject.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/profile/interestproject.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="../../js/mainpage/index.js"></script>
-  <script src="../menu.jsp"></script>
+  <script src="<%=request.getContextPath()%>/js/mainpage/index.js"></script>
+  <script src="<%=request.getContextPath()%>/jsp/menu.jsp"></script>
   
-  <script src="../../js/profile/interestprojectresult.js"></script>
+  <script src="<%=request.getContextPath()%>js/profile/interestprojectresult.js"></script>
   <script>
   	$(function(){
   		/*--메뉴 클릭 되었을 때 START--*/
@@ -32,19 +49,11 @@
  
  <section>
  <div class="top_box">
- 	<a href="https://help.tumblbug.com/hc/ko">후원현황</a>
+ 	<a href="https://help.tumblbug.com/hc/ko">후원현황 <%=orderList.size()%></a>
     <a href="https://help.tumblbug.com/hc/ko">관심 프로젝트</a>
-    <a href="https://help.tumblbug.com/hc/ko">만든 프로젝트</a>
+    <a href="https://help.tumblbug.com/hc/ko">만든 프로젝트<%=projectList.size() %></a>
  </div>
-    <!--후원현황-->
-    <%-- <%List<Order> list = (List)request.getAttribute("list");
-    int cnt= list.size();%> --%>
-    <!--관심 프로젝트-->
-    <%-- <%List<project> list = (List)request.getAttribute("list");
-    int cnt= list.size();%> --%>
-    <!--만든 프로젝트-->
-    <%-- <%List<project> list = (List)request.getAttribute("list");
-    int cnt= list.size();%> --%>
+	
   		<div class="below_box"></div>
       		<a href="팔로우/팔로잉">팔로우/팔로잉</a><img src="C:\Workspace\Rholling ideas\teamProject\rhollEE\src\main\webapp\images\profile\following.png"/></a>
       		<!--팔로우/팔로잉 페이지 삽입하기-->
