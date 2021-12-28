@@ -56,7 +56,7 @@
                         <a href="">내가 만든 프로젝트</a>
                         <a href="<%=request.getContextPath()%>/jsp/settings/profileset.jsp">설정</a>
                         <hr>
-                        <a href="">로그아웃</a>
+                        <a href="<%=request.getContextPath()%>/logout">로그아웃</a>
                     </div>
                 </li>
             <%} %>

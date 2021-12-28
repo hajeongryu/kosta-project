@@ -22,6 +22,7 @@ public class ProfileSetServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Users u = (Users)session.getAttribute("loginInfo");
+		
 		int userNo = u.getUserNo();
 		String userImage = request.getParameter("image");
 		String userName = request.getParameter("name");
