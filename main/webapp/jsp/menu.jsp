@@ -4,13 +4,13 @@
 
 <div class="header-container">
     <div class="header-upper">
-        <a href="<%=request.getContextPath()%>/jsp/mainpage/index.jsp" id="logo"><img src="<%=request.getContextPath()%>/images/mainpage/rholling.PNG" height="60px"></a>
+        <a href="<%=request.getContextPath()%>" id="logo"><img src="<%=request.getContextPath()%>/images/mainpage/rholling.PNG" height="60px"></a>
         <nav class="user-menu">
             <ul>
+            	<li><a href=""><span class="user-li">프로젝트 올리기</span></a></li>
             <%Users u = (Users)session.getAttribute("loginInfo");
             if(u==null){ //로그인 안된경우
             %>
-                <li><a href=""><span class="user-li">프로젝트 올리기</span></a></li>
                 <li class="login-container">
                     <a href="<%=request.getContextPath()%>/html/login/login.html">
                         <span class="user-li login">
@@ -67,7 +67,7 @@
                     <li class="cate">
                         카테고리
                         <ul class="category">
-                        	<li><a href="">전체</a></li>
+                        	<li><a href="<%=request.getContextPath()%>/discover">전체</a></li>
                             <li><a href="">보드게임 · TRPG</a></li>
                             <li><a href="">디지털 게임</a></li>
                             <li><a href="">웹툰 · 만화</a></li>
