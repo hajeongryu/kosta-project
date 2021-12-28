@@ -48,15 +48,15 @@ public class DiscoverServlet extends HttpServlet {
 		
 		ProjectService service = ProjectService.getInstance();
 		try {
-			List<Project> findedProjects =
+			List<Project> discoverList=
 					service.getProjects(category, ongoing, editorPick, achiveRate, sort, rowCount, loginedUserNo);
 
 			
-			request.setAttribute("finedProjects", findedProjects);
+			request.setAttribute("discoverList", discoverList);
 			//미구현
 
 			
-			path="./jsp/mainpage/";
+			path="./jsp/discover/discover.jsp";
 		} catch (FindException e) {
 			System.out.println("DiscoverServlet.java  doGet 익셉션");
 			e.printStackTrace();
@@ -66,7 +66,7 @@ public class DiscoverServlet extends HttpServlet {
 		}
 
 		System.out.println("요청됨");
-			path="discover.jsp";
+			path="./jsp/discover/discover.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 	}
