@@ -44,11 +44,11 @@
                         <span><%=u.getUserName() %></span>
                     </span>
                     <div class="dropdown-content" id="myDropdown">
-                        <a href="">프로필</a>
+                        <a href="profile">프로필</a>
                         <hr>
                         <a href="orderlist">후원현황</a>
                         <a href="interestlist">관심 프로젝트</a>
-                        <a href="">팔로우</a>
+                        <a href="follow">팔로우</a>
                         <hr>
                         <a href="">알림</a>
                         <a href="">메시지</a>

@@ -1,4 +1,4 @@
-package com.team.interest.control;
+package com.team.user.control;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import com.team.exception.FindException;
-import com.team.interest.service.InterestService;
+import com.team.user.service.InterestService;
 import com.team.user.vo.Interest;
 import com.team.user.vo.Users;
 

@@ -28,16 +28,25 @@ public class OrderListServlet extends HttpServlet {
 		int userNo = u.getUserNo();
 		
 		String path = "./jsp/profile/orderprojectresult.jsp";
-		List<Order> list = new ArrayList<>();
+		List<Order> fail = new ArrayList<>();
+		List<Order> ongoing = new ArrayList<>();
+		List<Order> success = new ArrayList<>();
+		List<Order> payed = new ArrayList<>();
 		int cnt = 0;
 		
 		try {
-			list = service.myOrderProjects(userNo);
+			fail = service.failProjects(userNo);
+			ongoing = service.ongoingProjects(userNo);
+			success = service.successProjects(userNo);
+			payed = service.payedProjects(userNo);
 			cnt = service.countOrderProjects(userNo);
 		} catch (FindException e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("list", list);
+		request.setAttribute("fail", fail);
+		request.setAttribute("ongoing", ongoing);
+		request.setAttribute("success", success);
+		request.setAttribute("payed", payed);
 		request.setAttribute("orderCnt", cnt);
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);

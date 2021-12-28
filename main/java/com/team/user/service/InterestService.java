@@ -1,11 +1,11 @@
-package com.team.interest.service;
+package com.team.user.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.team.exception.AddException;
 import com.team.exception.FindException;
-import com.team.interest.dao.InterestDAOOracle;
+import com.team.user.dao.InterestDAOOracle;
 import com.team.user.vo.Interest;
 
 public class InterestService {

@@ -17,6 +17,11 @@ public class OrderService {
 		return service;
 	}
 	
+	/**
+	 * 주문정보를 추가한다
+	 * @param order 주문객체
+	 * @throws FindException
+	 */
 	public void add(Order order) throws FindException {
 		dao.add(order);
 	}
@@ -44,5 +49,81 @@ public class OrderService {
 		order = dao.findByUserNo(userNo);
 		int cnt = order.size();
 		return cnt;
+	}
+	
+	/**
+	 * 유저의 결제상태가 펀딩실패인 프로젝트를 반환한다 
+	 * @param userNo 유저번호
+	 * @return 펀딩실패 목록들
+	 * @throws FindException
+	 */
+	public List<Order> failProjects(int userNo) throws FindException{
+		List<Order> orders = new ArrayList<>();
+		orders = dao.findByUserNo(userNo);
+		
+		List<Order> fail = new ArrayList<>();
+		for(Order o: orders) {
+			if(o.getPaymentResult().equals("펀딩실패")) {
+				fail.add(o);
+			}
+		}
+		return fail;
+	}
+	
+	/**
+	 * 유저가 결제한 아직 진행중인 프로젝트를 반환한다 
+	 * @param userNo 유저번호
+	 * @return 진행중 목록들
+	 * @throws FindException
+	 */
+	public List<Order> ongoingProjects(int userNo) throws FindException{
+		List<Order> orders = new ArrayList<>();
+		orders = dao.findByUserNo(userNo);
+		
+		List<Order> ongoing = new ArrayList<>();
+		for(Order o: orders) {
+			if(o.getPaymentResult().equals("진행중")) {
+				ongoing.add(o);
+			}
+		}
+		return ongoing;
+	}
+	
+	/**
+	 * 유저가 결제한 펀딩성공한(펀딩은 성공, 결제는 x) 프로젝트를 반환한다 
+	 * @param userNo 유저번호
+	 * @return 펀딩성공한 목록들
+	 * @throws FindException
+	 */
+	public List<Order> successProjects(int userNo) throws FindException{
+		List<Order> orders = new ArrayList<>();
+		orders = dao.findByUserNo(userNo);
+		
+		List<Order> success = new ArrayList<>();
+		for(Order o: orders) {
+			if(o.getPaymentResult().equals("펀딩성공")) {
+				success.add(o);
+			}
+		}
+		return success;
+	}
+	
+	/**
+	 * 유저의 결제상태가 결제완료인 프로젝트를 반환한다 
+	 * @param userNo 유저번호
+	 * @return 결제완료한 목록들
+	 * @throws FindException
+	 */
+	public List<Order> payedProjects(int userNo) throws FindException{
+		List<Order> orders = new ArrayList<>();
+		orders = dao.findByUserNo(userNo);
+		
+		List<Order> payed = new ArrayList<>();
+		for(Order o: orders) {
+			if(o.getPaymentResult().equals("결제완료")) {
+				payed.add(o);
+			}
+		}
+		return payed;
 	}
 }

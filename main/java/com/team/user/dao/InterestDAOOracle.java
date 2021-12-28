@@ -1,4 +1,4 @@
-package com.team.interest.dao;
+package com.team.user.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
