@@ -31,18 +31,19 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.removeAttribute("loginInfo");
 		
-		//String path = "jsp/mainpage/index.jsp";
-		String path = "jsp/mainpage/index.jsp";
+		String path = "";
 		try {
 			Users u = service.login(idValue, pwdValue);
 			System.out.println("로그인 성공");
 			session.setAttribute("loginInfo", u);
 			resultMsg = "로그인 성공";
 			request.setAttribute("status", 1);
+			path = "/";
 		} catch (FindException e) {
 			System.out.println(e.getMessage());
 			resultMsg = "로그인 실패";
 			request.setAttribute("status", 0);
+			path = "/jsp/login/login.jsp";
 		}
 		
 		request.setAttribute("msg", resultMsg);

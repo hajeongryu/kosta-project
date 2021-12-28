@@ -3,13 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
 	<title>Rholling Ideas</title>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login/login.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/login/login.js"></script>
+	<script>
+        $(function(){
+			loginClick();
+        });
+	</script>
 </head>
 <body>
     <div class="logo">
-        <a href="<%=request.getContextPath()%>/jsp/mainpage/main_nav.jsp">
+        <a href="<%=request.getContextPath()%>/jsp/mainpage/index.jsp">
             <img src="<%=request.getContextPath()%>/images/mainpage/rholling.PNG">
         </a>
     </div>
