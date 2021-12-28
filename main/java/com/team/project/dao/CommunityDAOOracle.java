@@ -14,6 +14,7 @@ import com.team.exception.FindException;
 import com.team.exception.RemoveException;
 import com.team.project.vo.Comments;
 import com.team.project.vo.Community;
+import com.team.project.vo.Project;
 import com.team.sql.MyConnection;
 import com.team.user.vo.Users;
 
@@ -58,12 +59,17 @@ public class CommunityDAOOracle implements CommunityDAOInterface{
 				int		postNo = rs.getInt("post_no");
 				String	postContent = rs.getString("post_content");
 				Date	postDt = rs.getDate("post_date");
+				int		projectNo = rs.getInt("project_no");
 				
 				
 				post = new Community();
 				post.setPostDate(postDt);
 				post.setPostContent(postContent);
 				post.setPostNo(postNo);
+				
+				Project p = new Project();
+				p.setProjectNo(projectNo);
+				post.setProject(p);
 				
 				//user
 				Users u = new Users();

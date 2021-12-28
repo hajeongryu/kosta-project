@@ -38,8 +38,7 @@ public class postaddServlet extends HttpServlet {
 		
 		
 		//주석해제해서 고치기
-//		String postContent =request.getAttribute("postCon");
-		
+		String postContent = request.getParameter("postText");
 		
 		
 		//getProject( requestDate)
@@ -53,9 +52,8 @@ public class postaddServlet extends HttpServlet {
 			post.setMaker(loginedUser);
 			
 			//콘텐트 넣어서 
-			//post.setPostContent();
-			
-			
+			post.setPostContent(postContent);
+			//추가
 			service.add(post);
 			
 			
@@ -65,12 +63,6 @@ public class postaddServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
-	
-		String postCon = request.getParameter("post_content");
-		
-		//Community post = new Community(projectNo, postCon, loginedUserNo);
-	
 		
 	}
 }

@@ -5,9 +5,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+
  
 <%
 List<Comments> comments = (List)request.getAttribute("cmt");
+Users loginedUser = (Users)session.getAttribute("loginInfo");
 %>    
 <table class="commentlist">
 <tr><th>커뮤니티번호</th>
@@ -37,18 +39,31 @@ for(Comments comment: comments){
 
 </table>
 
+
+<script>
+
+
+</script>
 <div class="container">
 	<div class="form-group">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<tr>
 					<td style="border-bottom:none;" valign="middle"><br>
-					<br><!-- 유저아이디 --></td>
-					<td><input type="text" style="height:100px;" class="form-control" placeholder="댓글 내용" name = "commentText"></td>
+					<br>
+					<%if(loginedUser != null){ %>
+					<%=loginedUser.getUserName()%>
+					<%} %>
+					</td>
+					<td>
+					<form method="post">
+					<input type="text" style="height:100px;" class="form-control" placeholder="댓글 내용" name="commentText">
+					</td>
 					<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>
 				</tr>
 				<tr>
 					<td colspan="3"><input type="file" name="fileName"></td>
 				</tr>
+					</form>
 			</table>
 	</div>
 </div>
