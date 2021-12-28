@@ -1,7 +1,7 @@
 function loginClick(){
     let $loginFormObj = $('.email_login');
 
-    $loginFormObj.submit(function(){
+    $loginFormObj.click(function(){
         let ajaxUrl = $(this).attr('action');
         let ajaxMethod = $(this).attr('method').val();
         let idValue = $(this).attr('input[name=id]').val();
@@ -11,9 +11,7 @@ function loginClick(){
             method: ajaxMethod,
 			data: {id: idValue, pwd: pwdValue},
             success: function(responseObj) {
-                if (responseObj.status == 1) {
-                    location.href="/";
-                } else {
+                if (responseObj.status == 0) {
 					alert(responseObj.msg);
                 }
             },
@@ -21,6 +19,6 @@ function loginClick(){
                 alert("응답실패 status:" + xhr.status);
             }
         })
-        
+        return false;
     })
 }

@@ -1,8 +1,6 @@
 package com.team.user.control;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -25,7 +23,6 @@ public class LoginServlet extends HttpServlet {
 		String idValue = request.getParameter("id");
 		String pwdValue = request.getParameter("pwd");
 		System.out.println("userId=" + idValue + ", userPwd=" + pwdValue);
-		String resultMsg="";
 		UserService service = UserService.getInstance();
 		
 		HttpSession session = request.getSession();
@@ -36,23 +33,18 @@ public class LoginServlet extends HttpServlet {
 			Users u = service.login(idValue, pwdValue);
 			System.out.println("로그인 성공");
 			session.setAttribute("loginInfo", u);
-			resultMsg = "로그인 성공";
-			request.setAttribute("status", 1);
-			path = "/";
+			path ="/rhollEE";
+			response.sendRedirect(path);
 		} catch (FindException e) {
 			System.out.println(e.getMessage());
-			resultMsg = "로그인 실패";
 			request.setAttribute("status", 0);
+			request.setAttribute("msg", "로그인실패");
 			path = "/jsp/login/login.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(path);
+			rd.forward(request, response);
 		}
 		
-		request.setAttribute("msg", resultMsg);
-		RequestDispatcher rd = request.getRequestDispatcher(path);
-		rd.forward(request, response);
 	}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
 	
 }
