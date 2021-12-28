@@ -79,8 +79,7 @@ public class OrderDAOOracle implements OrderDAOInterface {
 				String projectUrl = rs.getString("project_url");
 				int	projectNo = rs.getInt("project_no");
 				Date endDate = rs.getDate("end_date");
-				
-				System.out.println(22222222);
+
 				Project joinedP = new Project();
 				joinedP.setProjectImage(projectImage);
 				joinedP.setLongTitle(longTitle);
