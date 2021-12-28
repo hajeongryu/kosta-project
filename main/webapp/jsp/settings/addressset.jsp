@@ -14,8 +14,8 @@
     
     <section class="settings_box">
 		등록된 배송지
-	    
-	    <button>변경</button>
+
+        <button>변경</button>
     </section>
     
     

@@ -1,3 +1,4 @@
+<%@page import="com.team.user.vo.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,16 +13,29 @@
     <jsp:include page="../menu.jsp"/>
     <jsp:include page="./settingsheader.jsp"/>
     
+	<%Users u = (Users)session.getAttribute("loginInfo");%>
+    
     <section class="settings_box">
-	    <div class="settings_subtitle">이메일</div>
-	    
-	    <div class="settings_subtitle">비밀번호</div>
+    	<form method="post" action="<%=request.getContextPath()%>/accountest">
+			<div class="settings_subtitle">이메일</div>
+			<input type="text" name="id" value="<%=u.getUserId()%>">
+			
+			<div class="settings_subtitle">비밀번호</div>
+			<input type="password" name="pwdChange" placeholder="변경할 비밀번호"><br>
+			<input type="password" name="pwdChange2" placeholder="변경할 비밀번호 확인">
+			
+			<div class="settings_subtitle">연락처</div>
+			<input type="text" name="phone" value="<%=u.getUserPhone()%>">
+			
+			<div class="settings_subtitle">변경을 위해 현재 비밀번호가 필요합니다</div>
+			<input type="password" name="pwd" placeholder="현재 비밀번호" required><br>
+			
+			<button>변경</button>
+		</form>
 
-	    <div class="settings_subtitle">연락처</div>
-	    
-	    <button>변경</button>
-	    
-	    <div class="settings_subtitle">회원탈퇴</div>
+		<div class="settings_subtitle">회원탈퇴</div>
+
+		<button>탈퇴</button>
     </section>
     
     

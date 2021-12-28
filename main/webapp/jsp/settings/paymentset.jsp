@@ -14,8 +14,8 @@
     
     <section class="settings_box">
 		등록된 결제수단
-	    
-	    <button>변경</button>
+	
+        <button>변경</button>
     </section>
     
     
