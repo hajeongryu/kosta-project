@@ -22,6 +22,7 @@ List<Project> newlist = (List)request.getAttribute("new");
 
 
 <%
+if(!newlist.isEmpty() && newlist != null){
 	for( Project p : newlist){
 %>
 
@@ -29,7 +30,7 @@ List<Project> newlist = (List)request.getAttribute("new");
           <div class="item" >
               <!-- 사진 -->
                   <!--@@@ 사진클릭시 상품페이지로 -->
-              <a href="">
+              <a href="/rhollEE/projectdetail?projectNo=<%=p.getProjectNo()%>">
               		<img class="item-image" src="/rhollEE/images/mainpage/<%=p.getProjectNo() %>.jpeg" alt="l">
               </a>
               <%if(p.isLoginedUserProjectInterest()) {%>
@@ -49,7 +50,7 @@ List<Project> newlist = (List)request.getAttribute("new");
                   <!-- (이름, 세부 카테, 설명)-->
                   
                   <!--@@@ 상품클릭시 상품페이지로 -->
-                  <a href ="">
+                  <a href ="/rhollEE/projectdetail?projectNo=<%=p.getProjectNo()%>">
 					  <span class="title"><%=p.getLongTitle() %></span>
 				  </a>
                   <!-- 가격 -->
@@ -61,7 +62,8 @@ List<Project> newlist = (List)request.getAttribute("new");
           </div>
 
 
-<%} %>
+<%}
+	} %>
 
 
           <!-- 글 -->

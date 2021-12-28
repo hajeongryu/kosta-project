@@ -24,6 +24,7 @@
 <body>
 
 
+<section>
 <!-- 펀딩리리스트 -->
 <div class="fundingList" style="width: 1100px;">
   <!-- 게시판 이름 -->
@@ -268,6 +269,6 @@
 
 
 
-
+</section>
 </body>
 </html>

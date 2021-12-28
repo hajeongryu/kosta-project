@@ -26,14 +26,14 @@ List<Project> popularList = (List)request.getAttribute("popular");
 
 
 		<%
-		if(!popularList.isEmpty()){
+		if(!popularList.isEmpty() && popularList !=null){
 			for(Project p : popularList){
 		%>
 				  <!-- 글 -->
           <div class="item" >
               <!-- 사진 -->
                   <!--@@@ 사진클릭시 상품페이지로 -->
-              <a href="">
+              <a href="/rhollEE/projectdetail?projectNo=<%=p.getProjectNo()%>">
               		<img class="item-image" src="/rhollEE/images/mainpage/<%=p.getProjectNo() %>.jpeg" alt="l">
               </a>
               <%if(p.isLoginedUserProjectInterest()) {%>
@@ -53,7 +53,7 @@ List<Project> popularList = (List)request.getAttribute("popular");
                   <!-- (이름, 세부 카테, 설명)-->
                   
                   <!--@@@ 상품클릭시 상품페이지로 -->
-                  <a href ="">
+                  <a href ="/rhollEE/projectdetail?projectNo=<%=p.getProjectNo()%>">
 					  <span class="title"><%=p.getLongTitle() %></span>
 				  </a>
                   <!-- 가격 -->

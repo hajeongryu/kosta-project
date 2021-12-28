@@ -22,7 +22,6 @@
 
   <section>
     <!--본문-->
-    <%//@include file="./all_cate.jsp" %>
     
     <%@include file="./main_add.jsp" %>
     
