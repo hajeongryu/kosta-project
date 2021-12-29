@@ -50,12 +50,16 @@
 		<!-- 글 -->
 		<div class="item" >
 			<!-- 사진 -->
-			<img class="item-image" src="/rhollEE/images/mainpage/<%=p.getProjectNo() %>.jpeg" alt="l">
-			<button class="like"></button>
+			<!--@@@ 사진클릭시 상품페이지로 -->
+			<a href="/rhollEE/projectdetail?projectNo=<%=p.getProjectNo()%>">
+				<img class="item-image" src="/rhollEE/images/mainpage/<%=p.getProjectNo() %>.jpeg" alt="l">
+			</a>
 			<!-- 정보 -->
 			<div class="info">
 				<!-- (이름, 세부 카테, 설명)-->
-				<span class="title"><%=p.getLongTitle() %></span>
+				<a href ="/rhollEE/projectdetail?projectNo=<%=p.getProjectNo()%>">
+					<span class="title"><%=p.getLongTitle() %></span>
+				</a>
 				<div class ="catelink">
 					<!--@@@ 카테고리 클릭시 카테고리 페이지로 -->
 					<span class="category"><a href=""><%=p.getCategory().getCategoryName() %></a></span>
@@ -66,15 +70,16 @@
 				</div>
 				<span class="iteminfo"><%=p.getProjectBrief() %></span>
 
-				<!-- 가격 -->
-				<div class="priceAndPercent">
+				<!-- 알림 신청 버튼 -->
+				<button class="alarmrequest">알림 신청 완료</button>
+				<%-- <div class="priceAndPercent">
 					<span class="price"><%=formatter.format(p.getProjectChange().getSumPrice()) %>원</span>
 					<span class="percent"><%=p.getAchiveRate()%>%</span>
 					<span class="leftDay"> 
 						<img src="/rhollEE/images/mainpage/time.PNG">
 						<%=p.getRemainingDays() %>
 					</span>
-				</div>
+				</div> --%>
 			</div>
 		</div>
 	<%} %>
