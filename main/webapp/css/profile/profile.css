@@ -1,1 +1,53 @@
 @charset "UTF-8";
+
+#sidebar{
+	width: 300px;
+	height: 600px;
+	float: left;
+	}
+	
+/* top box 카운트 숫자 */
+.profile-h1 h1{
+    display: block;
+    padding: 0 0 4px;
+    line-height: 30px;
+    letter-spacing: -.6px;
+    font-size: 20px;
+    font-weight: 700;
+    font-style: normal;
+}
+	
+/* below box 한글(ex.팔로우, 메시지, 공지사항, 헬프센터, 창작자 가이드, 문의하기, 로그아웃 버튼 등) */
+.profile-h4 h4{
+    display: inline-block;
+    line-height: 28px;
+    letter-spacing: -.3px;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 24px;
+    color: #212529;
+}
+/* top box - 후원현황, 관심 프로젝트, 만든 프로젝트, 이름, 메이커팁 */
+.profile-h3 h3{
+    background-color: #fff;
+    padding: 8px 16px 16px;
+    line-height: 28px;
+    letter-spacing: -.3px;
+    font-size: 16px;
+    font-weight: 700;
+    font-style: normal;
+}
+/* 회원상태(?)=일반 유저,메이커 */
+.profile-ststus h6{
+    color: #868e96;
+    line-height: 18px;
+    letter-spacing: 0;
+    font-size: 12px;
+    font-weight: 400;
+    font-style: normal;
+}
+.profile-adbanner{
+    display: block;
+    height: 100%;
+}

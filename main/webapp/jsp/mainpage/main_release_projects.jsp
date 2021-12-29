@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.team.project.vo.Project"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,6 +7,9 @@
     
 <%
 List<Project> releaseList = (List)request.getAttribute("release");
+if(releaseList == null){
+	releaseList = new ArrayList<>();
+}
 
 %>
 <link rel="stylesheet" type="text/css" href="/rhollEE/css/mainpage/main_release_projects.css">

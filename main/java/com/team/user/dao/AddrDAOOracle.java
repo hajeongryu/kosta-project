@@ -50,7 +50,7 @@ public class AddrDAOOracle implements AddrDAOInterface {
 				addrs.add(a);
 			}
 			if(addrs.size()==0) {
-				throw new FindException("등록된 배송지가 없습니다");
+				return null;
 			}
 			return addrs;
 		} catch (SQLException e) {

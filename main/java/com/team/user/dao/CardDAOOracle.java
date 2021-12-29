@@ -50,7 +50,7 @@ public class CardDAOOracle implements CardDAOInterface {
 				cards.add(c);
 			}
 			if(cards.size() == 0) {
-				throw new FindException("등록된 카드가 없습니다");
+				return null;
 			}
 			return cards;
 		} catch (SQLException e) {

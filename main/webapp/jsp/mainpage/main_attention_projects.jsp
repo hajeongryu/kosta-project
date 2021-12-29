@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.team.project.vo.Project"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,6 +6,10 @@
     
 <%
 List<Project> attentionList = (List)request.getAttribute("list");
+
+if(attentionList == null){
+	attentionList = new ArrayList<>();
+}
 %>
 <link rel="stylesheet" type="text/css" href="/rhollEE/css/mainpage/main_attention_projects.css">
 

@@ -41,6 +41,7 @@ public class AccountSetServlet extends HttpServlet {
 			session.removeAttribute("loginInfo");
 			Users u2 = service.findByUserNo(userNo);
 			session.setAttribute("loginInfo", u2);
+			session.setMaxInactiveInterval(24*60*60);
 			response.sendRedirect("/rhollEE/jsp/settings/accountset.jsp");
 		} catch (ModifyException | FindException e) {
 			e.printStackTrace();
