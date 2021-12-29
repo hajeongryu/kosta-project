@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.team.exception.AddException;
 import com.team.exception.FindException;
 import com.team.order.vo.Order;
 import com.team.project.vo.Project;
@@ -16,7 +15,6 @@ import com.team.project.vo.Reward;
 import com.team.sql.MyConnection;
 import com.team.user.vo.Address;
 import com.team.user.vo.Card;
-import com.team.user.vo.Users;
 
 public class OrderDAOOracle implements OrderDAOInterface {
 	public static OrderDAOOracle dao = new OrderDAOOracle();
@@ -33,23 +31,29 @@ public class OrderDAOOracle implements OrderDAOInterface {
 		ResultSet rs = null; 
 		List<Order> orderlist = new ArrayList<Order>();
 		
-		String selectSQL = "SELECT o.payment_date"
-				+ "    ,o.payment_no "
-				+ "    ,p.project_image "
-				+ "    ,o.project_no "
-				+ "    ,p.long_title "
-				+ "    ,p.project_url "
-				+ "    ,p.end_date "
-				+ "    ,r.reward_no "
-				+ "    ,r.deliver_date "
-				+ "    ,o.total_price "
-				+ "    ,o.payment_result "
-				+ " FROM orders o "
-				+ " JOIN project p "
-				+ "    ON o.project_no=p.project_no "
-				+ " JOIN reward r "
-				+ "    ON r.reward_no=o.reward_no "
-				+ " WHERE o.user_no=?";
+		String selectSQL = "SELECT o.payment_result\r\n"
+				+ "    ,o.payment_date\r\n"
+				+ "    ,p.end_date\r\n"
+				+ "    ,o.payment_no\r\n"
+				+ "    ,p.project_image\r\n"
+				+ "    ,p.long_title\r\n"
+				+ "    ,r.deliver_select\r\n"
+				+ "    ,r.reward_name\r\n"
+				+ "    ,r.item_name\r\n"
+				+ "    ,r.deliver_date\r\n"
+				+ "    ,o.total_price\r\n"
+				+ "    ,p.project_url\r\n"
+				+ "    ,c.card_num\r\n"
+				+ "    ,a.receiver_name\r\n"
+				+ "    ,a.receiver_phone\r\n"
+				+ "    ,a.receiver_zipcode\r\n"
+				+ "    ,a.receiver_address\r\n"
+				+ "    ,a.receiver_address_detailed\r\n"
+				+ "FROM orders o JOIN project p ON o.project_no=p.project_no\r\n"
+				+ "            JOIN reward r ON r.reward_no=o.reward_no\r\n"
+				+ "            JOIN card c ON o.card_no = c.card_no\r\n"
+				+ "            JOIN address a ON o.address_no = a.address_no\r\n"
+				+ "WHERE o.user_no=?";
 		
 		try {
 			con = MyConnection.getConnection();
@@ -61,43 +65,69 @@ public class OrderDAOOracle implements OrderDAOInterface {
 				
 	
 				//Orders Table
+				String paymentResult = rs.getString("payment_result");
 				Date paymentDate = rs.getDate("payment_date");
 				int paymentNo = rs.getInt("payment_no");
 				int totalPrice = rs.getInt("total_price");
-				String paymentResult = rs.getString("payment_result");
 				Order o = new Order();
-				
+
+				o.setPaymentResult(paymentResult);
 				o.setPaymentDate(paymentDate);
 				o.setPaymentNo(paymentNo);
 				o.setTotalPrice(totalPrice);
-				o.setPaymentResult(paymentResult);
 				
 				
 				//[JOIN]Project Table
+				Date endDate = rs.getDate("end_date");
 				String projectImage = rs.getString("project_image");
 				String longTitle = rs.getString("long_title"); 
 				String projectUrl = rs.getString("project_url");
 				int	projectNo = rs.getInt("project_no");
-				Date endDate = rs.getDate("end_date");
 
-				Project joinedP = new Project();
-				joinedP.setProjectImage(projectImage);
-				joinedP.setLongTitle(longTitle);
-				joinedP.setProjectUrl(projectUrl);
-				joinedP.setEndDate(endDate);
-				joinedP.setProjectNo(projectNo);
+				Project project = new Project();
+				project.setEndDate(endDate);
+				project.setProjectImage(projectImage);
+				project.setLongTitle(longTitle);
+				project.setProjectUrl(projectUrl);
+				project.setProjectNo(projectNo);
 				
-				o.setProject(joinedP);
+				o.setProject(project);
 				
 			
 				//[JOIN] Reward Table
-				int rewardNo = rs.getInt("reward_no");
+				String deliverSelect = rs.getString("deliver_select");
+				String rewardName = rs.getString("reward_name");
+				String itemName = rs.getString("item_name");
 				int deliverDate = rs.getInt("deliver_date");
 				
-				Reward joinedR = new Reward();
-				joinedR.setRewardNo(rewardNo);
-				joinedR.setDeliverDate(deliverDate);
-				o.setReward(joinedR);
+				Reward reward = new Reward();
+				reward.setDeliverSelect(deliverSelect);
+				reward.setRewardName(rewardName);
+				reward.setItemName(itemName);
+				reward.setDeliverDate(deliverDate);
+				o.setReward(reward);
+				
+				//[JOIN] Card Table
+				String cardNum = rs.getString("card_num");
+				
+				Card card = new Card();
+				card.setCardNum(cardNum);
+				o.setCard(card);
+				
+				//[JOIN] Address Table
+				String receiverName = rs.getString("receiver_name");
+				String receiverPhone = rs.getString("receiver_phone");
+				int receiverZipcode = rs.getInt("receiver_zipcode");
+				String receiverAddress = rs.getString("receiver_address");
+				String receiverAddressDetailed = rs.getString("receiver_address_detailed");
+				
+				Address address = new Address();
+				address.setReceiverName(receiverName);
+				address.setReceiverPhone(receiverPhone);
+				address.setReceiverZipcode(receiverZipcode);
+				address.setReceiverAddress(receiverAddress);
+				address.setReceiverAddressDetailed(receiverAddressDetailed);
+				o.setAddress(address);
 				
 				orderlist.add(o);
 			}	

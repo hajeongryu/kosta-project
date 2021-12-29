@@ -23,7 +23,10 @@ public class Address {
 	private String receiverPhone;
 	private String defaultAddress;
 	
-	
+	public Address() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Address(int addressNo, Users user, String receiverName, int receiverZipcode, String receiverAddress,
 			String receiverAddressDetailed, String receiverPhone, String defaultAddress) {
