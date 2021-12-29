@@ -58,6 +58,23 @@ public class AddrService {
 	}
 	
 	
+	public void modifyDefaultAddress(int addressNo, int userNo, String receiverName, int receiverZipcode, 
+			String receiverAddress, String receiverAddressDetailed, String receiverPhone,
+			String defaultAddress) throws ModifyException {
+		
+		Users u;
+		try {
+			u = userDao.findByUserNo(userNo);
+			Address a = new Address(addressNo, u, receiverName, receiverZipcode, receiverAddress,
+					receiverAddressDetailed, receiverPhone, defaultAddress);
+			dao.modifyDefaultAddress(a);
+		} catch (FindException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
 	public void removeAddrService(int addressNo) throws RemoveException {
 		try {
 			Address a = dao.findByAddressNo(addressNo);

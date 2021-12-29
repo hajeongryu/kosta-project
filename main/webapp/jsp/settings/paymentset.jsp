@@ -29,20 +29,20 @@ List<Card> cards = cardService.findByUserNo(userNo);
     <jsp:include page="./settingsheader.jsp"/>
     
     <section class="settings_box">
-		결제수단 추가
+		<div class="settings_subtitle">결제수단 추가</div>
 		<div class="card_box">
 			<form method="post" action="<%=request.getContextPath()%>/cardadd">
 				<input type="text" value="<%=userNo%>" name="userNo" class="invisible">
-				카드번호 <input type="text" name="cardNum" required><br>
-				유효기한 <input type="date" name="cardValidDate" required><br>
-				비밀번호 <input type="password" name="cardPwd" required><br>
-				생년월일 <input type="text" name="cardOwnerBirth" placeholder="ex)19910101" required><br>
-				기본결제수단으로 등록 <input type="checkbox" name="defaultCard" checked>
+				<span class="address_value_name">카드번호</span> <input type="text" name="cardNum" size="40" required><br>
+				<span class="address_value_name">유효기한</span> <input type="date" name="cardValidDate" size="40" required><br>
+				<span class="address_value_name">비밀번호</span> <input type="password" name="cardPwd" size="40" required><br>
+				<span class="address_value_name">생년월일</span> <input type="text" name="cardOwnerBirth" placeholder="ex)19910101" size="40" required><br>
+				기본결제수단으로 등록 <input type="checkbox" name="defaultCard" size="40" checked>
 				<button>추가</button>
 			</form>
 		</div>
 		<hr>
-		등록된 결제수단
+		<div class="settings_subtitle">등록된 결제수단</div>
 <% 
 if(cards != null){
 for(Card card : cards){
@@ -59,10 +59,10 @@ for(Card card : cards){
 
 
 		<div class="card_box">
-			카드번호 <%=cardNum %><br>
-			유효기간 <%=cardValidDate%><br>
-			생년월일 <%=cardOwnerBirth %><br>
-			기본결제수단여부 <%=defaultCardOX%><br>
+			<span class="address_value_name">카드번호</span> <input type="text" name="receiverName" value="<%=cardNum%>" size="40" readonly><br>
+			<span class="address_value_name">유효기간</span> <input type="text" name="receiverName" value="<%=cardValidDate%>" size="40" readonly><br>
+			<span class="address_value_name">생년월일</span> <input type="text" name="receiverName" value="<%=cardOwnerBirth%>" size="40" readonly><br>
+			<span id="default_value">기본배송지여부</span> <%=defaultCardOX%><br>
 			<form action="<%=request.getContextPath()%>/cardmodify">
 				<input type="text" class="invisible" value="<%=cardNo%>" name="cardNo">
 				<button id="card_default">기본결제수단으로 변경</button>

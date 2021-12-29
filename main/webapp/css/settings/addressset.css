@@ -5,35 +5,31 @@
 	font-weight: bold;
 	font-size: 16px;
 }
+.address_box2 {
+	display: flex;
+	justify-content: flex-start;
+}
 .invisible {
 	display: none;
 }
-div.address_box1 {
+div.address_box {
 	max-width: fit-content;
-	height: 170px;
+	max-height: fit-content;
 	padding: 20px;
 	border: 1px solid gray;
 	border-radius: 4px;
 	margin: 20px;
 	font-size: 10px;
 }
-div.address_box1>span {
+
+span.address_value_name {
 	display: inline-block;
-	width: 30px;
+	width: 40px;
 }
-div.address_box2 {
-	width: 300px;
-	height: 110px;
-	padding: 20px;
-	border: 1px solid gray;
-	border-radius: 4px;
-	margin: 20px;
-	font-size: 10px;
-}
-button#address_modify {
+
+span#default_value {
 	display: inline-block;
-}
-button#address_remove {
-	display: inline-block;
+	height: 21px;
+	line-height: 21px;
 }
 

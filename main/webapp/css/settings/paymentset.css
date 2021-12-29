@@ -11,7 +11,7 @@
 }
 div.card_box {
 	max-width: fit-content;
-	height: 140px;
+	max-height: fit-content;
 	padding: 20px;
 	border: 1px solid gray;
 	border-radius: 4px;
@@ -20,4 +20,13 @@ div.card_box {
 }
 .invisible {
 	display: none;
+}
+span.address_value_name {
+	display: inline-block;
+	width: 40px;
+}
+span#default_value {
+	display: inline-block;
+	height: 21px;
+	line-height: 21px;
 }
