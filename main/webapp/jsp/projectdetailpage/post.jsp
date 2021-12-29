@@ -33,8 +33,8 @@ Users loginedUser = (Users)session.getAttribute("loginInfo");
 <%
 if(posts != null){
 for(Community post: posts){
-	//int projectNo = post.getProject().getProjectNo();
 	
+	int projectNo = post.getProject().getProjectNo();
 	int postNo = post.getPostNo();
 	String makerName = post.getMaker().getUserName();
 	java.util.Date postDate = post.getPostDate();
@@ -62,7 +62,7 @@ for(Community post: posts){
 					<td>
 					<form method="post" action="<%=request.getContextPath()%>/postadd" >
 					<input type="text" style="height:100px;" class="form-control" placeholder="댓글 내용" name="postText">
-					<input type="hidden" name="projectNo" value="<%=pjNo%>">
+					<input type="hidden" name="projectNo" value="<%=projectNo%>">
 					</td>
 					<td><br><br><input type="submit" class="pull" value="댓글 작성"></td>
 					</tr>
