@@ -62,7 +62,6 @@ for(Community post: posts){
 					<td>
 					<form method="post" action="/postadd">
 					<input type="text" style="height:100px;" class="form-control" placeholder="댓글 내용" name="postText">
-					<input type="hidden" name="postNo" value="<%=postNo%>">
 					</td>
 					<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>
 				</tr>
