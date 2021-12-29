@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.util.List;
 
 import com.team.exception.FindException;
+import com.team.order.service.OrderService;
 import com.team.order.vo.Order;
 import com.team.project.service.ProjectService;
 import com.team.project.vo.Project;
 import com.team.user.service.InterestService;
-import com.team.user.service.OrderService;
 import com.team.user.vo.Users;
 
 import jakarta.servlet.RequestDispatcher;
@@ -43,7 +43,7 @@ public class ProfileServlet extends HttpServlet {
 		  //TODO:1.로그인 한 유저가 만든 프로젝트 2.로그인 한 유저가 후원(결제)한 프로젝트  3.로그인한 유저가 좋아(알림신청)한 프로젝트
 		  
 		  ProjectService proejctService = ProjectService.getInstance();
-		  OrderService orderService = OrderService.getInstace();
+		  OrderService orderService = OrderService.getInstance();
 		InterestService interestService = InterestService.getInstance();
 
 		  try {
@@ -54,8 +54,9 @@ public class ProfileServlet extends HttpServlet {
 				request.setAttribute("projectSize", ProejctListMadeByLoginedUser.size());
 				
 				//2.로그인한 유저가 후원한 프로젝트
-				List<Order> OrderListByLoginedUser = orderService.findByUserNo(Integer.parseInt(loginedUserNo));
-				request.setAttribute("orderSize", OrderListByLoginedUser.size());
+				int  orderCount= orderService.countOrderProjects(Integer.parseInt(loginedUserNo));
+
+				request.setAttribute("orderSize", orderCount);
 				
 				
 				//3.로그인한 유저가 좋아한 프로젝트
