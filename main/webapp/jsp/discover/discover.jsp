@@ -19,7 +19,7 @@
 %>
 <%@ include file="../menu.jsp" %>
 <meta charset="UTF-8">
-<title>재미있는 펀딩의 시작! Rholling IDEAS</title>
+<title>Rholling Ideas - 재미있는 펀딩의 시작!</title>
 </head>
 <body>
 
@@ -60,7 +60,9 @@
      <!-- 글 -->
           <div class="item" >
               <!-- 사진 -->
-				<img class="item-image" src="/rhollEE/images/mainpage/<%=p.getProjectNo() %>.jpeg" alt="l">
+				<a href="/rhollEE/projectdetail?projectNo=<%=p.getProjectNo()%>">
+					<img class="item-image" src="/rhollEE/images/mainpage/<%=p.getProjectNo() %>.jpeg" alt="l">
+				</a>
 				<% if(p.isLoginedUserProjectInterest()){ %>
 					<button class="like"></button>
 				<%}else { %>
@@ -69,7 +71,10 @@
               <!-- 정보 -->
               <div class="info">
                   <!-- (이름, 세부 카테, 설명)-->
-				  <span class="title"><%=p.getLongTitle() %></span>
+
+				   <a href="/rhollEE/projectdetail?projectNo=<%=p.getProjectNo()%>">
+					  <span class="title"><%=p.getLongTitle() %></span>
+				  </a>
                   <div class ="catelink">
 					  <!--@@@ 카테고리 클릭시 카테고리 페이지로 -->
 					 <span class="category"><a href=""><%=p.getCategory().getCategoryName() %></a></span>
