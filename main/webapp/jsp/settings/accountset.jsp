@@ -9,7 +9,8 @@
 	<link href="<%=request.getContextPath()%>/css/settings/accountset.css" rel="stylesheet" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/settings/accountset.js"></script>
-<title>Rholling Ideas</title>
+	<title>Rholling Ideas - 재미있는 펀딩의 시작!</title>
+
 </head>
 <body>
     <jsp:include page="../menu.jsp"/>

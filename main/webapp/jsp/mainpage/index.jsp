@@ -18,6 +18,7 @@
   <header>
     <!-- 메뉴 -->
     <%@ include file="../menu.jsp" %>
+	<title> Rholling Ideas - 재미있는 펀딩의 시작!</title>
   </header>
 
   <section>

@@ -106,7 +106,7 @@ public class CardDAOOracle implements CardDAOInterface {
 		ResultSet rs = null;
 		List<Card> cards = new ArrayList<>();
 		String selectSQL = "SELECT * FROM card WHERE user_no=?";
-		String zeroUpdateDML ="UPDATE card SET default_card='0' WHERE card_no=?";
+		String zeroUpdateDML ="UPDATE card SET default_card='0' WHERE user_no=?";
 		String defaultUpdateDML = "UPDATE card SET default_card='1' WHERE card_no=?";
 		try {
 			con = MyConnection.getConnection();
@@ -127,10 +127,9 @@ public class CardDAOOracle implements CardDAOInterface {
 			}
 			//리스트에 저장된 카드들의 카드번호로 defaultCard 모두 0으로 변경
 			pstmt2 = con.prepareStatement(zeroUpdateDML);
-			for(int i=0; i<cards.size(); i++) {
-				pstmt2.setInt(1, cards.get(i).getCardNo());
-				pstmt2.executeUpdate();
-			}
+			pstmt2.setInt(1, card.getUser().getUserNo());
+			pstmt2.executeUpdate();
+			
 			//기본결제수단으로 설정할 카드만 defaultCard 1로 변경
 			pstmt3 = con.prepareStatement(defaultUpdateDML);
 			pstmt3.setInt(1, card.getCardNo());
