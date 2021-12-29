@@ -143,7 +143,7 @@ public class AddrDAOOracle implements AddrDAOInterface {
 		ResultSet rs = null;
 		List<Address> addrs = new ArrayList<>();
 		String selectSQL = "SELECT * FROM address WHERE user_no=?";
-		String zeroUpdateDML ="UPDATE address SET default_address='0' WHERE address_no=?";
+		String zeroUpdateDML ="UPDATE address SET default_address='0' WHERE user_no=?";
 		String defaultUpdateDML = "UPDATE address SET default_address='1' WHERE address_no=?";
 		try {
 			con = MyConnection.getConnection();
@@ -164,10 +164,9 @@ public class AddrDAOOracle implements AddrDAOInterface {
 			}
 			//리스트에 저장된 배송지들의 배송지번호로 defaultAddress 모두 0으로 변경
 			pstmt2 = con.prepareStatement(zeroUpdateDML);
-			for(int i=0; i<addrs.size(); i++) {
-				pstmt2.setInt(1, addrs.get(i).getAddressNo());
-				pstmt2.executeUpdate();
-			}
+			pstmt2.setInt(1, address.getUser().getUserNo());
+			pstmt2.executeUpdate();
+			
 			//기본배송지로 설정할 배송지만 defaultCard 1로 변경
 			pstmt3 = con.prepareStatement(defaultUpdateDML);
 			pstmt3.setInt(1, address.getAddressNo());

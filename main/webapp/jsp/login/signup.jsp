@@ -3,15 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login/signup.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/login/signup.js"></script>
-<script>
-       $(function(){
-			
-       });
-</script>
-<title>Rholling Ideas</title>
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login/signup.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/login/signup.js"></script>
+	<script>
+	       $(function(){
+				
+	       });
+	</script>
+	<title>Rholling Ideas - 재미있는 펀딩의 시작!</title>
 </head>
 <body>
     <div class="logo">
