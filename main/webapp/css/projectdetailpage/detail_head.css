@@ -41,15 +41,18 @@
  flex-direction: column;
 }
 
+
 .ingbox{
     border: 1px solid darkgrey;
     border-radius: 4px;
     width: 100%;
     margin-top: 5px;
-    padding: 11px;
+    padding: 5px;
 }
 
 .bot{
   display: flex;
 }
-
+.postcon{
+	
+}

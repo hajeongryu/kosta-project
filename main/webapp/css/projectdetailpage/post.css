@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.postbox{
+	height: 300px;
+    margin: 0px auto;
+    border: 1px solid darkgrey;
+    border-radius: 4px;
+    margin-top: 5px;
+    padding: 11px;
+}
+.cmtbox{
+	margin: 0px auto;
+    border: 1px solid darkgrey;
+    border-radius: 4px;
+    margin-top: 5px;
+    padding: 11px;
+}

@@ -12,20 +12,15 @@
 <!DOCTYPE html>
 <html>
 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/projectdetailpage/post.css">
+
 <body>
 
 	<% 	
 		List<Community> posts = (List)request.getAttribute("findedPost");
 		Users loginedUser = (Users)session.getAttribute("loginInfo");
 	%>
-		<table>
-			<tr>
-				<th>게시글번호</th>
-				<th>글번호</th>
-				<th>작성자</th>
-				<th>글내용</th>
-				<th>글작성일</th>
-			</tr>
+		
 
 			<% 
 			if(posts !=null){ 
@@ -36,21 +31,48 @@
 					java.util.Date postDate=post.getPostDate(); 
 					String postCon=post.getPostContent(); 		
 			%>
-				<tr>
-					<td>게시글번호<%=postNo %>
-					</td>
-					<td>작성자이름<%=makerName %>
-					</td>
-					<td>게시글작성일<%=postDate %>
-					</td>
-					<td>게시글내용<%=postCon %>
-					</td>
-				</tr>
-			</table>
-
+					<div>
+					<h2>커뮤니티</h2>
+					</div>					
+					<div style="display:none;">
+						게시글번호<br>
+						<%=postNo %>
+					</div>
+					<div>
+						<br>
+						<%=makerName %>
+						<br>
+						<%=postDate %>
+					</div>
+					<div class="postbox">
+						게시글내용<br>
+						<%=postCon %>
+					</div>
+										<div>
+											<div style="border-bottom:none;" valign="middle"><br>
+												<br>
+												<%if(loginedUser !=null){ %>
+													<%=loginedUser.getUserName()%>
+														<%} %>
+											</div>
+											<div>
+											<form method="post" action="<%=request.getContextPath()%>/postadd">
+												<div>
+													<input type="text" style=" height:100px;" class="form-control"
+														placeholder="커뮤니티 게시글 작성" name="postText">
+													<input type="hidden" name="projectNo" value="<%=projectNo%>">
+													<input type="submit" class="pull" value="작성">
+												</div>
+											</form>
+											</div>
+										</div>
+					
+					
 				<a href="javascript:doDisplay();">
-					<button>댓글</button>
+					<button>댓글접기</button>
 				</a>
+				
+				
 				<script>
 					function doDisplay() {
 						var con = document.getElementById("cmt");
@@ -61,15 +83,8 @@
 						}
 					}
 				</script>
-
-					<table id="cmt" class="commentlist">
-						<tr>
-							<th>커뮤니티번호</th>
-							<th>댓글번호</th>
-							<th>작성자</th>
-							<th>댓글내용</th>
-							<th>댓글작성일</th>
-						</tr>
+					<div id="cmt" class="commentlist">
+						
 						<% 
 							List<Comments> cmt = post.getComments();
 							for(Comments comment: cmt){
@@ -79,44 +94,29 @@
 							postNo = comment.getPost().getPostNo();
 							String commentCon = comment.getCommentContent();
 						%>
-							<tr>
-								<td>게시글번호 <%=postNo %>
-								</td>
-								<td>댓글번호 <%=commentNo %>
-								</td>
-								<td>댓글작성자 <%=makers %>
-								</td>
-								<td>댓글내용<%=commentCon %>
-								</td>
-								<td>댓글작성일 <%=commentDate %>
-								</td>
-							</tr>
+							<div class="cmtbox">
+								<div style="display:none;">
+									게시글번호 
+									<%=postNo %>
+								</div>
+								<div style="display:none;">
+									댓글번호 
+									<%=commentNo %>
+								</div>
+								<div> 
+									<%=makers %>
+									<%=commentDate %>
+								</div>
+								<div>
+									댓글내용
+									<%=commentCon %>
+								</div>
+							</div>
 							<% } %>
-										<tr>
-											<td style="border-bottom:none;" valign="middle"><br>
-												<br>
-												<%if(loginedUser !=null){ %>
-													<%=loginedUser.getUserName()%>
-														<%} %>
-											</td>
-											<table>
-											<form method="post" action="<%=request.getContextPath()%>/postadd">
-												<td>
-													<input type="text" style="height:100px;" class="form-control"
-														placeholder="댓글 내용" name="postText">
-													<input type="hidden" name="projectNo" value="<%=projectNo%>">
-												</td>
-												<td>
-													<br><br><input type="submit" class="pull" value="커뮤니티게시글 작성">
-												</td>
-											</form>
-											</table>
-										</tr>
-										<tr>
-											<td colspan="3"><input type="file" name="fileName"></td>
-										</tr>
+	
 								<% } } %>
-					</table>
+								
+					</div>
 
 
 
