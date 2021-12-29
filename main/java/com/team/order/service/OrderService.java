@@ -27,6 +27,16 @@ public class OrderService {
 	}
 	
 	/**
+	 * 주문번호를 통해 주문정보를 불러온다
+	 * @param payment_no 주문번호
+	 * @return 주문정보
+	 * @throws FindException
+	 */
+	public Order findByPaymentNo(int payment_no) throws FindException{
+		return dao.findByPaymentNo(payment_no);
+	}
+	
+	/**
 	 * 사용자가 주문한 목록을 반환한다
 	 * @param userNo 유저번호
 	 * @return 주문한 목록들

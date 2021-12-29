@@ -9,21 +9,12 @@
     pageEncoding="UTF-8"%>
     
 <!DOCTYPE html>
+<html>
 <head>
+  <title>Rholling Ideas - 재미있는 펀딩의 시작!</title>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/profile/interestproject.css">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/profile/orderproject.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="<%=request.getContextPath()%>/jsp/menu.jsp"></script>
-  
-  <script src="<%=request.getContextPath()%>/js/profile/interestprojectresult.js"></script>
-  <script>
-  	$(function(){
-  		/*--메뉴 클릭 되었을 때 START--*/
-  		menuClick();
-  		/*--메뉴 클릭 되었을 때 END--*/
-  	});
-  </script>
 </head>
 
 <body>
@@ -276,3 +267,4 @@
     </div>
   </section>
 </body>
+</html>

@@ -10,11 +10,14 @@ import java.util.List;
 
 import com.team.exception.FindException;
 import com.team.order.vo.Order;
+import com.team.project.vo.Category;
 import com.team.project.vo.Project;
+import com.team.project.vo.ProjectChange;
 import com.team.project.vo.Reward;
 import com.team.sql.MyConnection;
 import com.team.user.vo.Address;
 import com.team.user.vo.Card;
+import com.team.user.vo.Users;
 
 public class OrderDAOOracle implements OrderDAOInterface {
 	public static OrderDAOOracle dao = new OrderDAOOracle();
@@ -43,24 +46,15 @@ public class OrderDAOOracle implements OrderDAOInterface {
 				+ "    ,r.deliver_date\r\n"
 				+ "    ,o.total_price\r\n"
 				+ "    ,p.project_url\r\n"
-				+ "    ,c.card_num\r\n"
-				+ "    ,a.receiver_name\r\n"
-				+ "    ,a.receiver_phone\r\n"
-				+ "    ,a.receiver_zipcode\r\n"
-				+ "    ,a.receiver_address\r\n"
-				+ "    ,a.receiver_address_detailed\r\n"
 				+ "FROM orders o JOIN project p ON o.project_no=p.project_no\r\n"
 				+ "            JOIN reward r ON r.reward_no=o.reward_no\r\n"
-				+ "            JOIN card c ON o.card_no = c.card_no\r\n"
-				+ "            JOIN address a ON o.address_no = a.address_no\r\n"
 				+ "WHERE o.user_no=?";
 		
 		try {
 			con = MyConnection.getConnection();
 			pstmt = con.prepareStatement(selectSQL);
 			pstmt.setInt(1, userNo);
-			rs = pstmt.executeQuery(); 
-		    System.out.println("1");
+			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				
 	
@@ -105,6 +99,128 @@ public class OrderDAOOracle implements OrderDAOInterface {
 				reward.setDeliverDate(deliverDate);
 				o.setReward(reward);
 				
+				orderlist.add(o);
+			}	
+			if(orderlist.isEmpty()) {
+				throw new FindException("후원 내역이 없습니다.");
+			}
+			return orderlist;
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw new FindException();
+		}finally {
+			MyConnection.close(rs,pstmt,con);
+		}
+	}
+	
+	public Order findByPaymentNo(int payment_no) throws FindException {
+		Connection con = null; 
+		PreparedStatement pstmt = null; 
+		ResultSet rs = null; 
+		Order o = new Order();
+		
+		String selectSQL = "SELECT o.payment_result\r\n"
+				+ "    ,o.payment_date\r\n"
+				+ "    ,p.end_date\r\n"
+				+ "    ,o.payment_no\r\n"
+				+ "    ,p.project_image\r\n"
+				+ "    ,p.long_title\r\n"
+				+ "    ,r.deliver_select\r\n"
+				+ "    ,r.reward_name\r\n"
+				+ "    ,r.item_name\r\n"
+				+ "    ,r.deliver_date\r\n"
+				+ "    ,o.total_price\r\n"
+				+ "    ,p.project_url\r\n"
+				+ "    ,c.card_num\r\n"
+				+ "    ,a.receiver_name\r\n"
+				+ "    ,a.receiver_phone\r\n"
+				+ "    ,a.receiver_zipcode\r\n"
+				+ "    ,a.receiver_address\r\n"
+				+ "    ,a.receiver_address_detailed\r\n"
+				+ "    ,cate.category_name\r\n"
+				+ "    ,u.user_name\r\n"
+				+ "    ,pc.sum_price\r\n"
+				+ "    ,p.target_price\r\n"
+				+ "FROM orders o JOIN project p ON o.project_no=p.project_no\r\n"
+				+ "            JOIN reward r ON r.reward_no=o.reward_no\r\n"
+				+ "            JOIN card c ON o.card_no = c.card_no\r\n"
+				+ "            JOIN address a ON o.address_no = a.address_no\r\n"
+				+ "            JOIN category cate ON cate.category_no = p.category_no\r\n"
+				+ "            JOIN users u ON p.user_no = u.user_no\r\n"
+				+ "            JOIN project_change pc ON p.project_no = pc.project_no\r\n"
+				+ "WHERE o.payment_no=?";
+		
+		try {
+			con = MyConnection.getConnection();
+			pstmt = con.prepareStatement(selectSQL);
+			pstmt.setInt(1, payment_no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				
+	
+				//Orders Table
+				String paymentResult = rs.getString("payment_result");
+				Date paymentDate = rs.getDate("payment_date");
+				int paymentNo = payment_no;
+				int totalPrice = rs.getInt("total_price");
+
+				o.setPaymentResult(paymentResult);
+				o.setPaymentDate(paymentDate);
+				o.setPaymentNo(paymentNo);
+				o.setTotalPrice(totalPrice);
+				
+				//[JOIN]Category Table
+				String categoryName = rs.getString("category_name");
+				
+				Category cate = new Category();
+				cate.setCategoryName(categoryName);
+				
+				//[JOIN]Users Table
+				String userName = rs.getString("user_name");
+				
+				Users user = new Users();
+				user.setUserName(userName);
+				
+				//[JOIN]Project Change Table
+				int sumPrice = rs.getInt("sum_price");
+				
+				ProjectChange pc = new ProjectChange();
+				pc.setSumPrice(sumPrice);
+				
+				//[JOIN]Project Table
+				Date endDate = rs.getDate("end_date");
+				String projectImage = rs.getString("project_image");
+				String longTitle = rs.getString("long_title"); 
+				String projectUrl = rs.getString("project_url");
+				int targetPrice = rs.getInt("target_price");
+
+				Project project = new Project();
+				project.setEndDate(endDate);
+				project.setProjectImage(projectImage);
+				project.setLongTitle(longTitle);
+				project.setProjectUrl(projectUrl);
+				project.setTargetPrice(targetPrice);
+				
+				project.setCategory(cate);
+				project.setMaker(user);
+				project.setProjectChange(pc);
+				o.setProject(project);
+				
+			
+				//[JOIN] Reward Table
+				String deliverSelect = rs.getString("deliver_select");
+				String rewardName = rs.getString("reward_name");
+				String itemName = rs.getString("item_name");
+				int deliverDate = rs.getInt("deliver_date");
+				
+				Reward reward = new Reward();
+				reward.setDeliverSelect(deliverSelect);
+				reward.setRewardName(rewardName);
+				reward.setItemName(itemName);
+				reward.setDeliverDate(deliverDate);
+				o.setReward(reward);
+				
 				//[JOIN] Card Table
 				String cardNum = rs.getString("card_num");
 				
@@ -126,17 +242,12 @@ public class OrderDAOOracle implements OrderDAOInterface {
 				address.setReceiverAddress(receiverAddress);
 				address.setReceiverAddressDetailed(receiverAddressDetailed);
 				o.setAddress(address);
-				
-				orderlist.add(o);
-			}	
-			if(orderlist.isEmpty()) {
-				throw new FindException("후원 내역이 없습니다.");
 			}
-			return orderlist;
+			return o;
 			
 		}catch (Exception e) {
 			e.printStackTrace();
-			throw new FindException();
+			throw new FindException(e.getMessage());
 		}finally {
 			MyConnection.close(rs,pstmt,con);
 		}
@@ -195,19 +306,17 @@ public class OrderDAOOracle implements OrderDAOInterface {
 			MyConnection.close(stmt, con);
 		}
 	}
-	public static void main(String[] args) {
-		OrderDAOOracle dao= OrderDAOOracle.getInstance();
-		List<Order> o = new ArrayList<>();
-		try {
-			o = dao.findByUserNo(1);
-			for(Order a: o) {
-				System.out.println(a.getPaymentNo());
-			}
-		} catch (FindException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+//	public static void main(String[] args) {
+//		OrderDAOOracle dao= OrderDAOOracle.getInstance();
+//		Order o = new Order();
+//		try {
+//			o = dao.findByPaymentNo(1);
+//			System.out.println(o.getPaymentResult());
+//		} catch (FindException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//	}
 }
 	
