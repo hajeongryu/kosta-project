@@ -14,6 +14,11 @@ public class UserService {
 		return service;
 	}
 	
+	public Users findByUserNo(int userNo) throws FindException {
+		Users u = dao.findByUserNo(userNo);
+		return u;
+	}
+	
 	
 	public Users login(String userId, String userPwd) throws FindException {
 		try {

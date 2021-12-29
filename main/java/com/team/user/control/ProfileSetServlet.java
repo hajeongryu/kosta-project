@@ -22,6 +22,7 @@ public class ProfileSetServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Users u = (Users)session.getAttribute("loginInfo");
+		
 		int userNo = u.getUserNo();
 		String userImage = request.getParameter("image");
 		String userName = request.getParameter("name");
@@ -34,6 +35,7 @@ public class ProfileSetServlet extends HttpServlet {
 			session.removeAttribute("loginInfo");
 			Users u2 = service.findByUserNo(userNo);
 			session.setAttribute("loginInfo", u2);
+			session.setMaxInactiveInterval(24*60*60);
 			response.sendRedirect("/rhollEE/jsp/settings/profileset.jsp");
 		} catch (ModifyException | FindException e) {
 			e.printStackTrace();

@@ -42,3 +42,6 @@
     padding: 128px 0px 151px;
     text-align: center;
 }
+.no-content>img{
+	width: 75px;
+}

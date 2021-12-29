@@ -5,6 +5,16 @@
 	font-weight: bold;
 	font-size: 16px;
 }
-.settings_box button {
-	margin: 30px 0;
+#address_add {
+	display: flex;
+	margin: 20px;
+}
+div.address_box {
+	max-width: fit-content;
+	height: 110px;
+	padding: 20px;
+	border: 1px solid gray;
+	border-radius: 4px;
+	margin: 20px;
+	font-size: 10px;
 }
