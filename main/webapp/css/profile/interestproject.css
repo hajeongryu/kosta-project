@@ -45,3 +45,17 @@
 .no-content>img{
 	width: 75px;
 }
+
+.alarmrequest{
+	height: 37px;
+	display: flex;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 4px;
+    color: rgb(109, 109, 109);
+    font-size: 14px;
+    font-weight: 600;
+    background: white;
+    padding-top: 7px;
+}
