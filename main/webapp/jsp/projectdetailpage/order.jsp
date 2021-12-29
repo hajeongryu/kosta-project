@@ -82,10 +82,13 @@
 				<div class="title"><h3>선물정보</h3></div>
 				<div class="boxform">
 					<%if(buyReward != null) {%>
-						<div class="bot-item">선물구성:<%=buyReward.getRewardName()%>
-							<%=buyReward.getItemName()%></div>
-						<div class="bot-item">선물금액:<%=buyReward.getRewardPrice()%>원</div>
-						<div class="bot-item">예상 전달일:<%=buyReward.getDeliverDate()%></div>
+						<div class="box-item">선물구성 : <%=buyReward.getRewardName()%>
+							  <% if(buyReward.getItemName() != null){%>
+									 (<%=buyReward.getItemName()%>)
+							 <%}%>
+								 </div>
+						<div class="box-item">선물금액 : <%=buyReward.getRewardPrice()%>원</div>
+						<div class="box-item">예상 전달일 : <%=buyReward.getDeliverDate()%></div>
 
 					<%}%>
 				</div>
@@ -93,9 +96,8 @@
 				<div class="title"><h3>후원자 정보</h3></div>
 				<div class="boxform">
 				<%if(u != null) {%>
-                <div class="bot-item">연락처:<%=u.getUserPhone() %></div>
-                <div class="bot-item">이메일:"
-                    <%=u.getUserId() %></div>
+                <div class="box-item">연락처 : <%=u.getUserPhone()%></div>
+                <div class="box-item">이메일 : <%=u.getUserId() %></div>
 				<%} %>
 				</div>
 
@@ -115,14 +117,13 @@
 		%>
 				<div class="title"><h3>배송지</h2></div>
 				<div class="boxform">
-                <%=receiverName%><br>
-                [<%=receiverZipcode%>]
-                <%=receiverAddress%>
-                <%=receiverAddressDetailed%><br>
-                <%=receiverPhone%><br>
-                기본배송지여부
-                <%=defaultAddressOX%><br>
-                <button id="address_default">선택</button>
+                <div class="box-item">받는사람 : <%=receiverName%></div>
+                <div class="box-item">우편번호 : <%=receiverZipcode%></div>
+                <div class="box-item"><%=receiverAddress%> 
+									   <%=receiverAddressDetailed%></div>
+               <div class="box-item">받는사람 전화번호 : <%=receiverPhone%></div>
+                
+                <div class="box-item">기본배송지여부<%=defaultAddressOX%></div>
 				</div>
             <%
 	}
@@ -143,15 +144,10 @@
 						}
 				%>
 					    <div class="boxform">
-                        카드번호
-                        <%=cardNum %><br>
-                        유효기간
-                        <%=cardValidDate%><br>
-                        생년월일
-                        <%=cardOwnerBirth %><br>
-                        기본결제수단여부
-                        <%=defaultCardOX%><br>
-                        <button id="card_default">선택</button>
+                        <div class="box-item">카드번호 <%=cardNum %></div>
+                        <div class="box-item">유효기간 <%=cardValidDate%></div>
+                        <div class="box-item">생년월일 <%=cardOwnerBirth %></div>
+                        <div class="box-item">기본결제수단여부 <%=defaultCardOX%></div>
 						</div>
 
 						<%
@@ -164,9 +160,13 @@
 				<div class="item-right">
 
 				<div class="final-payment">최종후원금액 <%=buyReward.getRewardPrice() %>원</div>
-				<button class="paymentButton">후원하기!</button>
+				<form method="post" action="<%=request.getContextPath()%>/orderadd">
+				<input class="paymentButton" type="submit" value="후원하기!">
+				<input type="hidden" name="totalPrice" value="<%=buyReward.getRewardPrice()%>">
+				<input type="hidden" name="rewardNo" value="<%=buyReward.getRewardNo()%>">
+				<input type="hidden" name="projectNo" value="<%=buyProject.getProjectNo()%>">
+				</form>
 				</div><!-- 아이템 라이트 -->
-				
 		</div><!-- 아이템 레프트 라이트 -->
 </div><!-- 오더래퍼 -->
 
