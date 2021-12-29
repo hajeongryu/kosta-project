@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
 			Users u = service.login(idValue, pwdValue);
 			System.out.println("로그인 성공");
 			session.setAttribute("loginInfo", u);
+			session.setMaxInactiveInterval(24*60*60);
 			path ="/rhollEE";
 			response.sendRedirect(path);
 		} catch (FindException e) {
