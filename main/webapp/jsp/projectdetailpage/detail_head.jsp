@@ -19,20 +19,38 @@
  cal.add(Calendar.DATE, 7);
  
  String paymentDay=""+format.format(cal.getTime());
- 
- 
  %>
-<link rel="stylesheet" href="../../css/projectdetailpage/detail_head.css">
-<html>
 
-<div class="grid">
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/projectdetailpage/detail_head.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="<%=request.getContextPath()%>/js/mainpage/index.js"></script>
+  <script src="<%=request.getContextPath()%>/jsp/menu.jsp"></script>
+  
+  <script>
+  	$(function(){
+  	});
+  </script>
+  <title>Rholling Ideas - 재미있는 펀딩의 시작!</title>
+  
+</head>
+<body>
+  <header>
+    <!-- 메뉴 -->
+    <jsp:include page="../menu.jsp"/>
+  </header>
+  <section>
+<div class="container">
+	<div class="head">
 <div class="title">
 	<div class="category">
 	카테고리
 	<%=p.getCategory().getCategoryName() %>
 	</div>
-	<div class="longteitle">
-	<h1>프로젝트제목</h1>
+	<div class="longtitle">
+	프로젝트제목
 	<%=p.getLongTitle() %>
 	</div>
 	<div class="creatoruser">
@@ -45,65 +63,74 @@
 
 <div class="img">
 	<div class="projectimg">
-	프로젝트이미지
-	<%=p.getProjectImage() %>
+	<img class="item-image" src="/rhollEE/images/mainpage/<%=p.getProjectNo()%>.jpeg">
 	</div>
 </div>
 
 <div class="info">
 	<div class="sumprice">
-	모인금액
-	<%=p.getProjectChange().getSumPrice() %>
+	모인금액<br>
+	<h1><%=p.getProjectChange().getSumPrice() %></h1>
 	</div>
 	<div class="duedate">
-	남은시간
-	<%=p.getRemainingDays() %>
+	남은시간<br>
+	<h1><%=p.getRemainingDays() %></h1>
 	</div>
 	<div class="supportcnt">
-	후원자수
-	<%=p.getProjectChange().getSupportCnt() %>
+	후원자수<br>
+	<h1><%=p.getProjectChange().getSupportCnt() %></h1>
 	</div>
-	<div>
-	펀딩준비중상자
+	<div class="ingbox">
+	펀딩 진행중
 		<div class="tagetprice">
-		목표금액
-		<%=p.getTargetPrice() %>
+		목표금액 인<%=p.getTargetPrice() %>이 모여야 결제됩니다.
 		</div>
 		<div class="duedate">
-		결제시작일
-		<%=paymentDay %>
+		결제시작일은 <%=paymentDay %> 입니다.
 		</div>
 	</div>
 
-	<div class="content">
-		<%=p.getProjectContent()%>
-	</div>
-
-	<div>
+	
+	<div style="display: none;">
 	<button>좋아한프로젝트</button>
 	<button>이 프로젝트 후원하기</button>
 	</div>
+
+	</div>
+	</div>
+
+	<div class="bot">
+	<div class="content">
 	
-	
+	<!-- object data="/rhollEE/<%=p.getProjectContent()%>" style="min-height:100vh;width:100%"></object> -->
+		<iframe src="/rhollEE/src/main/webapp/<%=p.getProjectContent()%>" style="width:200px;height:200px;"></iframe>
+	</div>
+
+	<div class="postcon">
+		<%@include file="./post.jsp" %>
+	</div>
+
 	<div class="reward">
-	<%
-	if(rewardList != null){
-		for(Reward r : rewardList){
-	%>
-	<div>
-		<button type="button" onclick="location.href='http://localhost:8888/rhollEE/order?projectNo=<%=p.getProjectNo()%>&rewardNo=<%=r.getRewardNo()%>'">
-			선물번호
-			<%=r.getRewardNo() %>
-			선물이름
-			<%=r.getRewardName() %>
-		</button>
+		<%
+		if(rewardList != null){
+			for(Reward r : rewardList){
+		%>
+		<div>
+			<button type="button" onclick="location.href='http://localhost:8888/rhollEE/order?projectNo=<%=p.getProjectNo()%>&rewardNo=<%=r.getRewardNo()%>'">
+				선물번호
+				<%=r.getRewardNo() %>
+				선물이름
+				<%=r.getRewardName() %>
+			</button>
+	
+		</div>
+		<%} }%>
+	</div>
 
-	</div>
-	<%} }%>
-	</div>
 </div>
 </div>
 
- <%@include file="./post.jsp" %>
 
-</html>
+
+
+</section>

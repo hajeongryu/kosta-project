@@ -12,8 +12,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import com.team.community.service.CommentService;
 import com.team.community.service.PostService;
 import com.team.exception.FindException;
+import com.team.project.service.ProjectService;
 import com.team.project.vo.Comments;
 import com.team.project.vo.Community;
+import com.team.project.vo.Project;
 
 import jakarta.servlet.RequestDispatcher;
 
@@ -22,16 +24,21 @@ public class PostInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	PostService postService = PostService.getInstance();
 	CommentService cmtService = CommentService.getInstance();
+	ProjectService proService = ProjectService.getInstance();
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		String postNo = request.getParameter("postNo");
 		int postNum = Integer.parseInt(postNo);
 
+		String projectNo = request.getParameter("projectNo");
+		
 		int cmtNum = 1;
 		
 		String path = "";
 
 		try {			
+
+			Project p = proService.findByProjectNo(projectNo);
 			
 			//List<Community> post = service.findProjectNo(postNum);
 			List<Community> post = postService.findByProjectNo(postNum);
@@ -39,9 +46,10 @@ public class PostInfoServlet extends HttpServlet {
 			//List<Comments> cmt = cmtservice.findPostNo(cmtNum);
 			List<Comments> cmt = cmtService.findByPostNo(cmtNum);
 			
-			
+			request.setAttribute("p", p);
 			request.setAttribute("post", post);
 			request.setAttribute("cmt", cmt);
+			
 			path = "./jsp/projectdetailpage/post.jsp";
 						
 			
