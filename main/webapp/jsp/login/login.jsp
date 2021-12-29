@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Rholling Ideas</title>
+	<title>Rholling Ideas - 재미있는 펀딩의 시작!</title>
+
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login/login.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/login/login.js"></script>

@@ -82,11 +82,11 @@ public class CardService {
 		
 		
 		//modifyCardService test
-//		try {
-//			service.modifyCardService(11);
-//		} catch (ModifyException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			service.modifyCardService(25);
+		} catch (ModifyException e) {
+			e.printStackTrace();
+		}
 		
 		//removeCardService test
 //		try {

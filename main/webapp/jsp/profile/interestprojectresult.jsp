@@ -60,12 +60,17 @@
 		<!-- 글 -->
 		<div class="item" >
 			<!-- 사진 -->
-			<img class="item-image" src="/rhollEE/images/mainpage/<%=p.getProjectNo() %>.jpeg" alt="l">
+			<!--@@@ 사진클릭시 상품페이지로 -->
+			<a href="/rhollEE/projectdetail?projectNo=<%=p.getProjectNo()%>">
+				<img class="item-image" src="/rhollEE/images/mainpage/<%=p.getProjectNo() %>.jpeg" alt="l">
+			</a>
 			<button class="like"></button>
 			<!-- 정보 -->
 			<div class="info">
 				<!-- (이름, 세부 카테, 설명)-->
-				<span class="title"><%=p.getLongTitle() %></span>
+				<a href ="/rhollEE/projectdetail?projectNo=<%=p.getProjectNo()%>">
+					<span class="title"><%=p.getLongTitle() %></span>
+				</a>
 				<div class ="catelink">
 					<!--@@@ 카테고리 클릭시 카테고리 페이지로 -->
 					<span class="category"><a href=""><%=p.getCategory().getCategoryName() %></a></span>

@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="com.team.order.vo.Order"%>
 <%@page import="com.team.project.vo.Project"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -35,7 +38,12 @@
     List<Order> ongoing = (List)request.getAttribute("ongoing");
     List<Order> success = (List)request.getAttribute("success");
     List<Order> payed = (List)request.getAttribute("payed");
-    int orderCnt = (int)request.getAttribute("orderCnt");%>
+    int orderCnt = (int)request.getAttribute("orderCnt");
+    
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    Calendar cal = Calendar.getInstance();
+    Calendar del = Calendar.getInstance();
+    %>
     <div class="interest-header">
       <div class="interest-h1"><h1>후원현황</h1></div>
     </div>
@@ -58,83 +66,206 @@
         </div>
       </div>
       <%} else {%>
+      
+      <!-- 펀딩 실패 내역 -->
       <div class="order-content">
         <%if(fail.size() != 0){%>
         <div class="order">
-          <div>펀딩 실패(<%=fail.size()%>)</div>
+          <div class="payment-cont">
+            <span class="paymentresult">펀딩 실패</span>
+            (<%=fail.size()%>)
+          </div>
           <%for(Order o: fail){ %>
-          <div class="order-content">
-            <div class="order-img"><img src="<%=request.getContextPath()%>/files/project_image/<%=o.getProject().getProjectImage()%>"></div>
+          <div class="each-order-content">
+            <div class="order-img">
+              <a href="/rhollEE/orderdetail?paymentNo=<%=o.getPaymentNo()%>">
+                <img src="<%=request.getContextPath()%>/<%=o.getProject().getProjectImage()%>">
+              </a>
+            </div>
             <div class="order-text">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
+              <div class="date-payno">후원날짜 <%=o.getPaymentDate() %> | 후원번호 <%=o.getPaymentNo() %></div>
+              <div class="longtitle">
+                <a href="/rhollEE/orderdetail?paymentNo=<%=o.getPaymentNo()%>">
+                  <%=o.getProject().getLongTitle() %>
+                </a>
+              </div>
+              <div class="deliverselect"><%if(o.getReward().getDeliverSelect().equals("1")){ %>
+                무료배송
+              	<%}else{ %>
+              	미배송상품
+              	<%} %>
+              </div>
+              <div class="reward-item">
+                <div>
+                <%if(o.getReward().getRewardName() != null){%>
+                    <%=o.getReward().getRewardName() %>
+                <%} %>
+                </div>
+              <%if(o.getReward().getItemName() != null){ %>
+                <ul>
+                  <li><%=o.getReward().getItemName() %></li>
+                </ul>
+              <%} %>
+              </div>
             </div>
           </div>
           <%} %>
         </div>
         <%}%>
+        
+        <!-- 진행중 내역 -->
         <%if(ongoing.size() != 0){%>
         <div class="order">
-          <div>진행중(<%=ongoing.size()%>)</div>
-          <%for(Order o: ongoing){ %>
-          <div class="order-content">
-            <div class="order-img"><img src="<%=request.getContextPath()%>/files/project_image/<%=o.getProject().getProjectImage()%>"></div>
+          <div class="payment-cont">
+            <span class="paymentresult">진행중</span>
+            (<%=ongoing.size()%>)
+          </div>
+          <%for(Order o: ongoing){ 
+        	  cal.setTime(o.getProject().getEndDate());
+        	  cal.add(Calendar.DATE, 1);
+        	  del.setTime(o.getProject().getEndDate());
+        	  del.add(Calendar.DATE, o.getReward().getDeliverDate());%>
+          <div class="each-order-content">
+            <div class="order-img">
+              <a href="/rhollEE/orderdetail?paymentNo=<%=o.getPaymentNo()%>">
+                <img src="<%=request.getContextPath()%>/<%=o.getProject().getProjectImage()%>">
+              </a>
+            </div>
             <div class="order-text">
-              <div>결제예정일 | 후원번호 <%=o.getPaymentNo() %></div>
-              <div><%=o.getProject().getProjectNo() %></div>
-              <%-- <div><%if(o.getReward().getDeliverSelect().equals("1")){ %>
+              <div class="date-payno">결제예정일 <%=df.format(cal.getTime()) %> | 후원번호 <%=o.getPaymentNo() %></div>
+              <div class="longtitle">
+                <a href="/rhollEE/orderdetail?paymentNo=<%=o.getPaymentNo()%>">
+                  <%=o.getProject().getLongTitle() %>
+                </a>
+              </div>
+              <div class="deliverselect"><%if(o.getReward().getDeliverSelect().equals("1")){ %>
                 무료배송
               	<%}else{ %>
               	미배송상품
               	<%} %>
-              </div> --%>
-              <div>
-                <ul>
-                  <li><%=o.getReward().getRewardNo() %></li>
-                </ul>
               </div>
-              <div>선물 전달 예정일 <%=o.getReward().getDeliverDate() %></div>
-              <div><%=o.getTotalPrice()%>원 결제 예정 </div>
+              <div class="reward-item">
+                <div>
+                <%if(o.getReward().getRewardName() != null){%>
+                    <%=o.getReward().getRewardName() %>
+                <%} %>
+                </div>
+              <%if(o.getReward().getItemName() != null){ %>
+                <ul>
+                  <li><%=o.getReward().getItemName() %></li>
+                </ul>
+              <%} %>
+              </div>
+              <%if(o.getReward().getDeliverSelect().equals("1")){%>
+              <div class="deliverdate">선물 전달 예정일 <%=df.format(del.getTime()) %></div>
+              <%} %>
+              <div class="totalprice"><%=o.getTotalPrice()%>원 결제 예정 </div>
             </div>
           </div>
           <%} %>
         </div>
         <%}
         if(success.size() != 0){%>
+        
+        <!-- 펀딩 성공 내역 -->
         <div class="order">
-        <%for(Order o: success){ %>
-          <div>펀딩 성공(<%=success.size()%>)</div>
-          <div class="order-content">
-            <div class="order-img"><img src="<%=request.getContextPath()%>/files/project_image/<%=o.getProject().getProjectImage()%>"></div>
+        <%for(Order o: success){  
+        	  cal.setTime(o.getProject().getEndDate());
+        	  cal.add(Calendar.DATE, 1);
+        	  del.setTime(o.getProject().getEndDate());
+        	  del.add(Calendar.DATE, o.getReward().getDeliverDate());%>
+          <div class="payment-cont">
+            <span class="paymentresult">펀딩 성공</span>
+            (<%=success.size()%>)
+          </div>
+          <div class="each-order-content">
+            <div class="order-img">
+              <a href="/rhollEE/orderdetail?paymentNo=<%=o.getPaymentNo()%>">
+                <img src="<%=request.getContextPath()%>/<%=o.getProject().getProjectImage()%>">
+              </a>
+            </div>
             <div class="order-text">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
+              <div class="date-payno">결제예정일 <%=df.format(cal.getTime()) %> | 후원번호 <%=o.getPaymentNo() %></div>
+              <div class="longtitle">
+                <a href="/rhollEE/orderdetail?paymentNo=<%=o.getPaymentNo()%>">
+                  <%=o.getProject().getLongTitle() %>
+                </a>
+              </div>
+              <div class="deliverselect"><%if(o.getReward().getDeliverSelect().equals("1")){ %>
+                무료배송
+              	<%}else{ %>
+              	미배송상품
+              	<%} %>
+              </div>
+              <div class="reward-item">
+                <div>
+                <%if(o.getReward().getRewardName() != null){%>
+                    <%=o.getReward().getRewardName() %>
+                <%} %>
+                </div>
+              <%if(o.getReward().getItemName() != null){ %>
+                <ul>
+                  <li><%=o.getReward().getItemName() %></li>
+                </ul>
+              <%} %>
+              </div>
+              <%if(o.getReward().getDeliverSelect().equals("1")){%>
+              <div class="deliverdate">선물 전달 예정일 <%=df.format(del.getTime()) %></div>
+              <%} %>
+              <div class="totalprice"><%=o.getTotalPrice()%>원 결제 예정 </div>
             </div>
           </div>
           <%} %>
         </div>
         <%}
         if(payed.size() != 0){%>
+        
+        <!-- 결제 완료 내역 -->
         <div class="order">
-        <%for(Order o: payed){ %>
-          <div>결제 완료(<%=payed.size()%>)</div>
-          <div class="order-content">
-            <div class="order-img"><img src="<%=request.getContextPath()%>/files/project_image/<%=o.getProject().getProjectImage()%>"></div>
+        <%for(Order o: payed){  
+        	  cal.setTime(o.getProject().getEndDate());
+        	  cal.add(Calendar.DATE, 1);
+        	  del.setTime(o.getProject().getEndDate());
+        	  del.add(Calendar.DATE, o.getReward().getDeliverDate());%>
+          <div class="payment-cont">
+            <span class="paymentresult">결제 완료</span>
+            (<%=payed.size()%>)
+          </div>
+          <div class="each-order-content">
+            <div class="order-img">
+              <a href="/rhollEE/orderdetail?paymentNo=<%=o.getPaymentNo()%>">
+                <img src="<%=request.getContextPath()%>/<%=o.getProject().getProjectImage()%>">
+              </a>
+            </div>
             <div class="order-text">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
+              <div class="date-payno">결제완료일 <%=df.format(cal.getTime()) %> | 후원번호 <%=o.getPaymentNo() %></div>
+              <div class="longtitle">
+                <a href="/rhollEE/orderdetail?paymentNo=<%=o.getPaymentNo()%>">
+                  <%=o.getProject().getLongTitle() %>
+                </a>
+              </div>
+              <div class="deliverselect"><%if(o.getReward().getDeliverSelect().equals("1")){ %>
+                무료배송
+              	<%}else{ %>
+              	미배송상품
+              	<%} %>
+              </div>
+              <div class="reward-item">
+                <div>
+                <%if(o.getReward().getRewardName() != null){%>
+                    <%=o.getReward().getRewardName() %>
+                <%} %>
+                </div>
+              <%if(o.getReward().getItemName() != null){ %>
+                <ul>
+                  <li><%=o.getReward().getItemName() %></li>
+                </ul>
+              <%} %>
+              </div>
+              <%if(o.getReward().getDeliverSelect().equals("1")){%>
+              <div class="deliverdate">선물 전달 예정일 <%=df.format(del.getTime()) %></div>
+              <%} %>
+              <div class="totalprice"><%=o.getTotalPrice()%>원 결제 완료 </div>
             </div>
           </div>
           <%} %>
