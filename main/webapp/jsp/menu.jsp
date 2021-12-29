@@ -50,6 +50,7 @@
                         <a href="interestlist">관심 프로젝트</a>
                         <a href="follow">팔로우</a>
                         <a href="<%=request.getContextPath()%>/jsp/profile/followr.jsp">팔로워</a>
+                        <a href="<%=request.getContextPath()%>/jsp/profile/following.jsp">팔로잉</a>
                         <hr>
                         <a href="<%=request.getContextPath()%>/jsp/profile/alarmresult.jsp">알림</a>
                         <a href="<%=request.getContextPath()%>/jsp/profile/messageresult.jsp">메시지</a>

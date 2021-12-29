@@ -55,33 +55,33 @@
       <div class="like-h1"><h1>팔로우</h1></div>
       <div class="like-select"></div>
 				<span class="selected-span">
-					<a href="savantList" class="selected-a" style="color: black;">팔로워 <%=savantCnt%></a>
+					<a href="follower" class="selected-a" style="color: black;">팔로워 <%=savantCnt%></a>
 				</span>
 				<span>
-          <a href="masterList">팔로잉 <%=masterCnt%></a>
+          <a href="following">팔로잉 <%=masterCnt%></a>
         </span>
 			</div>
 
     <div class="select-content">
 		<br><br>
-    <%if(savantList.size()==0) {%>
+    <%if(masterList.size()==0) {%>
     	<div class="no-content">
 				<img src="<%=request.getContextPath()%>/images/profile/empty follower.png">
-      <div>아직 팔로워가 없습니다.</div>
+      <div>아직 팔로잉한 유저가 없습니다.</div>
     </div>
     <% } %>
       <%
-      if(savantList.size() != 0){
-    	  for(Users u: savantList){
+      if(masterList.size() != 0){
+    	  for(Users u: masterList){
 		  int userNo = u.getUserNo();
     	  String userImage = u.getUserImage();
     	  String userName = u.getUserName();
     	  String userIntroduction = u.getUserIntroduction();
-    	  int savantCnt2 = followService.getSavant(u.getUserNo()).size();
+    	  int mastetCnt2 = followService.getMaster(u.getUserNo()).size();
     	  int projectsmadeCnt = service.findByUserNo("u.getUserNo()").size();
     	  %>
     	  
-    	  <div class="follower_box">
+    	  <div class="following_box">
 					<div class="image">
 	    	  	<img src="<%=request.getContextPath()%>/files/user_image/default.png">
 					</div>
@@ -90,13 +90,13 @@
 						<span><%=userIntroduction %></span><br>
 					</div>
 					<div class="lower_cnt">
-	    	  	팔로워<span><%=savantCnt2 %></span><br>
+	    	  	팔로워<span><%=savantCnt %></span><br>
 	    	  	올린 프로젝트<span><%=projectsmadeCnt %></span><br>
 					</div>		
 						<div class="button">
-							<form action="<%=request.getContextPath()%>/addfollow"> <!-- 서블릿구현해야함-->
+							<form action="<%=request.getContextPath()%>/removefollow"> <!-- 서블릿구현해야함-->
 								<input type="text" class="invisible" value="<%=userNo%>" name="userNo">
-								<button><h4>+팔로우</h4></button>
+								<button><h4>-팔로잉</h4></button>
 							</form>
 						</div>
     	  </div>
