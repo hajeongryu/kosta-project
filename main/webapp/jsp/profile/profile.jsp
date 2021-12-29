@@ -29,8 +29,10 @@ interestSize = (int) request.getAttribute("interestSize");
     
 <!DOCTYPE html>
 <head>
+	<title>Rholling Ideas - 재미있는 펀딩의 시작!</title>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/profile/interestproject.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/profile/profile.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="<%=request.getContextPath()%>/js/mainpage/index.js"></script>
   <script src="<%=request.getContextPath()%>/jsp/menu.jsp"></script>
@@ -43,41 +45,55 @@ interestSize = (int) request.getAttribute("interestSize");
   		/*--메뉴 클릭 되었을 때 END--*/
   	});
   </script>
+	
 </head>
 <body>
   <header>
     <!-- 메뉴 -->
     <jsp:include page="../menu.jsp"/>
   </header>
-  	<div class="left_profile">
-    	<a href="설정"><img src="C:\Workspace\Rholling ideas\teamProject\rhollEE\src\main\webapp\images\profile\default.png">
-    	<a href="설정"><img src="C:\Workspace\Rholling ideas\teamProject\rhollEE\src\main\webapp\images\profile\edit.png">
-    	<!--설정 페이지 삽입해야함-->
- 
- <section>
- <div class="top_box">
- 	<a href="https://help.tumblbug.com/hc/ko">후원현황 <%=orderSize%></a>
-    <a href="https://help.tumblbug.com/hc/ko">관심 프로젝트<%=interestSize %></a>
-    <a href="https://help.tumblbug.com/hc/ko">만든 프로젝트<%=projectSize %></a>
- </div>
-	
-  		<div class="below_box"></div>
-      		<a href="팔로우/팔로잉">팔로우/팔로잉</a><img src="C:\Workspace\Rholling ideas\teamProject\rhollEE\src\main\webapp\images\profile\following.png"/></a>
-      		<!--팔로우/팔로잉 페이지 삽입하기-->
-      		<a href="메시지">메시지</a><img src="C:\Workspace\Rholling ideas\teamProject\rhollEE\src\main\webapp\images\profile\inform.png"/></a>
-      		<!--메시지 페이지 삽입하기-->
-      	</div>
-      			<div class="maker_tip">
-        		<h3>메이커팁</h3>
-        			<a href="https://tumblbug.com/notices"><img src="C:\Workspace\Rholling ideas\teamProject\rhollEE\src\main\webapp\images\profile\inform.png"/></a>
-        			<a href="https://tumblbug.com/notices">공지사항</a>
-        			<a href="https://help.tumblbug.com/hc/ko"><img src="C:\Workspace\Rholling ideas\teamProject\rhollEE\src\main\webapp\images\profile\help.png"/></a>
-        			<a href="https://help.tumblbug.com/hc/ko">헬프센터</a><br>
-        			<a href="https://creator.tumblbug.com/?v=1"><img src="C:\Workspace\Rholling ideas\teamProject\rhollEE\src\main\webapp\images\profile\guide.png"/></a>
-        			<a href="https://creator.tumblbug.com/?v=1">창작자가이드</a>
-       				<a href="https://tumblbug.channel.io/"><img src="C:\Workspace\Rholling ideas\teamProject\rhollEE\src\main\webapp\images\profile\telephone.png"/></a>
-        			<a href="https://tumblbug.channel.io/">문의하기</a>
-        		</div>
+  
+	<section>
+			<div class="aside">
+				<div class="image">
+					<a href=""><img class = "image" src="<%=request.getContextPath()%>/images/profile/default.png"></a>
+				</div>
+				<div class="imagedit">
+					<a href=""><img class = "imagedit" src="<%=request.getContextPath()%>/images/profile/edit.png"></a>
+				</div>
+				<h3>user_name님></h3>
+				<h6>일반유저or창작자</h6>
+				<!--조건 설정해야함-->
+				<div class="logout">
+					<button><h4>로그아웃<h4></button>
+				</div>
+			</div>
+
+		<article>
+		<div class="article">
+			<div class="topbox">
+				<div>
+					<a href=""><span><%=orderSize%></span>후원현황</a>
+				</div>
+				<div>
+					<a href=""><span><%=interestSize%></span>관심 프로젝트</a>
+				</div>
+				<div>
+					<a href=""><span><%=projectSize%></span>만든 프로젝트</a>
+				</div>
+			</div>
+			<div class="belowbox">
+					<a href=""><img class="img" src="<%=request.getContextPath()%>/images/profile/following.png"/><span>팔로우/팔로잉</span></a>
+					<!--팔로우/팔로잉 페이지 삽입하기-->
+					<a href=""><img class="img" src="<%=request.getContextPath()%>/images/profile/message.png"/><span>메시지</span></a>
+					<!--메시지 페이지 삽입하기-->
+					<h3>메이커팁</h3>
+					<a href=""><img class="img" src="<%=request.getContextPath()%>/images/profile/inform.png"/><span>공지사항</span></a>
+					<a href=""><img class="img" src="<%=request.getContextPath()%>/images/profile/help.png"/><span>헬프센터</span></a>
+					<a href=""><img class="img" src="<%=request.getContextPath()%>/images/profile/guide.png"/><span>창작자가이드</span></a>
+					<a href=""><img class="img" src="<%=request.getContextPath()%>/images/profile/telephone.png"/><span>문의하기</span></a>
+			</div>
+		</div>
   </section>
 </body>
 </html>

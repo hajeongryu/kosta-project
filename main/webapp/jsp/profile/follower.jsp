@@ -1,20 +1,12 @@
+<%@page import="com.team.user.service.FollowService"%>
+<%@page import="com.team.project.service.ProjectService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.team.user.vo.Users"%>
 <%@page import="com.team.order.vo.Order"%>
+
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%	List<Users> savantList = (List) request.getAttribute("savantList");
-	List<Users> masterList = (List) request.getAttribute("masterList");
-	if(savantList == null){
-		savantList = new ArrayList<>();
-	}
-	if(masterList == null){
-		masterList= new ArrayList<>();
-	}
-  int savantListCnt = (int)request.getAttribute("savantListCnt");
-  Users u = null;%>
 
 <!DOCTYPE html>
 <head>
@@ -40,17 +32,54 @@
 
   <section>
     <!--본문--> 
+    <%List<Users> savantList = (List)request.getAttribute("savantList");
+	List<Users> masterList = (List)request.getAttribute("masterList");
+	if(savantList == null){
+		savantList = new ArrayList<>();
+	}
+	if(masterList == null){
+		masterList= new ArrayList<>();
+	}
+  	int savantCnt = (Integer)request.getAttribute("savantCnt");
+  	int masterCnt = (Integer)request.getAttribute("masterCnt");
+  	ProjectService service = ProjectService.getInstance();
+  	FollowService followService = FollowService.getInstace();
+  	
+  	%>
     <div class="like-header">
       <div class="like-h1"><h1>팔로워</h1></div>
       <div class="like-select"></div>
+    <%if(savantList.size()==0) {%>
     	<div class="no-content">
-    <%if(list.size()==0) {%>
 			<img src="<%=request.getContextPath()%>/images/profile/empty follower.png">
-      <div>아직 팔로워가 없습니다.</div>
-      </div>
+      		<div>아직 팔로워가 없습니다.</div>
+      	</div>
     <% } %>
-      <%for(Users u: savantList){
-      savantList = u.getAttribute();%> 
+      <%
+      if(savantList.size() != 0){
+    	  for(Users u: savantList){
+		  int userNo = u.getUserNo();
+    	  String userImage = u.getUserImage();
+    	  String userName = u.getUserName();
+    	  String userIntroduction = u.getUserIntroduction();
+    	  int savantCnt2 = followService.getSavant(u.getUserNo()).size();
+    	  int projectsmadeCnt = service.findByUserNo("u.getUserNo()").size();
+    	  %>
+    	  
+    	  <div class="follower_box">
+	    	  <img src="<%=request.getContextPath()%>/files/user_image/default.png">
+	    	  <%=userName %><br>
+	    	  <%=userIntroduction %><br>
+	    	  <%=savantCnt2 %><br>
+	    	  <%=projectsmadeCnt %><br>
+	    	  	<form action="<%=request.getContextPath()%>/addfollow"> /*서블릿구현해야함
+					<input type="text" class="invisible" value="<%=userNo%>" name="userNo">
+					<button>+팔로우</button>
+				</form>
+    	  </div>
+      	%>
+    <% } %>
+    <% } %> 
     </div>
   </section>
 </body>

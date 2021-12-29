@@ -1,24 +1,152 @@
 @charset "UTF-8";
 
-#sidebar{
-	width: 300px;
-	height: 600px;
-	float: left;
-	}
-	
-/* top box 카운트 숫자 */
-.profile-h1 h1{
+.aside{
+	position: relative;
+    float: left;
+    padding: 56px 24px 0;
+    width: 250px;
+    margin: 0;
+    vertical-align: baseline;
+    font: inherit;
+    box-sizing: border-box;
+    display: block;
+    line-height: 54px;
+    letter-spacing: -0.035em;
+    margin: 0;
+}
+.aside>.image{
+	display: inline-block;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    width: 24px;
+    height: 24px;
+    box-sizing: border-box;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+.aside>.imagedit{
+	width: 24px;
+    height: 24px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px 0 rgb(33 37 41 / 12%);
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+.aside h6{
+    color: #868e96;
+    line-height: 18px;
+    letter-spacing: 0;
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+}
+.aside h3{
+    background-color: #fff;
+    line-height: 28px;
+    letter-spacing: -.3px;
+    font-size: 16px;
+    font-weight: 700;
+    font-style: normal;
+}
+.aside>.logout{
+	text-align: center;
+	display: block;
+    margin-top: 16px;
+    color: #495057;
+    padding: 9px 16px;
+    line-height: 1.45;
+    font-size: 14px;
+	width: 100%;
+	border-radius: 999em;
+	align-items: center;
+	text-decoration: none;
+	position: relative;
+    transition-property: background-color,border-color,color,opacity;
+    transition-duration: .15s;
+    border: 1px solid #cdd3d8;
+    background-color: transparent;
+    cursor: pointer;
+    vertical-align: middle;
+    white-space: nowrap;
+    font-weight: 500;
+    box-sizing: border-box!important;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+}
+.article{
+	position: relative;
+    float: right;
+    background-color: #fff;
+    padding: 42px 32px 120px;
+    width: calc(100% - 233px);
+}
+.topbox{
+    box-sizing: border-box;
+    display:flex;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.topbox>.text{
+    padding: 24px 0;
+    display: block;
+    position: relative;
+    color: rgba(0,0,0,.84);
+    text-decoration: none;
+    margin: 0;
+    border: 0;
+    vertical-align: baseline;
+    font: inherit;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.article>.topbox>h1{
     display: block;
     padding: 0 0 4px;
     line-height: 30px;
     letter-spacing: -.6px;
-    font-size: 20px;
+    font-size: 50px;
     font-weight: 700;
     font-style: normal;
+    
 }
-	
+/* below box */
+.article>.belowbox{	
+	display: block;
+    position: relative;
+    outline: none;
+    padding: 16px 0;
+    width: 100%;
+    text-align: left;
+}
+.article>.belowbox>img{	
+	width: 24px;
+    height: 24px;
+    vertical-align: top;
+    display: block;
+    transform: scale(1);
+    transition: transform .3s ease-out;
+    font: inherit;
+    text-align: left;
+    color: rgba(0,0,0,.84);
+}
 /* below box 한글(ex.팔로우, 메시지, 공지사항, 헬프센터, 창작자 가이드, 문의하기, 로그아웃 버튼 등) */
-.profile-h4 h4{
+.article>.belowbox>h4{
     display: inline-block;
     line-height: 28px;
     letter-spacing: -.3px;
@@ -29,25 +157,25 @@
     color: #212529;
 }
 /* top box - 후원현황, 관심 프로젝트, 만든 프로젝트, 이름, 메이커팁 */
-.profile-h3 h3{
+.article>.topbox>h3{
     background-color: #fff;
-    padding: 8px 16px 16px;
     line-height: 28px;
     letter-spacing: -.3px;
     font-size: 16px;
     font-weight: 700;
     font-style: normal;
 }
-/* 회원상태(?)=일반 유저,메이커 */
-.profile-ststus h6{
-    color: #868e96;
-    line-height: 18px;
-    letter-spacing: 0;
-    font-size: 12px;
-    font-weight: 400;
-    font-style: normal;
-}
-.profile-adbanner{
+.adbanner{
     display: block;
     height: 100%;
+}
+.article>a>span{
+    display: inline-block;
+    line-height: 28px;
+    letter-spacing: -.3px;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 24px;
+    color: #212529;
 }
