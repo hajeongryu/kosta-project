@@ -51,10 +51,10 @@
                         <a href="follow">팔로우</a>
                         <a href="<%=request.getContextPath()%>/jsp/profile/followr.jsp">팔로워</a>
                         <hr>
-                        <a href="">알림</a>
-                        <a href="">메시지</a>
+                        <a href="<%=request.getContextPath()%>/jsp/profile/alarmresult.jsp">알림</a>
+                        <a href="<%=request.getContextPath()%>/jsp/profile/messageresult.jsp">메시지</a>
                         <hr>
-                        <a href="">내가 만든 프로젝트</a>
+                        <a href="<%=request.getContextPath()%>/jsp/profile/createdresult.jsp">내가 만든 프로젝트</a>
                         <a href="<%=request.getContextPath()%>/jsp/settings/profileset.jsp">설정</a>
                         <hr>
                         <a href="<%=request.getContextPath()%>/logout">로그아웃</a>
