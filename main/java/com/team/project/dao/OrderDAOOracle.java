@@ -146,38 +146,47 @@ public class OrderDAOOracle implements OrderDAOInterface {
 	
 	@Override
 	public void add(Order order) throws FindException {
-		Connection con = null; 
-		PreparedStatement stmt = null; 
-		ResultSet rs = null; 
 		
 		String insertSQL = 
-				"INSERT INTO orders(user_no, extra_price, total_price, payment_result, address_no, card_no, reward_no)\r\n"
-						+ " VALUES('?','?','?','?','?','?','?')";
+				" INSERT INTO orders(user_no, extra_price, total_price, payment_result, address_no, card_no, reward_no, project_no ) "
+						+ " VALUES(?,?,?,?,?,?,?,?) ";
+		Connection con = null; 
+		PreparedStatement pstmt = null; 
+		ResultSet rs = null; 
 	
 		
 		try {
 			con = MyConnection.getConnection();
-			stmt = con.prepareStatement(insertSQL);
-			rs = stmt.executeQuery(insertSQL);
+			pstmt = con.prepareStatement(insertSQL);	
+			//오토커밋해제
+			con.setAutoCommit(false);
 			
-			int paymentNo = order.getPaymentNo();
 			int userNo = order.getOrderUser().getUserNo();
-			Date paymentDate = order.getPaymentDate();
+			System.out.println(userNo);
 			int extraPrice = order.getExtraPrice();
+			System.out.println(extraPrice);
 			int totalPrice = order.getTotalPrice();
+			System.out.println(totalPrice);
 			String paymentResult = order.getPaymentResult();
+			System.out.println(paymentResult);
 			int addressNo = order.getAddress().getAddressNo();
+			System.out.println(addressNo);
 			int rewardNo = order.getReward().getRewardNo();
+			System.out.println(rewardNo);
 			int cardNo = order.getCard().getCardNo();
-			
-			stmt.setInt(1, userNo);
-			stmt.setInt(2, extraPrice);
-			stmt.setInt(3, totalPrice);
-			stmt.setString(4, paymentResult);
-			stmt.setInt(5, addressNo);
-			stmt.setInt(6, rewardNo);
-			stmt.setInt(7, cardNo);
-			stmt.executeUpdate(); 
+			System.out.println(cardNo);
+			int ProjectNo = order.getProject().getProjectNo();
+			System.out.println(ProjectNo);
+
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, extraPrice);
+			pstmt.setInt(3, totalPrice);
+			pstmt.setString(4, paymentResult);
+			pstmt.setInt(5, addressNo);
+			pstmt.setInt(6, cardNo);
+			pstmt.setInt(7, rewardNo);
+			pstmt.setInt(8, ProjectNo);
+			pstmt.executeUpdate(); 
 			
 			//커밋
 			con.commit();
@@ -192,9 +201,10 @@ public class OrderDAOOracle implements OrderDAOInterface {
 		}
 			throw new FindException(e.getMessage());
 		}finally {
-			MyConnection.close(stmt, con);
+			MyConnection.close(pstmt, con);
 		}
 	}
+	
 	public static void main(String[] args) {
 		OrderDAOOracle dao= OrderDAOOracle.getInstance();
 		List<Order> o = new ArrayList<>();
