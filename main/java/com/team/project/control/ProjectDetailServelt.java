@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.team.community.service.CommentService;
 import com.team.community.service.PostService;
+import com.team.exception.AddException;
 import com.team.exception.FindException;
 import com.team.project.service.ProjectService;
 import com.team.project.vo.Comments;
@@ -53,16 +54,34 @@ public class ProjectDetailServelt extends HttpServlet {
 
 			//커뮤니티(post)정보
 			List<Community> post = postService.findByProjectNo(Integer.parseInt(projectNo));
-			
+
 			//댓글
 			for (Community community : post) {
 				List<Comments> cmt = cmtService.findByPostNo(community.getPostNo());
 				community.setComments(cmt);				
 			}
 			request.setAttribute("findedPost", post);
-		
 
-
+//			//postadd부분 시작
+//			if(loginedUserNo != null) {
+//			Community postadd = new Community();
+//			
+//			
+//			postadd.setProject(p);
+//			System.out.println("postadd의 prono" + p);
+//			
+//			postadd.setMaker(u);
+//			System.out.println("postadd의 prono" + u);
+//
+//			String postContent = request.getParameter("postText");
+//			System.out.println("postadd의 내용text" + postContent);
+//			postadd.setPostContent(postContent);
+//
+//			//추가
+//			postService.add(postadd);
+//			//postadd부분 끝
+//			}
+//			
 		} catch (FindException e) {
 			e.printStackTrace();
 		}

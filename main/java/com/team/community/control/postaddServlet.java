@@ -21,12 +21,14 @@ import jakarta.servlet.http.HttpSession;
 public class postaddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 		PostService service = PostService.getInstance();
-
+		
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("postadd servlet");
+		String loginedUserNo = null;
+		Community post = new Community();
 
-		String loginedUserNo=null;
-		Community post =new Community();
-
+		
 		//getSession : loginedUser
 		HttpSession session = request.getSession();
 		//유저객체
@@ -34,28 +36,32 @@ public class postaddServlet extends HttpServlet {
 		if( loginedUser != null) {
 		loginedUserNo = loginedUser.getUserNo()+"";
 		}
-		System.out.println("[PostaddSelvert] 로그인한 유저의 유저번호 : "+loginedUserNo);
-		
-		
-		//주석해제해서 고치기
+		System.out.println("[PostaddSelvert] 로그인한 유저의 유저번호 : "+ loginedUserNo);
+				
 		String postContent = request.getParameter("postText");
 		
-		
+		System.out.println("postadd에 받아온파라미터postText내용:" + postContent);
 		//getProject( requestDate)
+		
 		String projectNo = request.getParameter("projectNo");
+		System.out.println("postadd 받은param" + projectNo);
+		
 		ProjectService projectService= ProjectService.getInstance();
+		
 		try {
+			if(loginedUserNo != null) {
 			Project p = projectService.findByProjectNo(projectNo);
-
+			
 			//실제 project객체 연결
+			//Integer.parseInt(projectNo)
+			
 			post.setProject(p);
 			post.setMaker(loginedUser);
 			
-			//콘텐트 넣어서 
 			post.setPostContent(postContent);
 			//추가
 			service.add(post);
-			
+			}
 			
 		} catch (FindException e) {
 			e.printStackTrace();
