@@ -91,11 +91,12 @@
 		for(Reward r : rewardList){
 	%>
 	<div>
-		선물번호
-		<%=r.getRewardNo() %>
-		선물이름
-		<%=r.getRewardName() %>
-
+		<button type="button" onclick="location.href='http://localhost:8888/rhollEE/order?projectNo=<%=p.getProjectNo()%>&rewardNo=<%=r.getRewardNo()%>'">
+			선물번호
+			<%=r.getRewardNo() %>
+			선물이름
+			<%=r.getRewardName() %>
+		</button>
 
 	</div>
 	<%} }%>
