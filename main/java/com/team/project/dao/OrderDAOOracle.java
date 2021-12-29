@@ -82,14 +82,12 @@ public class OrderDAOOracle implements OrderDAOInterface {
 				String projectImage = rs.getString("project_image");
 				String longTitle = rs.getString("long_title"); 
 				String projectUrl = rs.getString("project_url");
-				int	projectNo = rs.getInt("project_no");
 
 				Project project = new Project();
 				project.setEndDate(endDate);
 				project.setProjectImage(projectImage);
 				project.setLongTitle(longTitle);
 				project.setProjectUrl(projectUrl);
-				project.setProjectNo(projectNo);
 				
 				o.setProject(project);
 				
