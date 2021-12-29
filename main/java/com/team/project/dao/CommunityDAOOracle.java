@@ -159,7 +159,7 @@ public class CommunityDAOOracle implements CommunityDAOInterface{
 		
 		String insertInfoSQL =
 				" INSERT INTO community(post_no, project_no, post_content, post_date, user_no)"
-						+ " VALUES(post_seq.NEXTVAL,'?','?',SYSDATE,'?')";
+						+ " VALUES(COMMUNITY_SEQ.NEXTVAL,?,?,SYSDATE,?)";
 		try {
 			con = MyConnection.getConnection();
 			pstmt = con.prepareStatement(insertInfoSQL);
@@ -167,12 +167,17 @@ public class CommunityDAOOracle implements CommunityDAOInterface{
 			con.setAutoCommit(false);
 			
 			int projectNo = comm.getProject().getProjectNo();
+			System.out.println(projectNo);
 			String postCon = comm.getPostContent();
+			System.out.println(postCon);
 			int userNo = comm.getMaker().getUserNo();
+			System.out.println(userNo);
 			
 			pstmt.setInt(1, projectNo);
 			pstmt.setString(2, postCon);
+			System.out.println(5);
 			pstmt.setInt(3, userNo);
+			System.out.println(6);
 			pstmt.executeUpdate(); 
 			
 			//커밋

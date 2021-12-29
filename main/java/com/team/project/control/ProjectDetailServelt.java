@@ -59,6 +59,7 @@ public class ProjectDetailServelt extends HttpServlet {
 			for (Community community : post) {
 				List<Comments> cmt = cmtService.findByPostNo(community.getPostNo());
 				community.setComments(cmt);				
+				community.setProject(p);
 			}
 			request.setAttribute("findedPost", post);
 
