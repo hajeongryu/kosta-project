@@ -3,7 +3,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.team.user.vo.Users"%>
 <%@page import="com.team.order.vo.Order"%>
-
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -47,13 +46,23 @@
   	
   	%>
     <div class="like-header">
-      <div class="like-h1"><h1>팔로워</h1></div>
+      <div class="like-h1"><h1>팔로우</h1></div>
       <div class="like-select"></div>
+				<span class="selected-span">
+					<a href="interestlist" class="selected-a" style="color: black;">팔로워 <%=savantCnt%></a>
+				</span>
+				<span>
+          <a href="prelaunchedlist">팔로잉 <%=masterCnt%></a>
+        </span>
+			</div>
+
+    <div class="select-content">
+		<br><br>
     <%if(savantList.size()==0) {%>
     	<div class="no-content">
-			<img src="<%=request.getContextPath()%>/images/profile/empty follower.png">
-      		<div>아직 팔로워가 없습니다.</div>
-      	</div>
+				<img src="<%=request.getContextPath()%>/images/profile/empty follower.png">
+      <div>아직 팔로워가 없습니다.</div>
+    </div>
     <% } %>
       <%
       if(savantList.size() != 0){
@@ -67,15 +76,23 @@
     	  %>
     	  
     	  <div class="follower_box">
-	    	  <img src="<%=request.getContextPath()%>/files/user_image/default.png">
-	    	  <%=userName %><br>
-	    	  <%=userIntroduction %><br>
-	    	  <%=savantCnt2 %><br>
-	    	  <%=projectsmadeCnt %><br>
-	    	  	<form action="<%=request.getContextPath()%>/addfollow"> /*서블릿구현해야함
-					<input type="text" class="invisible" value="<%=userNo%>" name="userNo">
-					<button>+팔로우</button>
-				</form>
+					<div class="image">
+	    	  	<img src="<%=request.getContextPath()%>/files/user_image/default.png">
+					</div>
+					<div class="lower_text">
+	    	  			<span><%=userName %></span><br>
+						<span><%=userIntroduction %></span><br>
+					</div>
+					<div class="lower_cnt">
+	    	  	팔로워<span><%=savantCnt2 %></span><br>
+	    	  	올린 프로젝트<span><%=projectsmadeCnt %></span><br>
+					</div>		
+						<div class="button">
+							<form action="<%=request.getContextPath()%>/addfollow"> <!-- 서블릿구현해야함-->
+								<input type="text" class="invisible" value="<%=userNo%>" name="userNo">
+								<button><h4>+팔로우</h4></button>
+							</form>
+						</div>
     	  </div>
       	%>
     <% } %>
