@@ -106,7 +106,8 @@ public class CommunityDAOOracle implements CommunityDAOInterface{
 				+ ", post_content"
 				+ ", post_date"
 				+ " FROM community c JOIN users u ON c.user_no=u.user_no"
-				+ " WHERE project_no = ?";
+				+ " WHERE project_no = ?"
+				+ " ORDER BY post_no ASC";
 
 		try {
 			con = MyConnection.getConnection();

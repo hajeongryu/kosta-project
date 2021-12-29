@@ -6,6 +6,7 @@ import com.team.exception.AddException;
 import com.team.exception.FindException;
 import com.team.project.dao.CommunityDAOOracle;
 import com.team.project.vo.Community;
+import com.team.project.vo.Project;
 
 public class PostService {
 	static PostService service = new PostService();
@@ -22,6 +23,7 @@ public class PostService {
 	}
 	
 	public void add(Community comm) throws AddException{
+		//Project p = dao.findByProjectNo(comm.getProject().getProjectNo());
 		dao.add(comm);
 	}
 	
