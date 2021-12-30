@@ -58,7 +58,7 @@
 					<a href="savantList" class="selected-a" style="color: black;">팔로워 <%=savantCnt%></a>
 				</span>
 				<span>
-          <a href="masterList">팔로잉 <%=masterCnt%></a>
+          <a href="<%=request.getContextPath()%>/jsp/profile/following.jsp">팔로잉 <%=masterCnt%></a>
         </span>
 			</div>
 
@@ -78,7 +78,7 @@
     	  String userName = u.getUserName();
     	  String userIntroduction = u.getUserIntroduction();
     	  int savantCnt2 = followService.getSavant(u.getUserNo()).size();
-    	  int projectsmadeCnt = service.findByUserNo("u.getUserNo()").size();
+    	  int projectsmadeCnt = service.findByUserNo(""+u.getUserNo()).size();
     	  %>
     	  
     	  <div class="follower_box">
@@ -100,7 +100,6 @@
 							</form>
 						</div>
     	  </div>
-      	%>
     <% } %>
     <% } %> 
     </div>

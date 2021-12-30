@@ -57,7 +57,7 @@ public class FollowServlet extends HttpServlet {
 			} catch (FindException e) {
 				e.printStackTrace();
 			}
-		String path="./jsp/profile/follow.jsp";
+		String path="./jsp/profile/follower.jsp";
 		RequestDispatcher rd =request.getRequestDispatcher(path); 
 		rd.forward(request, response);
 	}
