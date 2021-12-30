@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+/* 개인 프로필-왼쪽 사이드바 */
 .aside{
 	position: relative;
     float: left;
@@ -14,7 +14,7 @@
     letter-spacing: -0.035em;
     margin: 0;
 }
-.aside>.image{
+.aside-image{
 	display: inline-block;
     border-radius: 50%;
     background-repeat: no-repeat;
@@ -27,7 +27,7 @@
     border: 0;
     padding: 0;
 }
-.aside>.imagedit{
+.aside-imagedit{
 	width: 24px;
     height: 24px;
     position: absolute;
@@ -56,7 +56,7 @@
     font-weight: 700;
     font-style: normal;
 }
-.aside>.logout{
+.aside-logout{
 	text-align: center;
 	display: block;
     margin-top: 16px;
@@ -80,6 +80,8 @@
     box-sizing: border-box!important;
     -webkit-appearance: none;
     -webkit-font-smoothing: antialiased;
+
+/* 개인 프로필-오른쪽 내용 */
 }
 .article{
 	position: relative;
@@ -88,7 +90,7 @@
     padding: 42px 32px 120px;
     width: calc(100% - 233px);
 }
-.topbox{
+.article-topbox{
     box-sizing: border-box;
     display:flex;
     margin: 0;
@@ -102,7 +104,7 @@
     padding-left: 20px;
     padding-right: 20px;
 }
-.topbox>.text{
+.article-topbox>p{
     padding: 24px 0;
     display: block;
     position: relative;
@@ -115,18 +117,7 @@
     box-sizing: border-box;
     cursor: pointer;
 }
-.article>.topbox>h1{
-    display: block;
-    padding: 0 0 4px;
-    line-height: 30px;
-    letter-spacing: -.6px;
-    font-size: 50px;
-    font-weight: 700;
-    font-style: normal;
-    
-}
-/* below box */
-.article>.belowbox{	
+.article-belowbox{	
 	display: block;
     position: relative;
     outline: none;
@@ -134,7 +125,7 @@
     width: 100%;
     text-align: left;
 }
-.article>.belowbox>img{	
+.article-belowbox>img{	
 	width: 24px;
     height: 24px;
     vertical-align: top;
@@ -146,18 +137,18 @@
     color: rgba(0,0,0,.84);
 }
 /* below box 한글(ex.팔로우, 메시지, 공지사항, 헬프센터, 창작자 가이드, 문의하기, 로그아웃 버튼 등) */
-.article>.belowbox>h4{
+.article-topbox>a>span{
     display: inline-block;
     line-height: 28px;
     letter-spacing: -.3px;
-    font-size: 16px;
+    font-size: 35px;
     font-weight: 400;
     font-style: normal;
     line-height: 24px;
     color: #212529;
 }
 /* top box - 후원현황, 관심 프로젝트, 만든 프로젝트, 이름, 메이커팁 */
-.article>.topbox>h3{
+.article-topbox>h3{
     background-color: #fff;
     line-height: 28px;
     letter-spacing: -.3px;
@@ -168,14 +159,4 @@
 .adbanner{
     display: block;
     height: 100%;
-}
-.article>a>span{
-    display: inline-block;
-    line-height: 28px;
-    letter-spacing: -.3px;
-    font-size: 16px;
-    font-weight: 400;
-    font-style: normal;
-    line-height: 24px;
-    color: #212529;
 }

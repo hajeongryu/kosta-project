@@ -78,7 +78,7 @@ Users u = (Users)session2.getAttribute("loginInfo");
 				<div class="article">
 					<div class="article-topbox">
 						<div>
-							<a href="<%=request.getContextPath()%>/jsp/profile/orderprojectresult.jsp"><span><%=orderSize%></span><p>후원현황</p></a>
+							<a href="<%=request.getContextPath()%>/orderlist"><span><%=orderSize%></span><p>후원현황</p></a>
 						</div>
 						<div>
 							<a href="<%=request.getContextPath()%>/jsp/profile/interestprojectresult.jsp"><span><%=interestSize%></span><p>관심 프로젝트</p></a>
