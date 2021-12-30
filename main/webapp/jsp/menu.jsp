@@ -28,7 +28,7 @@
                     </a>
                 </li>
                 <li class="user-logo">
-                    <a href="#">
+                    <a href="<%=request.getContextPath()%>/jsp/profile/alarmresult.jsp">
                         <span class="user-li">
                             <img src="<%=request.getContextPath()%>/images/mainpage/aram.PNG">
                         </span>
@@ -95,7 +95,7 @@
                             <li><a href="">공연</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">홈</a></li>
+                    <li><a href="<%=request.getContextPath()%>">홈</a></li>
                     <li><a href="#">인기</a></li>
                     <li><a href="#">신규</a></li>
                     <li><a href="#">마감임박</a></li>
