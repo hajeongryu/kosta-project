@@ -148,14 +148,11 @@ public class OrderAdd extends HttpServlet {
 			
 		}else {
 			System.out.println("로그인 안한상태로 OrderAddServelt접근");
-			path="/";
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher(path);
 		
-	
-		
-	
+		path ="/rhollEE";
+		response.sendRedirect(path);
 		
 
 			
