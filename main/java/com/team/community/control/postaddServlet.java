@@ -10,6 +10,7 @@ import com.team.project.vo.Community;
 import com.team.project.vo.Project;
 import com.team.user.vo.Users;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -69,6 +70,8 @@ public class postaddServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		String path = "/rhollEE/projectdetail?projectNo="+projectNo;
+		response.sendRedirect(path);
 		
 	}
 }
