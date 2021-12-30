@@ -160,15 +160,16 @@
         
         <!-- 펀딩 성공 내역 -->
         <div class="order">
+          <div class="payment-cont">
+            <span class="paymentresult">펀딩 성공</span>
+            (<%=success.size()%>)
+          </div>
         <%for(Order o: success){  
         	  cal.setTime(o.getProject().getEndDate());
         	  cal.add(Calendar.DATE, 1);
         	  del.setTime(o.getProject().getEndDate());
         	  del.add(Calendar.DATE, o.getReward().getDeliverDate());%>
-          <div class="payment-cont">
-            <span class="paymentresult">펀딩 성공</span>
-            (<%=success.size()%>)
-          </div>
+          
           <div class="each-order-content">
             <div class="order-img">
               <a href="/rhollEE/orderdetail?paymentNo=<%=o.getPaymentNo()%>">
@@ -213,15 +214,16 @@
         
         <!-- 결제 완료 내역 -->
         <div class="order">
+          <div class="payment-cont">
+            <span class="paymentresult">결제 완료</span>
+            (<%=payed.size()%>)d
+          </div>
         <%for(Order o: payed){  
         	  cal.setTime(o.getProject().getEndDate());
         	  cal.add(Calendar.DATE, 1);
         	  del.setTime(o.getProject().getEndDate());
         	  del.add(Calendar.DATE, o.getReward().getDeliverDate());%>
-          <div class="payment-cont">
-            <span class="paymentresult">결제 완료</span>
-            (<%=payed.size()%>)
-          </div>
+          
           <div class="each-order-content">
             <div class="order-img">
               <a href="/rhollEE/orderdetail?paymentNo=<%=o.getPaymentNo()%>">
