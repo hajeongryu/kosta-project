@@ -12,7 +12,7 @@
             if(u==null){ //로그인 안된경우
             %>
                 <li class="login-container">
-                    <a href="<%=request.getContextPath()%>/html/login/login.html">
+                    <a href="<%=request.getContextPath()%>/jsp/login/login.jsp">
                         <span class="user-li login">
                             <img src="<%=request.getContextPath()%>/images/mainpage/user_default.png">
                             <span>로그인/회원가입</span>
