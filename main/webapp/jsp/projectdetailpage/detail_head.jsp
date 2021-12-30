@@ -94,34 +94,33 @@
 		
 			</div>
 	</div>
-
+	<hr>
 	<div class="bot">
 	<div class="content">
 	
-	<!-- object data="/rhollEE/<%=p.getProjectContent()%>" style="min-height:100vh;width:100%"></object> -->
-		<iframe src="/rhollEE/src/main/webapp/<%=p.getProjectContent()%>" style="width:200px;height:200px;"></iframe>
+	<iframe width="100%" height="600" src="./<%=p.getProjectContent()%>"></iframe>	
+	<%--include file="./detail_con.jsp" --%>
 	</div>
 
 	<div class="postcon">
 		<%@include file="./post.jsp" %>
 	</div>
-	</div>
 
-
-</div>
-	<div class="reward">
+<div class="reward">
 			<%
 			if(rewardList != null){
 				for(Reward r : rewardList){
 			%>
 			<div>
 				<button type="button" onclick="location.href='http://localhost:8888/rhollEE/order?projectNo=<%=p.getProjectNo()%>&rewardNo=<%=r.getRewardNo()%>'">
-					선물번호
-					<%=r.getRewardNo() %>
-					선물이름
+					<%=r.getRewardNo() %><br>
 					<%=r.getRewardName() %>
 				</button>
 			</div>
 			<%} }%>
 		</div>
-</section>
+
+
+	</div>
+</div>
+	</section>

@@ -40,8 +40,6 @@
  display: flex;
  flex-direction: column;
 }
-
-
 .ingbox{
     border: 1px solid darkgrey;
     border-radius: 4px;
@@ -49,10 +47,23 @@
     margin-top: 5px;
     padding: 5px;
 }
-
 .bot{
   display: flex;
 }
-.postcon{
-	
+.content{
+	width: 600px;
+    padding: 80px;
 }
+.reward{
+	margin: 0px auto;
+}
+.reward button{
+	width: 100%;
+	border-radius: 5px;
+    border: 1px solid gray;
+    background-color: rgba(0,0,0,0);
+    color: gray;
+    padding: 30px;
+
+}
+

@@ -20,7 +20,9 @@
 		List<Community> posts = (List)request.getAttribute("findedPost");
 		Users loginedUser = (Users)session.getAttribute("loginInfo");
 	%>
-		
+		<div>
+					<h2>커뮤니티</h2>
+					</div>		
 
 			<% 
 			if(posts !=null){ 
@@ -31,9 +33,7 @@
 					java.util.Date postDate=post.getPostDate(); 
 					String postCon=post.getPostContent(); 		
 			%>
-					<div>
-					<h2>커뮤니티</h2>
-					</div>					
+								
 					<div style="display:none;">
 						게시글번호<br>
 						<%=postNo %>
@@ -111,12 +111,16 @@
 									댓글내용
 									<%=commentCon %>
 								</div>
+								<div>
+								<input>
+								</div>
 							</div>
 							<% } %>
-	
+							
+						</div>
 								<% } } %>
 								
-					</div>
+					
 
 
 
