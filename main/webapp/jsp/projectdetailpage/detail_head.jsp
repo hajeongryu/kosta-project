@@ -49,7 +49,6 @@
 			<%=p.getCategory().getCategoryName() %>
 			</div>
 			<div class="longtitle">
-			프로젝트제목
 			<%=p.getLongTitle() %>
 			</div>
 			<div class="creatoruser">
